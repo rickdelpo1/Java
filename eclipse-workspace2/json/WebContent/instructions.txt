@@ -1,0 +1,26 @@
+start tomcat server workspace2
+
+run in browser
+http://localhost:8080/json/jqgrid_demo.html
+
+then enter... select * from recruiters..the hard coded default query
+                                             ** see col model servlet for 12-27 instructions on the auto version
+
+
+ctrl shift J shows console, if there is cors issue
+
+col model and col model 2 need to auto load my query similar to getting it in Ajax handler
+                                                   on dec 27 I reviewed code and now tests are needed
+also need to do one connection for all the separate servlets
+    see manage cars original program for connection class
+    
+    
+    
+    note startscript and manage cars used for js front end
+    pro builder servlet is for create table
+    
+    new idea on 7-11-2020...send response object from pro builder servlet back to js after table created withFA and anchor tag....see text area notes
+    also add drop to case statement so we now have create and drop plus others as needed. No need for select here because startscript does that
+    
+    see tables.java in workspace 3 for retrieving table names from sqlite...we will use this to show all tables to user after create new table
+      each table has clickable anchor tag to select all statement and has FA icon preceeding
