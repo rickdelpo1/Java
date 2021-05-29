@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<title>Feedback Form</title>
+<!--<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
+<script src="jquery-3.4.1.js"></script> <!--grab this locally-->
+
+<!-- removed button click function from head area and also trim-->
+<!-- replace with below so ajax executes only when button clicked instead of when loaded-->
+</head>
+
+<body>
+
+          <!--below is the interactive version using onfocus and onblur events-->
+
+<p>we welcome ur Feedback. Comments are not posted. If a response is needed please include email or text link in message</p>
+<br>
+
+<textarea rows="5" cols="40" id="comment2" onfocus="myFunction(this)">click here to Add a Comment</textarea>
+
+        <p><button id="button">Submit Feedback</button></p>
+
+<div id="result"></div>  <!--show servlet response here-->
+
+      
+    <script>
+
+           //non jquery way of doing this
+function myFunction(x) {
+  x.style.background = "yellow";
+  x.value = "";  //when onfocus default text disappears
+}
+
+           //the jquery way of doing click function
+//$(document).on('click', '#button', function(){ 
+$(document).one('click', '#button', function(){ 
+            //change to .one method to avoid multiple event firing using jquery
+     // alert("button is clicked"); // instead of alert add clicked event to db
+
+var comment1 = $("#comment2").val(); //get value of user input
+
+//do ajax here
+
+$.ajax({
+          type: "POST",
+    //      url: "http://localhost:8080/json/Comments",
+          url     : 'https://cookiefreecoders.com/examples/servlets/servlet/Comments',
+
+          data: { message : comment1}, //pass val comment one into message param which gets picked up in servlet get param
+                         //define response object for success function
+          success : function(response){
+          
+              //get servlet response object into result tag.... we got ur comment if u want a reply include email
+
+                      $('#result').html(response); //getting message back from servlet response object, need div with id=result
+
+
+          } //end success
+        }); //end ajax
+
+
+
+//then reset default message
+  comment2.style.background = "lightblue";
+  comment2.value = "thank you, wait 3 seconds and enter new comment or exit";
+
+//await wait(5000);  //wait 5 seconds go back to original free tuts to see how we paused
+$(function() {
+    setTimeout(redirect, 5000);  //5000= 5 seconds..need to wait so db script has time to load
+});
+
+     //note that since .one method is in use we cannot re enter comment here because this script only allows it once, must go back to free tut page
+   //perhaps do a redirect to free tut page or instruct user to start over..see below
+
+
+ }); //end of button click function
+
+
+function redirect(){
+    //var url= "https://www.cloudwithasilverlining.com/main"; 
+    //window.location = url;  
+
+$("#content").load("https://cookiefreecoders.com/comments.html");
+}
+
+      </script>
+
+
+
+
+</body>
+</html>

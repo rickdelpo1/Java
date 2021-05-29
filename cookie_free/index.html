@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+
+<meta name="description" content="Featuring a Cookie Free Geo Tracking app by Rick Delpo">
+
+<meta name="keywords" content="rick delpo,cloud computing, CT, Connecticut, learn java,sql,data management,cloud instruction, tutoring, learn sql, data integration, data instruction,consulting, education, mentoring">
+
+
+
+<title>Rick Delpo</title>
+  
+
+<!--these are the local links-->
+            <script src="jquery-3.4.1.js"></script> <!--grab this locally-->
+            <script src="popper.js"></script> <!--must be in this order - need popper to make pop up work-->
+          <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
+
+            <script src = "bootstrap-4.1.1.js"></script> 
+            <link rel = "stylesheet" href = "bootstrap-4.1.1.css">
+
+
+           <!-- <link rel="stylesheet" href="font-awesome.css"> --> <!-- not using FA anymore due to manual x to close in navbar -->
+          <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"> -->
+
+
+
+        <!--    <link rel="canonical" href="https://www.cloudwithasilverlining.com"/> -->
+
+                  <!--add ref to favicon-->
+
+            <link rel="icon" href="data.ico" type="image/x-icon"> <!-- create one and save it, done -->
+
+  
+
+<style>
+
+.toshow {
+
+display:none; /* default is hidden, this also hides the space it takes up vs visibility tag that only hides content but not the space */
+top:0;
+position:fixed; /*this makes banner fixed but navbar is not..now it is fixed by changing position on nav when reset */
+padding-bottom: 30px; /* need this to cover white space when no word wrap, this works only for mobile to cover white space when phone is turned horizontal */
+
+}
+
+.main {
+   padding-top: 260px;  /* start content 280 px from top but move content up 160 px when in mobile mode with smaller banner was 300 */
+   padding-bottom: 40px; /* added white space at end of div to create more space between divs, avoid overlap , was 50*/
+}
+
+
+           /* start the nav bar right below the header at position 161 */
+.navbar {
+        top: 161px;
+          /* looks like navbar has a default height of maybe 54 px */
+    } 
+
+
+    
+       /* pagewide is start of banner section above navbar, it is 160px wide */
+.pagewide {
+
+
+      /*  we are only using this class now because it gets destroyed for mobile version */
+     
+
+           }
+
+
+
+.site-footer {
+    background: orange;
+    position: fixed;
+    /*position: absolute; relative and absolute did not work in ff*/
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 90px; /*increased this by 30 to work in ff*/
+
+}
+
+/* ditch the ugly blue outline */
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: 0;
+}
+
+/* hide, close when burger shown */
+.navbar-toggler.collapsed .close-icon {
+    display: none;
+}
+
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+    display: inline;
+}
+
+
+/* below is css from tut 2 */
+
+p.indent {
+
+  font-size: 17px;
+  font-weight: normal;
+  color: red;
+  width: 70%;  /*content takes up 50% of screen width, then below centers it */
+  margin-left: auto ; 
+  margin-right: auto ;
+
+
+}
+
+
+   /* need to have all elements (divs and images) in body with these default props for screens/viewports < 1100 px */
+body {
+  background-color: #FFF8DC; /* yellow */
+  padding: 5px;
+  /*font-weight: bold; */
+  line-height:40px;
+  
+}
+
+
+     /* for screens  > 1100px center all body content and elements */
+@media only screen and (min-width: 1100px) {
+  body {
+
+    background-color: lightgreen;
+
+ width: 65%;  /*all body content takes up 65% of screen width, then below margin property centers it */
+  margin-left: auto ; 
+  margin-right: auto ;
+
+font-family: Avenir;
+  font-size: 20px;
+ /* font-weight: bold; */
+  line-height:40px;
+
+  }
+}
+
+
+ 
+</style>
+
+
+
+<script>
+
+var eu;
+var session;
+var responseText;
+
+$.ajax({
+
+   url: "https://freegeoip.app/json",
+  //url: "https://geolocation-db.com/jsonp",
+  jsonpCallback: "callback",
+  //async: false, //does not work in jsonp, this is ignored by jsonp
+  dataType: "jsonp",
+  success: function(location) {
+      //grab stats into variables, country,state and city_name
+ country=location.country_name;
+ //state=location.state;
+       state=location.region_name; //changed 4-22-21 for new free geo ip
+ city_name=location.city;
+
+       //need this logic here while still in success function..still need to do this for 28 countries in eu
+
+//if(state=="California") {        }
+               if(country=="United Kingdom"||country=="France"||country=="Germany"||country=="Austria"||country=="Belgium"||country=="Bulgaria"||country=="Croatia"||country=="Cyprus"||country=="Czechia"||country=="Denmark"||country=="Estonia"||country=="Finland"||country=="Greece"||country=="Hungary"||country=="Ireland"||country=="Italy"||country=="Latvia"||country=="Lithuania"||country=="Luxembourg"||country=="Malta"||country=="Netherlands"||country=="Poland"||country=="Portugal"||country=="Romania"||country=="Slovakia"||country=="Slovenia"||country=="Spain"||country=="Sweden") {
+
+//if(country=="United States") {
+              
+    //alert("is eu");  //this is working
+    //var eu = "yes";  //i think we should not use var because not using ensures that var created is global...need to try this
+     eu = "eu yes";
+}
+
+
+  } //end success...i think success is replaced by done in later jquery versions and use promises instead of async:false to synchronize calls ...seems complicated
+      //async:false is deprecated so at a later date we will need to replace
+
+
+});
+
+  //geo info is now in the head tag so it loads before body
+      
+
+$.ajax({
+                method: "GET",
+                url: "https://cookiefreecoders.com/test.php",
+                dataType:'text',
+                success : function(response){
+                     session = response;
+
+                }
+            });
+
+
+</script>
+
+
+</head>
+
+
+
+<!--<body>-->
+<body onLoad="closePage();">
+
+
+
+<script>
+ 
+function closePage(){
+
+var name;  //this will be the session id
+var count;  //if var is string must have single quotes, otherwise no quotes for int
+var pg;
+//var responseText;     
+
+pg="home_c"; //this sets home page and adds unload listener, ajax below identifies page after click but has no unload for those
+count=1;
+name = "cookie test new";
+
+$.ajax({
+           
+url     : 'https://javasqlweb.org/examples/servlets/servlet/AjaxHandler3',
+method     : 'POST',
+async: false,
+data : {   name : name,  name1 : count, page2:pg, country2 : country, state2:state, city2:city_name, eu2:eu, session2:session }, 
+success    : function(response){
+      responseText = response;  //pass this session to timeout servlet, this post allows 1 callback which is a get response object from servlet
+      //$('#result').html(response); //getting session id back from ajaxhandler3 response object
+   },
+error : function(jqXHR, exception){console.log('Error occured!!'); }
+
+});  //end of ajax function
+
+
+window.addEventListener('unload', function(event) {
+
+fetch("https://javasqlweb.org/examples/servlets/servlet/TimeOut", {
+     method: 'POST',
+     headers: new Headers({
+             'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type..headers required for param to work
+    }),
+     body: "name111="+responseText,  //from above..need comma because we are also adding keepalive..name111 is the param we get in servlet
+     keepalive: true  //required for window unload
+})
+    .then(res => res.text()) //this is the promise fka callback..not being used for this post request but needs to be used in get
+    .then((out) => {
+       // console.log('Output: ', out);
+}).catch(err => console.error(err));
+
+               
+});  //end of window unload
+
+
+} //end of closePage function
+
+
+</script>
+
+
+      <!-- start of banner followed by navbar -->
+
+<div class="container-fluid">
+
+
+   <div class="pagewide float-left bg-info fixed-top" <!--style="padding-right: 150px;-->"> <!--using pagewide only for destruction of this class on resize-->
+                                <!-- was bg-success which is color green and info is color blue -->
+<span class="float-left p-2">
+<h2>Welcome to Cookie Free Coders</h2>
+<p>Featuring a Cookie Free Geo Tracker app</p> 
+
+<!--<p>click here for tutorials.....also include image to the right....and feedback section at bottom</p> -->
+<p>understand the significance of Cookies and how to code this app</p>
+</span>
+
+     <span class="float-right p-5"><img alt="main logo" src="cookie.jpg"><img alt="main logo" src="cookie.jpg"><img alt="main logo" src="cookie.jpg"> </span> 
+
+
+</div> <!-- end container div-->
+
+
+
+
+      <!-- this div is hidden by default along with the space it takes up, and is the alt banner above the navbar when in mobile mode -->
+<!--<div class="toshow bg-primary fixed-top"> sample div, this is an example of a simple banner above navbar to be used only when in mobil and by default is hidden</div>-->
+
+<div class="toshow bg-info fixed-top float-left">
+ <h4 class="float-left p-2">We are Cookie Free Coders </h4>
+ <!--<p>We are under construction</p>-->
+ <span class="float-right"><img alt="main logo" src="cookie.jpg" width="50" height="50"> </span> 
+
+<!--this image seems too big for mobile in firefox..perhaps adding smaller height and width to img tag will help -->
+   <!-- note in chrome for mobile  we are ok but in ff larger image seems to throw off margins and padding for other elements-->
+  <!--including height and width worked in ff mobile but footer still has a problem...going to second line in ff-->
+    <!--originally height and width were left out in header-->
+
+</div>
+                      <!-- need fixed top here -->
+
+
+     <!--this is the nav bar, the name as nav is referred to in jquery to reposition the navbar for mobile-->
+<nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark"> <!--a fixed top starting at top=160px below banner div-->
+    <div class="container">
+        <a class="navbar-brand" href="#" target="_self">
+            CookieFreeCoders.com    <!--formerly Cloudwithasilverlining -->
+        </a>
+
+
+<!-- this is the new button with x to close, see older file for other , for this we use font awsome x because glyphicon went away in bootstrap4  -->
+ <button class="navbar-toggler collapsed border-0" type="button" data-toggle="collapse" data-target="#collapsingNavbar">menu
+            <span class="navbar-toggler-icon"></span>
+
+      <!--  <div class="close-icon py-1"><i class="fa fa-times"></i></div> -->
+ <div class="close-icon py-1">x</div>    <!-- use plain x instead of fa -->
+
+         
+        </button>
+
+
+<!--menu section-->
+
+ <div class="collapse navbar-collapse" id="collapsingNavbar"> <!--this line needed for x to work in bootstrap4 -->
+
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="https://cookiefreecoders.com">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item">
+                        
+                   <a class="nav-link" href='about.html' onclick='setThrough(this);' target="receiver3" data-toggle="collapse" data-target=".navbar-collapse.show">About Rick Delpo</a>             
+                       
+                </li>
+
+            
+                <li class="nav-item">
+                   <a class="nav-link" href="comments.html" onclick='setThrough(this);' target="receiver3" data-toggle="collapse" data-target=".navbar-collapse.show">Submit Comment</a> <!-- put feedback form here -->
+                </li>
+
+      <li class="nav-item dropdown"> <!--alternative to hamburger menu, but for small screens turns into hamburger, see button tag above-->
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">More
+        </a>
+        <div class="dropdown-menu dropdown-info" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="contact.html" onclick='setThrough(this);' target="receiver3" data-toggle="collapse" data-target=".navbar-collapse.show">contact us</a>
+          <a class="dropdown-item" href="pricing.html" onclick='setThrough(this);' target="receiver3" data-toggle="collapse" data-target=".navbar-collapse.show">Pricing</a>
+          <!--<a class="dropdown-item" href="#">Privacy Policy</a>-->
+   <a class="dropdown-item" href="privacy.html" onclick='setThrough(this);' target="receiver3" data-toggle="collapse" data-target=".navbar-collapse.show">Privacy Policy</a>    
+        </div>
+      </li>
+
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+
+        <!-- this is my main content and id tag makes div move in jquery when navbar repositions for smaller screen -->
+
+  <div class="main" id="movediv">
+
+
+   <br><br><br>
+        <p> a just for fun site to understand Cookie Free applications</p>
+<p> this is a glimpse of my geo tracking app dashboard </p>
+<p> click on various menu items and watch ur page visits increase, in real time, every minute </p>
+
+    <br>
+<h2>Geo Tracker Dashboard</h2>
+
+<b><thead><th>country</th><span>      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </span><th>unique users</th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<th>page visits</th></thead></b>
+
+
+<script>
+        $(document).ready(function() {   
+
+
+var counter = 0;
+function callDash(){
+
+        $('#result').empty();  //empty before each pass       
+	var table = '<table>';     //create table in html
+	var tr;
+	
+	
+$.ajax({ //type: "GET",   
+         url: "https://cookiefreecoders.com/examples/servlets/servlet/Tables",
+         method     : 'POST', 
+         dataType: "json",
+         colNames : [ 'country', 'ip', 'hit' ], //not working in html table until we do an html table header
+         colModel : [ { country : 'country' }, { ip : 'ip' }, { hit : 'hit' } ],
+         
+      
+      //this success function returns side by side but vals are undefined, adding colmodel fixed this
+         //this one is for multi columns and must use json object format vs plain arraylist like below
+      
+      success : function (response) {
+           	  
+    	  
+   // var count = 0;
+    for (var i = 0; i < response.length; i++) {
+        tr = $('<tr/>');
+        tr.append("<td width='200'>" + response[i].country + "</td>");
+        tr.append("<td width='100'>" + response[i].ip + "</td>");
+        tr.append("<td>" + response[i].hit + "</td>");
+        $('table').append(tr);
+        
+    }      //end for loop
+    
+    
+    //also try set interval ...note setTimeout is blinking , will fade in work
+    
+    
+  //  setTimeout(function(){
+    //	$('#result').empty(); //empty contents before next pass
+    //	callDash(); //this will send request and return success every 60 seconds;
+    //}, 60000);
+    
+        }   //end success
+        
+      
+   }); //end ajax
+
+         //use this for 2nd multi col success function
+table += '</table>';
+
+$(result).append(table);
+
+call2();  //go to timeout function
+
+  
+ 
+} //end of callDash   
+
+    // Execute this function on load
+    callDash();
+
+
+function call2(){
+
+//$('#result').empty(); //empty contents before next pass
+var aaa = setTimeout(callDash, 60000); //poll every 1 minute
+counter++;
+console.log(counter);
+      //after 10 passes stop the interval polling
+if(counter==10){
+	clearTimeout(aaa);
+	}
+}
+
+
+
+}); //end of document ready
+
+
+</script>
+
+
+<div id="result"></div>  <!-- arraylist shows up here -->
+
+
+
+
+    <br>
+
+
+
+
+
+<!-- main content ends above here -->
+
+
+    <br>
+
+  </div>  <!-- end of main div-->
+
+
+<!-- selected content shows up in this div-->
+<div class="main" id ="content"> </div>
+
+<br>
+
+       <!--changed default of iframe to be hidden-->
+<iframe name="receiver3" id="receiver3" style="display:none;"></iframe>
+
+
+     <script>  <!-- page views show up in content section with template header and navbar -->
+
+//closeNew();  //tried this and close new was undefined because it was not inside set through function probably
+
+      //Your variable declaration
+    var yourVariable3;
+   var responseText2;
+var check = false;  //set boolean here initially as false, might need to set on body onload instead
+                       //on first pass through close new var check is false so it does not fire unload script
+
+
+      //Your function to set the value of your variable through href link clicked
+
+    function setThrough(yourLink){
+
+      //********************************* put this one back when live
+closeNew(); //run this in beginning of pass so it picks up old session val to update on second pass
+               //as content is changed run timeout servlet to grab previous page timeout...also has alert content changed
+               //do this for each pass except first pass where check boolean is still false
+//var pg;
+         yourVariable3 = yourLink.href;  //get val of href
+//alert("in first function");
+//alert(yourVariable3);
+if(yourVariable3=="https://cookiefreecoders.com/about.html") {var newvar="about_c";}
+//if(yourVariable3=="https://javasqlweb.org/free-tutorials") {var newvar="tutorials";}
+//if(yourVariable3=="https://javasqlweb.org/personality-of-the-beginner-programmer") {var newvar="personality";}
+//if(yourVariable3=="https://javasqlweb.org/afraid-of-java") {var newvar="afraid";}
+if(yourVariable3=="https://cookiefreecoders.com/comments.html") {var newvar="comments_c";}
+if(yourVariable3=="https://cookiefreecoders.com/privacy.html") {var newvar="privacy_c";}
+if(yourVariable3=="https://cookiefreecoders.com/contact.html") {var newvar="contact_c";}
+if(yourVariable3=="https://cookiefreecoders.com/pricing.html") {var newvar="pricing_c";}
+
+
+//alert(newvar);  //this is the page variable we want to set based on reading the href object
+
+$("#receiver3").hide(); //need this when using target iframe so content does not appear in 2 places..hide iframe
+$("#movediv").hide();
+$("#content").load(yourVariable3);  //load each href click into the content tag
+
+
+name = "test new3";  //this will be the session id
+count=1;  //if var is string must have single quotes, otherwise no quotes for int
+pg=newvar;  // set page variable to our new var
+//var responseText2;     
+
+//closeNew(); //originally ran this here
+               //then after close new, check if true or false, is run get new session below as response2
+
+$.ajax({
+           //pass each pageview into tracker table
+url     : 'https://javasqlweb.org/examples/servlets/servlet/AjaxHandler3',
+method     : 'POST',
+//async: false,  //I turned this off, not sure if it had anything to do with updating, ie when this ajax is fired
+data : {   name : name,  name1 : count, page2:pg, country2 : country, state2:state, city2:city_name, eu2:eu, session2:session }, 
+success    : function(response){
+      responseText2 = response;  //pass this session to timeout servlet, this post allows 1 callback which is a get response object from servlet
+     },
+error : function(jqXHR, exception){console.log('Error occured!!'); }
+
+});  //end of ajax function
+
+
+    } //end of set through function
+
+</script>
+
+
+
+
+<!-- end of main -->
+
+
+
+<footer class="site-footer">
+  We do not use cookies.
+
+<button id="btnClick">ok thanks</button> 
+
+<span> see privacy 
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#demo2">
+    policy
+  </button>
+
+<!-- include an if clicked function to push click event to db -->
+
+</span>
+
+<!-- need to also add copywrite info -->
+<!-- perhaps if eu= yes we have site-footer2, a different looking footer just for eu??? -->
+
+
+<!-- Button to Open the Modal, i think old window.open is no longer allowed in js, need to research this, so instead do pure css approach using bootstrap4 -->
+      <!--note that close button was not working so i added some jquery and it worked -->
+
+</footer>
+
+
+  
+<!-- popup section --> 
+  <div class="modal" id="demo2">
+ 
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">   
+   
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Privacy Policy</h4>
+             <button type="button" class="close" data-dismiss="modal">X</button></div>
+ 
+        <!-- Modal body -->
+        <div class="modal-body">
+
+<p>In general, we respect the privacy of our users.</p>
+<br><br>
+<p>We do not collect personal information, we do not market or retarget our products.
+ We do not solicit or ask for an email address. We do not buy, sell or share personal data.
+ In fact, we are not even a business but instead an educational resource offering free tutorials.
+ Thus, there is no impact on privacy whatsoever at this site.</p>
+
+
+             </div>   
+    
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" > Close</button>
+        </div>    
+    
+      </div>
+    </div>
+  </div>
+  
+</div>
+<br><br>
+<br><br>
+
+<!-- end of popup-->
+
+
+
+
+
+
+
+  <!-- other jQuery -->
+ 
+    <script>
+        $(document).ready(function() {   
+
+//var responseText;  //this needs to be global so it works across whole app, set in very beginning
+//window.history.pushState({urlPath:'/rindex.html'},"",'/rindex.html');
+
+
+
+    window.history.pushState({urlPath:'/home'},"",'/home');
+    window.history.pushState({urlPath:'/home2'},"",'/home2');
+
+
+
+//window.history.back(); //above line, need to set pushstate after doc is ready 
+
+
+            //default position large screen we have large banner above navbar but on <1000 screen we destroy class and run new navbar under default hidden div
+               //no need for if and else just do below on mobile and anything >1000 becomes larger screen default
+               //increased size to >1000 for this to work in firefox, originally at 800 was not working in FF
+  
+  function checkWidth() {
+        var windowsize = $(window).width();
+        if (windowsize < 1100) {
+
+  $(".pagewide").hide(); 
+    $(".col2").hide();
+$("div").removeClass("pagewide"); 
+$("div").removeClass("col2");
+
+
+// new navbar re positioning, instantiate new div called nav using navbar class..75 is the height of navbar from top under banner
+$("nav").css({top: 75, left: 0, position:'fixed'}); //this works for fixed, similar to fixed-top above, but this is the css way of doing it
+
+$("div.toshow").show(); // this shows a more simple banner above the menu just for mobil use
+
+
+// then mov whole div of main class up, trying to float a div on re position was not working
+
+
+$('#movediv').animate({
+		'marginTop' : "-=200px" //moves up 160 px for smaller banner on mobile
+		});
+
+
+//put else back in here for larger screen in order to center main content and images, see tut2 rev 2a
+//need to have this jquery on all pages, tut 2a is still trying to use @media instead of this jquery
+
+}
+
+
+    }
+
+    // Execute this function on load
+    checkWidth();
+
+
+
+
+//footer button click events
+    //need to add if eu==yes then show footer....also add 28 eu countries above for eu column  in db
+            // for this to work, default footer needs to hide similar to .toshow class
+
+
+
+$(document).on('click', '#btnClick', function(){ 
+    //alert("button is clicked"); // instead of alert add clicked event to db
+    $(".site-footer").hide(); 
+   
+});
+
+       // privacy policy click event , use this instead of modal, inside click event use if clicked lingo
+$(document).on('click', '#btnClickPolicy', function(){ 
+    alert(" other button is clicked"); // instead of alert add clicked event to db
+    //$(".site-footer").hide(); 
+   
+});
+
+
+//next one is for when other buttons pressed while at site...got rid of original plain js one in favor of jquery below for singletons
+
+// window.onpopstate = function(event2) {
+        //console.log(event2);
+        //console.log(responseText2);
+
+//window.history.back();
+
+            // parent.history.back();
+            // return false;
+
+
+//    };  // end of 2nd popstate event
+
+
+
+//below is jquery way of doing it, above is plain js adding an event
+     //needed to get rid of this part
+//if (window.history.pushState) {
+
+    $(window).on('popstate', function() {
+      var hashLocation = location.hash;
+      var hashSplit = hashLocation.split("#!/");
+      var hashName = hashSplit[1];
+
+      if (hashName !== '') {
+        var hash = window.location.hash;
+        if (hash === '') {
+          //alert('Back button was pressed2');
+          //console.log('previous page');
+             window.location.replace("https://yahoo.com"); //see if we can do the -1 syntax for prev page
+                    //using home page never gets us out of app so change yahoo.com to google.com 
+                       //try this with no replace....seems to work..not on mobile
+             //parent.history.back();    this was not working before
+             //return false;
+           //history.back();
+
+         //  location.reload();
+
+  //also run timeout here..no need for event listener, just run fetch code to call time out..but we need listener in doc ready
+fetch("https://javasqlweb.org/examples/servlets/servlet/TimeOut", {
+     method: 'POST',
+     headers: new Headers({
+             'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type..headers required for param to work
+    }),
+     body: "name111="+responseText,  //from above..need comma because we are also adding keepalive..name111 is the param we get in servlet
+     keepalive: true  //required for window unload
+})
+    .then(res => res.text()) //this is the promise fka callback..not being used for this post request but needs to be used in get
+    .then((out) => {
+       // console.log('Output: ', out);
+}).catch(err => console.error(err));
+
+         //******popstate event
+    //also need back button timeout on closepage where responsetext is not 2 because users press back on entry page
+
+        }
+      }
+
+//window.location.replace("https://yahoo.com");
+    });
+                 //was changing pushstate to #forward from rindex
+   // window.history.pushState('forward', null, './#forward');
+ // }  //end of back button code
+
+
+
+}); //end of document ready
+
+
+      </script>
+
+
+
+<script>
+ 
+function closeNew(){
+    //on first pass var is false so below will not run but on next pass and subsequent will run
+  //on next pass old response2 val is used before new one is assigned, maybe we still need fetch because i turned off async false in ajax
+
+if (check){
+ //add listener to div tag content when content is changed, originally used .on now using .one, so event handler only fires once
+    //prior to this .on method registered handler each time and caused out of memory in db with semi infinite loop 
+$("body").one('DOMSubtreeModified', "#content", function() {
+    //alert("content changed");
+
+     //ajax update timeout here, response2 val is the old one to close previous page on unload...this one closes when href clicked
+
+fetch("https://javasqlweb.org/examples/servlets/servlet/TimeOut", {
+     method: 'POST',
+     headers: new Headers({
+             'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type..headers required for param to work
+    }),
+     body: "name111="+responseText2,  //from above..need comma because we are also adding keepalive..name111 is the param we get in servlet
+    // keepalive: true  //required for window unload
+})
+    .then(res => res.text()) //this is the promise fka callback..not being used for this post request but needs to be used in get
+    .then((out) => {
+       // console.log('Output: ', out);
+}).catch(err => console.error(err));
+
+
+}); //end of content changed function
+  }                                       
+
+check=true;
+
+} //end of closeNew function
+
+
+</script>
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
