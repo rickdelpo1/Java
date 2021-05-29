@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+
+<title>Dashboard</title>
+
+<script src="jquery-3.1.1.min.js"></script>
+
+</head>
+
+
+<!--<body>--> 
+<body onLoad="callJqueryAjax();">  <!-- try document ready function instead of this -->
+                    <!--MUST use body onLoad in order to write ajax result to div, not sure why -->
+<br>
+<h2>This is our Dashboard - pass in country and user region ....and perhaps date/time here..will we scroll?</h2>
+
+<b><thead><th>country</th><span>      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </span><th>unique users</th>&nbsp;&nbsp;&nbsp;<th>page visits</th></thead></b>
+    
+
+<script>
+var counter = 0;
+ 
+function callJqueryAjax(){
+	
+	$('#result').empty();  //empty before each pass
+
+      
+	var table = '<table>';     //create table in html
+	var tr;
+	
+	
+$.ajax({ type: "GET",   
+         url: "http://localhost:8080/json/Tables", 
+         dataType: "json",
+         colNames : [ 'country', 'ip', 'hit' ], //not working in html table until we do an html table header
+         //colModel : [ { name : 'region' }, { name : 'plant_name' } ],
+               // define the columns, must be valid key pairs with real col names
+         //colModel : [ { region : 'region' }, { plant_name : 'plant_name' } ],
+         colModel : [ { country : 'country' }, { ip : 'ip' }, { hit : 'hit' } ],
+             //we are passing region values into column with the name region, same for plant
+              
+         //async: false,  //used this so ajax calls are called in order synchroniously vs async
+         // dataType: 'json', //only use this when servlet is returing json, but seems to work anyway with no dataType, datatype not mandatory
+        
+      
+      
+      //this success function returns side by side but vals are undefined, adding colmodel fixed this
+         //this one is for multi columns and must use json object format vs plain arraylist like below
+      
+      success : function (response) {
+        
+    	  
+    	  //<thead>       how to do headers         
+          //var output =
+          //"<table><thead><tr><th>country</th><th>ip address</th></thead><tbody>";
+    
+   // var count = 0;
+    for (var i = 0; i < response.length; i++) {
+        tr = $('<tr/>');
+        tr.append("<td width='150'>" + response[i].country + "</td>");
+        tr.append("<td width='50'>" + response[i].ip + "</td>");
+        tr.append("<td>" + response[i].hit + "</td>");
+        $('table').append(tr);
+        
+      //  count += response[i]
+       // console.log(sum);
+    }      //end for loop
+    
+    //table += '</table>';
+    //$(result).append(table);
+  
+    
+    //also try set interval ...note setTimeout is blinking , will fade in work
+    
+    /*
+    setTimeout(function(){
+    	$('#result').empty(); //empty contents before next pass
+    	callJqueryAjax(); //this will send request and return success every 5 seconds;
+    }, 5000);
+    */
+    
+    //console.log(count);
+    
+    
+    //var sum = 0;
+    //for (var j = 0; j < response.length; j++) {
+      //sum += response[j].hit
+            
+    //}
+    
+      //console.log(sum);
+    
+        }   //end success
+        
+         
+         
+      /*
+               //this one is good for a plain list, using gson
+         success : function(response)   //grab response as text and not json from servlet do get method
+             
+         {
+      
+        	 
+        	 
+      
+        	 //table += '<tr>';
+        	    //note cannot use .each on string list, must be object like array
+         $.each(response, function(key, val) {
+        	//$.each(response, function(data) {
+        	 table += '<tr>';  //need tr for each val....to display vals underneath each other
+        	 
+        	 table += '<td>' + val + '</td>';
+        	 //table += '<td>' + bb + '</td>';
+        	 
+        	 table += '</tr>'; //need tr for each val....to display vals underneath each other 
+        	 
+             console.log(val);
+            
+                });    //end .each  
+                
+         
+              
+                
+         //table += '</tr>';
+         table += '</table>';
+        
+         
+         
+         $(result).append(table);
+       
+         
+         
+         
+         
+      }  //end success
+
+      */
+
+  
+    
+      
+      
+      //setTimeout(callJqueryAjax, 5000);
+      
+      /*
+      setTimeout(function(){
+      	$('#result').empty(); //empty contents before next pass
+      	callJqueryAjax(); //this will send request and return success every 5 seconds;
+      }, 5000);
+      */
+      
+         }); //end ajax
+
+         //use this for other success function
+table += '</table>';
+
+$(result).append(table);
+
+
+//$('#result').empty(); //empty contents before next pass
+//var aaa = setTimeout(callJqueryAjax, 5000);
+//$('#result').empty();
+
+//console.log(sum);
+
+//$('#result2').html(response);  //can only use response object once
+
+         
+         
+//function auto_refresh(){
+  //   var randomnumber = Math.floor(Math.random() * 100);
+    // $('#result').text('I am getting refreshed every 3 seconds..! Random Number ==> '+ randomnumber);
+	 
+     //$('#result').html();   //does not refresh table
+	//$('#result').load('http://localhost:8080/json/Tables?action=add #result');
+ //}
+        
+ //var refreshId = setInterval(auto_refresh, 5000);  //every 5 seconds
+
+call2();  //go to timeout function
+ 
+} //end of callJQueryAjax function   
+
+
+</script>
+
+
+<script>
+
+function call2(){
+
+//$('#result').empty(); //empty contents before next pass
+var aaa = setTimeout(callJqueryAjax, 5000); //poll every 5 seconds
+counter++;
+console.log(counter);
+      //after 10 passes stop the interval polling
+if(counter==10){
+	clearTimeout(aaa);
+	}
+
+
+}
+
+</script>
+
+
+
+<div id="result"></div>  <!-- arraylist shows up here -->
+<div id="result2"></div>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Get Value from Textarea in jQuery</title>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("button").click(function(){
+            var comment1 = $.trim($("#comment").val()); //using .val method, get value of text area via textarea id and trim unwanted spaces
+            if(comment1 != ""){
+                // Show alert dialog if value is not blank
+                //alert(comment1);
+
+//grab val of comment1 and pass to servlet while still in click function
+
+$.ajax({
+          type: "POST",
+          url: "http://localhost:8080/json/Comments",
+          data: { message : comment1}, //pass val comment one into message param which gets picked up in servlet get param
+          success : function(response){
+          //    alert('success'+data);
+              //add code to receive servlet response and pass to div, servlet response can be a generic message like we got ur comment if u want reply include email
+
+                      $('#result').html(response); //getting message back from servlet response object, need div with id=result
+
+
+          } //end success
+        }); //end ajax
+
+
+
+            } //end if
+        });  //end click function
+        
+    }); //end document ready
+
+</script>
+</head>
+<body>
+
+    <!--<textarea id="comment" rows="5" cols="50">enter message here, onfocus disappear</textarea>--> <!-- get interactive textarea code from free-tutorials page-->
+          <!--below is the interactive version using onfocus and onblur events-->
+<textarea rows="5" cols="40" class="notselected" id="comment" onfocus="change('selected'); empty();" onblur="change('notselected'); empty();">Add a comment ...not operational yet </textarea>
+
+    <p><button type="button">Get Value</button></p>
+    <p><strong>Note:</strong> Type something in the textarea and click the button to see the result.</p>
+
+<div id="result"></div>  <!--show servlet response here-->
+
+
+<!--<script language="JavaScript" type="text/javascript">-->
+<script>
+function empty() {
+  var ta = document.getElementById("comment");
+  if (ta.getAttribute("class") == "notselected" && ta.value == "") ta.value = "Add your comment here...";
+  if (ta.getAttribute("class") == "selected") ta.value = "";
+}
+
+function change(cls) {
+  document.getElementById("comment").setAttribute("class", cls);
+}
+</script>
+
+</body>
+</html>

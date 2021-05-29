@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+
+
+<!-- still need to put locale in handler3 and also do if statement on eu because geo location does not have that metric called is_eu -->
+
+<title>Page1</title>
+                  <!-- js and other libraries like font awsome go in head, also ref to css goes here -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+
+<!-- try putting geo script here because head loads first before body ..as opposed to .done function in straight ajax?-->
+<!-- also i think by using jsonp for geo we enable a GET function without needing CORS...not sure about this-->
+
+
+</head>
+
+
+<!--<body> --> 
+<body onLoad="callJqueryAjax();">  <!-- try document ready function instead of this -->
+
+<br>
+<h2>This is page 3</h2>
+
+
+
+<script>
+
+//$( document ).ready(function() {
+
+ 
+function callJqueryAjax(){
+
+var responseText = '';     
+$.ajax({ type: "GET",   
+         url: "http://localhost:8080/json/DataBaseToJson", 
+         async: false,  //used this so ajax calls are called in order synchroniously vs async
+         success : function(response)   //grab response as text and not json from servlet do get method
+         {
+             responseText = response;   //for cols , gets array list from ColModel servlet
+             alert(responseText);   //instead of alert here just pass var to either console below or use anywhere
+             $("#rick").html(responseText);
+         }
+});
+
+var name = "test ssl";  //this will be the session id
+var count=1;  //if var is string must have single quotes, otherwise no quotes for int
+var pg="page1";
+
+
+$.ajax({
+
+url     : "http://localhost:8080/json/AjaxHandler4",
+method     : 'POST',
+async: false,   //execute this before next script which is redirect..turn off async functionality
+data : {   name : name,  name1 : responseText },   //pulling multiple vals to post to servlet
+success    : function(resultText){
+   //$('#result').html(resultText);
+},
+error : function(jqXHR, exception){
+console.log('Error occured!!');
+}
+});  //end of ajax function
+
+
+} //end of callJQueryAjax function   
+
+
+
+</script>
+
+<div id="rick"></div>
+
+
+
+
+<script type="text/javascript">
+  //this is plain js not jquery which uses blur instead of onblur
+window.onblur = function (){
+	document.title='NOT FOCUSED'
+}
+window.onfocus = function (){
+	document.title='FOCUSED'
+	  //try ajax here
+}
+// too make it complete, also add onblur to document.
+// For browsers using tabs (like firefox)
+document.onblur = window.onblur;
+document.focus = window.focus;
+</script>
+
+
+<!--
+<div>Country: <span id="country"></span></div>
+<div>State: <span id="state"></span></div>
+<div>City: <span id="city_name"></span></div>
+-->
+
+</body>
+</html>
