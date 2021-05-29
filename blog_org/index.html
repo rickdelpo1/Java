@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+
+<head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-121628832-1"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-121628832-1');
+</script>
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+
+
+<title>Foundations of Web Design for Beginners</title>
+  
+
+<!--these are the local links-->
+            <script src="jquery-3.4.1.js"></script> <!--grab this locally-->
+            <script src="popper.js"></script> <!--must be in this order - need popper to make pop up work-->
+          
+            <script src = "bootstrap-4.1.1.js"></script> 
+            <link rel = "stylesheet" href = "bootstrap-4.1.1.css">
+
+        <!--    <link rel="canonical" href="https://www.cloudwithasilverlining.com"/> -->
+
+                  <!--add ref to favicon-->
+
+            <link rel="icon" href="data.ico" type="image/x-icon"> <!-- create one and save it, done -->
+
+  
+
+<style>
+
+.toshow {
+
+display:none; /* default is hidden, this also hides the space it takes up vs visibility tag that only hides content but not the space */
+top:0;
+position:fixed; /*this makes banner fixed but navbar is not..now it is fixed by changing position on nav when reset */
+padding-bottom: 30px; /* need this to cover white space when no word wrap, this works only for mobile to cover white space when phone is turned horizontal */
+
+}
+
+.main {
+   padding-top: 300px;  /* start content 280 px from top but move content up 160 px when in mobile mode with smaller banner */
+   padding-bottom: 50px; /* added white space at end of div to create more space between divs, avoid overlap */
+}
+
+
+    
+       /* pagewide is start of banner section above navbar, it is 160px wide */
+.pagewide {
+
+
+      /*  we are only using this class now because it gets destroyed for mobile version */
+     
+
+           }
+
+
+/* below is css from tut 2 */
+
+p.indent {
+
+  font-size: 17px;
+  font-weight: normal;
+  color: red;
+  width: 70%;  /*content takes up 50% of screen width, then below centers it */
+  margin-left: auto ; 
+  margin-right: auto ;
+
+
+}
+
+
+   /* need to have all elements (divs and images) in body with these default props for screens/viewports < 1100 px */
+body {
+  background-color: #FFF8DC; /* yellow */
+  padding: 5px;
+  /*font-weight: bold; */
+  line-height:20px; /* was 40 */
+  
+}
+
+
+     /* for screens  > 1100px center all body content and elements */
+@media only screen and (min-width: 1100px) {
+  body {
+
+   /* background-color: lightgreen; */
+background-color: #d3d3d3;  /*light gray*/
+
+ width: 65%;  /*all body content takes up 65% of screen width, then below margin property centers it */
+  margin-left: auto ; 
+  margin-right: auto ;
+
+font-family: Avenir;
+  font-size: 20px;
+ /* font-weight: bold; */
+  line-height:20px;   /* was 40*/
+
+  }
+}
+
+
+ 
+</style>
+
+
+
+<script>
+
+var eu;
+var session;
+var times;
+
+$.ajax({
+   url: "https://freegeoip.app/json",
+  //url: "https://geolocation-db.com/jsonp",
+  jsonpCallback: "callback",
+  //async: false, //does not work in jsonp, this is ignored by jsonp
+  dataType: "jsonp",
+  success: function(location) {
+      //grab stats into variables, country,state and city_name
+ country=location.country_name;
+ state=location.state;
+ city_name=location.city;
+
+       //need this logic here while still in success function..still need to do this for 28 countries in eu
+
+//if(state=="California") {        }
+               if(country=="United Kingdom"||country=="France"||country=="Germany"||country=="Austria"||country=="Belgium"||country=="Bulgaria"||country=="Croatia"||country=="Cyprus"||country=="Czechia"||country=="Denmark"||country=="Estonia"||country=="Finland"||country=="Greece"||country=="Hungary"||country=="Ireland"||country=="Italy"||country=="Latvia"||country=="Lithuania"||country=="Luxembourg"||country=="Malta"||country=="Netherlands"||country=="Poland"||country=="Portugal"||country=="Romania"||country=="Slovakia"||country=="Slovenia"||country=="Spain"||country=="Sweden") {
+
+//if(country=="United States") {
+              
+    //alert("is eu");  //this is working
+    //var eu = "yes";  //i think we should not use var because not using ensures that var created is global...need to try this
+     eu = "eu yes";
+}
+
+
+  } //end success...i think success is replaced by done in later jquery versions and use promises instead of async:false to synchronize calls ...seems complicated
+      //async:false is deprecated so at a later date we will need to replace
+
+
+});
+
+  //geo info is now in the head tag so it loads before body
+      
+
+$.ajax({
+                method: "GET",
+                url: "https://blog.javasqlweb.org/test.php",
+                dataType:'text',
+                success : function(response){
+                     session = response;
+
+                }
+            });
+
+
+</script>
+
+
+</head>
+
+
+
+<!--<body>-->
+<body onLoad="closePage();"> <!--this format still needed so we can use both response and response2...needed for bounces off home 12-12-->
+                           <!-- when user does not click a tag but merely bounces off home..a tag is where response 2 kicks in -->
+
+
+
+<script>
+ 
+function closePage(){
+
+var name;  //this will be the session id
+var count;  //if var is string must have single quotes, otherwise no quotes for int
+var pg;
+var responseText;     
+
+pg="blog"; //this sets home page and adds unload listener, ajax below identifies page after click but has no unload for those
+count=1;
+name = "test blog";
+
+$.ajax({
+           
+url     : 'https://javasqlweb.org/examples/servlets/servlet/AjaxHandler3',
+method     : 'POST',
+async: false,
+data : {   name : name,  name1 : count, page2:pg, country2 : country, state2:state, city2:city_name, eu2:eu, session2:session }, 
+success    : function(response){
+      responseText = response;  //pass this session to timeout servlet, this post allows 1 callback which is a get response object from servlet
+      //$('#result').html(response); //getting session id back from ajaxhandler3 response object
+   },
+error : function(jqXHR, exception){console.log('Error occured!!'); }
+
+});  //end of ajax function
+
+
+window.addEventListener('unload', function(event) {
+
+fetch("https://javasqlweb.org/examples/servlets/servlet/TimeOut", {
+     method: 'POST',
+     headers: new Headers({
+             'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type..headers required for param to work
+    }),
+     body: "name111="+responseText,  //from above..need comma because we are also adding keepalive..name111 is the param we get in servlet
+     keepalive: true  //required for window unload
+})
+    .then(res => res.text()) //this is the promise fka callback..not being used for this post request but needs to be used in get
+    .then((out) => {
+       // console.log('Output: ', out);
+}).catch(err => console.error(err));
+
+               
+});  //end of window unload
+
+
+
+ window.addEventListener("blur", function(event) {
+             // console.log('new blur test only executes on blur because of listener!');
+
+fetch("https://javasqlweb.org/examples/servlets/servlet/TimeOut", {
+     method: 'POST',
+     headers: new Headers({
+             'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type..headers required for param to work
+    }),
+     body: "name111="+responseText,  //from above..need comma because we are also adding keepalive..name111 is the param we get in servlet
+     keepalive: true  //required for window unload
+})
+    .then(res => res.text()) //this is the promise fka callback..not being used for this post request but needs to be used in get
+    .then((out) => {
+       // console.log('Output: ', out);
+}).catch(err => console.error(err));
+
+
+                  
+});
+
+
+ 
+
+} //end of closePage function
+
+
+</script>
+
+
+      <!-- start of banner followed by navbar -->
+
+<div class="container-fluid">
+
+
+   <div class="pagewide float-left bg-info fixed-top" <!--style="padding-right: 150px;-->"> <!--using pagewide only for destruction of this class on resize-->
+                                <!-- was bg-success which is color green and info is color blue -->
+<span class="float-left p-2">
+ <h1>Foundations of Web Design for Beginners</h1>
+<h2>Ricks blog page - easy to follow guidance for the rank beginner  </h2> 
+
+<!--<p>click here for tutorials.....also include image to the right....and feedback section at bottom</p> -->
+<!--<p>please note that more tutorials and blog posts are in the works</p> -->
+</span>
+
+     <!--<span class="float-right pr-5"><img alt="main logo" src="data2.jpg"> </span>-->
+   </div> 
+
+
+
+</div> <!-- end container div-->
+
+
+
+
+      <!-- this div is hidden by default along with the space it takes up, and is the alt banner above the navbar when in mobile mode -->
+<!--<div class="toshow bg-primary fixed-top"> sample div, this is an example of a simple banner above navbar to be used only when in mobil and by default is hidden</div>-->
+
+<div class="toshow bg-info fixed-top"><b>Foundations of Web Design for Beginners</b> <br><br> <p> Ricks Blog Page </p>  </div>
+                      <!-- need fixed top here -->
+
+
+     <!--this is the nav bar, the name as nav is referred to in jquery to reposition the navbar for mobile-->
+
+             <!-- nav bar deleted -->
+
+
+        <!-- this is my main content and id tag makes div move in jquery when navbar repositions for smaller screen -->
+
+  <div class="main" id="movediv">
+
+
+<p>here are some initial pieces of the web development puzzle for Windows users..an ongoing blog endeavor</p>
+
+    <!--set class in a tag and do back button only for other2 class......for 'other' class open in new window..target blank-->
+       <!--see doc ready below for generic other2 instructions on these a tags-->
+
+<p>1. setting up web connectivity with FREE tier AWS.....<a href='getting-started-with-aws-web-hosting'class='other2' onclick='setThrough(this);' >click here</a> <b>(12 months free)</b></p>
+<p>2. host our first html page using apache24.....<a href='apache24-http-server' class='other2' onclick='setThrough(this);'>click here</a></p>
+<p>3. design our first html page..... <a href='from-aws-setup-to-first-webpage' class='other2' onclick='setThrough(this);'>click here</a></p> <!--note that blog section needs dot html at end-->
+<p>4. add SSL / https to our apache server and web pages..... <a href='ssl-nightmare' class='other2' onclick='setThrough(this);'>click here</a></p> <!--note that blog section needs dot html at end changed this on 12-12-->
+
+
+<br>
+<p>For more about Rick Delpo see FREE Java Tutorials at my home page <a href="https://javasqlweb.org" class="other" target="_blank">javasqlweb.org</a></p>
+
+<!-- so long as our href tags have separate classes, we can do jquery below on one class and target new window on other class..by having 2 classes in href we can isolate one of them called 'other' so it has different behavior from other2 class-->
+   <!--otherwise we were having cors problems-->
+
+
+<!--
+<p> as we evolve thru design, design / programming is like a puzzle, we are putting all the pieces together and building something, our masterpiece </p>
+
+<br>
+<p> show interactive css puzzle here as intro to puzzle and do separate marketing campaign later with actual puzzle.dev site...roll it out later...this is quick way to get there...deving our blog site first...blog debut 0n 11-30-2020 </p>
+
+<br>
+<p> older blog posts below </p>
+-->
+
+
+
+
+<!-- main content ends above here -->
+
+
+    <br>
+
+  </div>  <!-- end of main div-->
+
+
+<!-- selected content shows up in this div-->
+<div class="main" id ="content"> </div>
+
+<br>
+
+       <!--changed default of iframe to be hidden-->
+<!--<iframe name="receiver3" id="receiver3" style="display:none;"></iframe>-->  <!--got rid of iframe 12-5 see doc ready below-->
+
+<!-- page views show up in content section with template header and navbar -->
+   
+  <script>
+
+      //Your variable declaration
+    var yourVariable3;
+   var responseText2;
+//var check = false;  //set boolean here initially as false, might need to set on body onload instead
+                       //on first pass through close new var check is false so it does not fire unload script
+                           //not needed anymore 12-12
+
+
+      //Your function to set the value of your variable through href link clicked
+
+    function setThrough(yourLink){
+
+      //********************************* put this one back when live
+//closeNew(); //run this in beginning of pass so it picks up old session val to update on second pass
+               //as content is changed run timeout servlet to grab previous page timeout...also has alert content changed
+               //do this for each pass except first pass where check boolean is still false
+// 12-12 took out closenew because we are no longer listening for content changed event due to menu multiple button press
+  //since we no longer have a menu/navbar we are only listening for back button press or close (x out) press
+
+//var pg;
+         yourVariable3 = yourLink.href;  //get val of href
+//alert("in first function");
+//alert(yourVariable3);
+if(yourVariable3=="https://javasqlweb.org/about") {var newvar="about";}
+if(yourVariable3=="https://javasqlweb.org/free-tutorials") {var newvar="tutorials";}
+if(yourVariable3=="https://javasqlweb.org/personality-of-the-beginner-programmer") {var newvar="personality";}
+if(yourVariable3=="https://javasqlweb.org/afraid-of-java") {var newvar="afraid";}
+if(yourVariable3=="https://javasqlweb.org/comments") {var newvar="comments";}
+if(yourVariable3=="https://javasqlweb.org/privacy") {var newvar="privacy";}
+if(yourVariable3=="https://javasqlweb.org/contact") {var newvar="contact";}
+if(yourVariable3=="https://javasqlweb.org/pricing") {var newvar="pricing";}
+
+if(yourVariable3=="https://blog.javasqlweb.org/from-aws-setup-to-first-webpage") {var newvar="html";}
+if(yourVariable3=="https://blog.javasqlweb.org/getting-started-with-aws-web-hosting") {var newvar="aws";}
+if(yourVariable3=="https://blog.javasqlweb.org/apache24-http-server") {var newvar="apache";}
+if(yourVariable3=="https://blog.javasqlweb.org/ssl-nightmare") {var newvar="ssl";}
+
+
+
+
+//alert(newvar);  //this is the page variable we want to set based on reading the href object
+
+//$("#receiver3").hide(); //need this when using target iframe so content does not appear in 2 places..hide iframe
+$("#movediv").hide(); //do this or content shows up twice
+//$("#content").load(yourVariable3);  //load each href click into the content tag
+
+
+ 
+
+
+name = "test new2";  //this will be the session id
+count=1;  //if var is string must have single quotes, otherwise no quotes for int
+pg=newvar;  // set page variable to our new var
+//var responseText2;     
+
+
+$.ajax({
+           //pass each pageview into tracker table
+url     : 'https://javasqlweb.org/examples/servlets/servlet/AjaxHandler3',
+method     : 'POST',
+//async: false,  //I turned this off, not sure if it had anything to do with updating, ie when this ajax is fired
+data : {   name : name,  name1 : count, page2:pg, country2 : country, state2:state, city2:city_name, eu2:eu, session2:session }, 
+success    : function(response){
+      responseText2 = response;  //pass this session to timeout servlet, this post allows 1 callback which is a get response object from servlet
+     },
+error : function(jqXHR, exception){console.log('Error occured!!'); }
+
+});  //end of ajax function
+
+
+    } //end of set through function
+
+</script>
+
+
+
+
+<!-- end of main -->
+
+
+
+  <!-- other jQuery -->
+ 
+    <script>
+        $(document).ready(function() {   
+
+            //default position large screen we have large banner above navbar but on <1000 screen we destroy class and run new navbar under default hidden div
+               //no need for if and else just do below on mobile and anything >1000 becomes larger screen default
+               //increased size to >1000 for this to work in firefox, originally at 800 was not working in FF
+
+
+//this pulls any href (only for other2 class) into main content section on current page ..changed 12-5-20....replaced iframe
+                                  // also note that for aws setup page links to other sites show redirect warning *********
+ $('a.other2').click(function(){
+       $('.main').load($(this).attr('href'));
+       return false;
+      
+   });
+
+
+  
+  function checkWidth() {
+        var windowsize = $(window).width();
+        if (windowsize < 1100) {
+
+  $(".pagewide").hide(); 
+    $(".col2").hide();
+$("div").removeClass("pagewide"); 
+$("div").removeClass("col2");
+
+
+// new navbar re positioning, instantiate new div called nav using navbae class..75 is the height of mobile banner above navbar 
+$("nav").css({top: 75, left: 0, position:'fixed'}); //this works for fixed, similar to fixed-top above, but this is the css way of doing it
+
+$("div.toshow").show(); // this shows a more simple banner above the menu just for mobil use
+
+
+// then mov whole div of main class up, trying to float a div on re position was not working
+
+
+$('#movediv').animate({
+		'marginTop' : "-=160px" //moves up 160 px for smaller banner on mobile
+		});
+
+
+//put else back in here for larger screen in order to center main content and images, see tut2 rev 2a
+//need to have this jquery on all pages, tut 2a is still trying to use @media instead of this jquery
+
+}
+
+
+    }
+
+    // Execute this function on load
+    checkWidth();
+
+
+         //this enables 'back button only' for user...not forward button..can also use window.onhashchange = function()?
+            // this replaces close new event when not using a menu on the page, as in blog index only
+if (window.history && window.history.pushState) {
+
+    $(window).on('popstate', function() {
+      var hashLocation = location.hash;
+      var hashSplit = hashLocation.split("#!/");
+      var hashName = hashSplit[1];
+
+      if (hashName !== '') {
+        var hash = window.location.hash;
+        if (hash === '') {
+          //alert('Back button was pressed.');
+             window.location.replace("https://blog.javasqlweb.org"); //see if we can do the -1 syntax for prev page
+             //parent.history.back();
+             //return false;
+
+  //also run timeout here..no need for event listener, just run fetch code to call time out..but we need listener in doc ready
+fetch("https://javasqlweb.org/examples/servlets/servlet/TimeOut", {
+     method: 'POST',
+     headers: new Headers({
+             'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type..headers required for param to work
+    }),
+     body: "name111="+responseText2,  //from above..need comma because we are also adding keepalive..name111 is the param we get in servlet
+     keepalive: true  //required for window unload
+})
+    .then(res => res.text()) //this is the promise fka callback..not being used for this post request but needs to be used in get
+    .then((out) => {
+       // console.log('Output: ', out);
+}).catch(err => console.error(err));
+
+         //******popstate event
+    //also need back button timeout on closepage where responsetext is not 2 because users press back on entry page
+
+        }
+      }
+    });
+
+    window.history.pushState('forward', null, './#forward');
+  }  //end of back button code
+
+
+
+
+      //this was in wrong place above needed to add to doc ready function done 12-6
+  window.addEventListener("blur", function(event) {
+
+fetch("https://javasqlweb.org/examples/servlets/servlet/TimeOut", {
+     method: 'POST',
+     headers: new Headers({
+             'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type..headers required for param to work
+    }),
+     body: "name111="+responseText2,  //from above..need comma because we are also adding keepalive..name111 is the param we get in servlet
+     keepalive: true  //required for window unload
+})
+    .then(res => res.text()) //this is the promise fka callback..not being used for this post request but needs to be used in get
+    .then((out) => {
+       // console.log('Output: ', out);
+}).catch(err => console.error(err));
+
+                  
+}); //end window listener
+
+       //added this 12 -12 if user unloads (xs out) after pressing menu choice
+       // i think we still need this unload event for responsetext2 ..1-2-21 not done yet
+window.addEventListener('unload', function(event) {
+
+fetch("https://javasqlweb.org/examples/servlets/servlet/TimeOut", {
+     method: 'POST',
+     headers: new Headers({
+             'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type..headers required for param to work
+    }),
+     body: "name111="+responseText,  //from above..need comma because we are also adding keepalive..name111 is the param we get in servlet
+     keepalive: true  //required for window unload
+})
+    .then(res => res.text()) //this is the promise fka callback..not being used for this post request but needs to be used in get
+    .then((out) => {
+       // console.log('Output: ', out);
+}).catch(err => console.error(err));
+
+               
+});  //end of window unload
+
+
+
+}); //end of document ready
+
+
+      </script>
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+

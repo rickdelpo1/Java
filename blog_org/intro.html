@@ -1,0 +1,316 @@
+﻿<!doctype html>
+<html lang="en-US">
+
+<head>
+
+<!-- add title and h1 tag -->
+
+
+
+<style>
+
+
+   /* need to have all elements (divs and images) in body with these default props for screens/viewports < 1100 px */
+body {
+  background-color: #FFF8DC; /* yellow */
+  padding: 5px;
+  /*font-weight: bold;*/
+/*default font family is times new roman*/
+font-family: Arial;
+font-size: 19px;
+line-height:30px;
+
+  
+}
+
+
+  /* for screens  > 1100px center all body content and elements */
+@media only screen and (min-width: 1100px) {
+body {
+
+    background-color: lightgray;
+
+ width: 65%;  /*all body content takes up 65% of screen width, then below margin property centers it */
+  margin-left: auto ; 
+  margin-right: auto ;
+
+/*font-family: Avenir;*/
+  /*font-size: 18px;*/
+  /*font-weight: bold;*/
+
+font-family: TimesNewRoman;
+  font-size: 21px;
+  /*line-height:150%;*/
+line-height:40px;
+ 
+  }
+}
+</style>
+</head>
+
+
+		<header id="masthead" class="site-header">
+
+			<div class="site-branding-container">
+				<div class="site-branding">
+
+
+
+	<p class="site-title"><a href="https://javasqlcloud.com/" rel="home">Ricks Blog</a><span> - A Resource to Learn Programming for the beginner</span> </p>
+			
+	
+
+
+
+			</div><!-- .site-branding -->
+			</div><!-- .site-branding-container -->
+
+<br>
+
+					</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main">
+
+			
+<article id="post-5" class="post-5 page type-page status-publish hentry entry">
+		<header class="entry-header">
+		
+
+	</header>
+
+
+
+
+	
+	<div class="entry-content">
+		
+<p><strong>Simple Advice for the Programmer Wannabe</strong> (please share this)</p>
+
+
+
+<p>By Rick Delpo, former Senior Data Engineer at General Electric, now retired</p>
+
+<br>
+
+<p>Audience:</p>
+
+
+
+<p>This advice is best for those who did not learn programming in school and are looking for a lucrative career or career change or just want to program for the fun of it. Also perhaps, a need to know by managers of data people.</p>
+
+
+
+<p>How to begin, what is it all about:</p>
+
+
+
+<p>There is much debate over which programming language to learn. At the high level we have Microsoft based versus open source. For example, do we learn Visual Basic or do we learn Java? Then there is the question of scripting versus the actual language itself. For purposes of learning data, scripting such as Javascript is used mostly for the front end application. So we need some connectivity to the back end which is the data repository. Therefore we need something like the java programming language. The reason I choose java for beginners is because of the java API, application programming interface. It is the basis for creating a java class which we will then execute and connect to the data. Java is also universal and other languages actually stem from java. We write up a class following a recipe in an API and then we compile and execute the class in a Java environment. Ideally we want to connect to a data source, iterate through some data and perform some kind of function on the data. Then we publish our application on the Cloud for others to see and use, or share and extend if they want to.</p>
+
+
+
+<p>But we also need to consider, while researching, that it can get confusing quite fast as to where one’s entry point should be and at what level one should start. For the beginner, he or she will be unable to discern if there are prerequisites needed before just diving into any programming endeavor. This is probably the most confusing part for the beginner wondering where exactly do I start. Also, forget about reading technical articles as you will instantly find yourself over your head. Google research is great but I refer to it as “research hell” because it takes so long and there are many black holes to fall in to.</p>
+
+
+
+<p>So the purpose of this writing is to provide my recommendation of an entry point and a path to follow. Then after that you will gain enough experience to do your own research and build upon what you know as a beginner. Then perhaps you will not stay with java or maybe you would prefer front end development instead.</p>
+
+
+
+<p>My methodology comes from the way I learned my first programming language and it was very painstaking because I made all the common mistakes by doing it by myself. My recommendations are designed to quicken the process to avoid giving up. I get you to the shortcuts immediately and then we fill in the blanks later. This is my teaching methodology and I do it this way because I gave up many times along the way and it literally took me 10 years to finally land a lucrative position in the field. This is hardly what one wants, thus the shortcuts.</p>
+
+
+
+<p>&nbsp;</p>
+
+
+
+<p>Notes on Entry Point:</p>
+
+
+
+<ul><li>Start with basic Java and SQL</li><li>Learn the shortcuts</li><li>Cut drastically the time it takes to get off the ground</li><li>Hand-holding is available through free tutoring</li></ul>
+
+
+
+<p>&nbsp;</p>
+
+
+
+<p>Barriers to Entry:</p>
+
+
+
+<ul><li>Too hard to learn alone</li><li>Many unanswered questions</li><li>Confusing conventions</li><li>Time consuming</li><li>Can give up easily</li></ul>
+
+
+
+<p>&nbsp;</p>
+
+
+
+<p>My curriculum:</p>
+
+
+
+<ul><li>It all starts with columns and rows in a spreadsheet</li><li>A spreadsheet with an API? What is an API anyway?</li><li>Why not learn a valuable programming language while playing with data on a spreadsheet</li><li>Learn JDBC first &#8211; connecting to the data</li><li>Set up data test in SQLITE</li><li>Query the data &#8211; learn SQL basics</li><li>Write a WebApp</li><li>Publish WebApp on the Cloud</li></ul>
+
+
+
+<p>Advanced level</p>
+
+
+
+<ul><li>Introduction to the data model &#8211; entity relationship diagram</li></ul>
+
+
+
+<p>&nbsp;&nbsp;&nbsp;In the beginning we work on only one table but here we have multiple relational tables</p>
+
+
+
+<ul><li>A data warehouse environment to store and manipulate data and relationships</li><li>MySQL, Postgres</li></ul>
+
+
+
+<p>&nbsp;</p>
+
+
+
+<p>&nbsp;</p>
+
+
+
+<p>&nbsp;</p>
+
+
+
+<p>Tools used (all free):</p>
+
+
+
+<ul><li>JDK</li><li>Google sheets (free) or Excel (not free)</li><li>Eclipse</li><li>Tomcat</li><li>Sqlite</li><li>Talend</li><li>Data modeling tool</li></ul>
+
+
+
+<p>&nbsp;</p>
+
+
+
+<p>Why do this in the first place?</p>
+
+
+
+<p>Quick answer is for the money. &nbsp;It is a lucrative career choice. I did it and have no regrets. In fact, I was 42 years old at the time and made a career change from the field of finance to data management.</p>
+
+
+
+<p>While Java and SQL is not new, creating and managing Cloud is still in its infancy.</p>
+
+
+
+<p>Many large companies are just beginning to enhance their cloud experience and over next 10 years will need many new programmers. I know this first hand from working at GE. Consider that these large companies have a hybrid cloud so some of their cloud content is out their publicly and some is on a private cloud network. They need people to manage all of this. I encourage you to research this topic and you will be surprised.</p>
+
+
+
+<p>Just look at the AI field for example. Wouldn’t you think that this is a growing field?</p>
+
+
+
+<p>&nbsp;</p>
+
+
+
+<p>Conclusion:</p>
+
+
+
+<p>I provide the basic nuts and bolts to get started and most of my services are free, then you determine the value and if you want to pursue fee based services do so only when ready.</p>
+
+
+
+<p>First try all this on your own, then as questions arise call for free direction, I have an open door policy.</p>
+
+
+
+<p>The best of luck to you!</p>
+
+
+
+<p>Find me at <a href="https://cloudwithasilverlining.com">cloudwithasilverlining.com</a></p>
+
+
+
+<p>&nbsp;</p>
+
+
+
+<p>&nbsp;</p>
+
+
+
+<p>About the Author:</p>
+
+
+
+<div>
+<!--
+<img src="https://lh5.googleusercontent.com/HlaayFplHK4qZG0Dn86sBS3tanxiGY8VK8A6RbUKuGbpOQ0_FZofY1pAAAJoGoZ9xfCsg0YDgi8Mak1Ev0QxU7eVbRFD5eKQxVQmZv4MVpnfnHavZsV2glRwFKtO4W3p63RgJavX" alt="" width="182" height="149" style="float:left; padding:20px; "/>
+-->
+
+<img src="https://lh5.googleusercontent.com/HlaayFplHK4qZG0Dn86sBS3tanxiGY8VK8A6RbUKuGbpOQ0_FZofY1pAAAJoGoZ9xfCsg0YDgi8Mak1Ev0QxU7eVbRFD5eKQxVQmZv4MVpnfnHavZsV2glRwFKtO4W3p63RgJavX" alt="" width="182" height="149" align="left" style="padding-right:20px;"/>
+
+
+<p >Rick Delpo has been involved in All things Data for 20 years in both a self employed capacity and on a real job with 2 of the largest companies in the country, both on the S&amp;P 100. Now retired, Rick &nbsp;offers free consulting just because of his passion for the subject matter. “I love what I do and got rich doing it so I don’t need the money anymore and want to share with others just for fun” says Rick on a recent blog post.</p>
+
+
+<!-- style="float:right;" -->
+
+<p >Rick Delpo grew up in rural Connecticut, son of a successful entrepreneur, &nbsp;was prep school educated and a graduate from Georgetown University with a BS in Business Administration, class of 1976</p>
+
+</div>
+
+<br><br>
+
+
+
+
+	<footer id="colophon" class="site-footer">
+		
+	<aside class="widget-area" role="complementary" aria-label="Footer">
+							<div class="widget-column footer-widget-1">
+							<section id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widget-title">Recent Posts</h2>		<ul>
+
+											<li>
+					<a href="https://blog.javasqlweb.org/learn-java-getting-off-the-starting-blocks.html">Learn Java, Getting off the Starting Blocks</a>
+									</li>
+
+											<li>
+					<a href="https://javasqlcloud.com/personality-traits-of-a-beginner-programmer/">Personality of the Beginner Programmer</a>
+									</li>
+
+					</ul>
+		</section>					</div>
+					</aside><!-- .widget-area -->
+
+		<div class="site-info">
+
+
+		</div><!-- .site-info -->
+
+	</footer><!-- #colophon -->
+
+</div><!-- #page -->
+
+	<div style="display:none">
+	<div class="grofile-hash-map-d41d8cd98f00b204e9800998ecf8427e">
+	</div>
+	<div class="grofile-hash-map-c1f6910ab176ca9d762617a8ea96918b">
+	</div>
+	</div>
+
+	
+</body>
+</html>

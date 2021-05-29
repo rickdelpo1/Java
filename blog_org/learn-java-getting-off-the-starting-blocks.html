@@ -1,0 +1,336 @@
+﻿<!doctype html>
+<html lang="en-US">
+
+<head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-121628832-1"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-121628832-1');
+</script>
+-->
+
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	
+	<!-- This site is optimized with the Yoast SEO plugin v14.0.4 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Learn Java, Getting off the Starting Blocks - Ricks Blog</title>
+
+
+
+<!--these are the local links-->
+            <script src="jquery-3.4.1.js"></script> <!--grab this locally-->
+            <script src="popper.js"></script> <!--must be in this order - need popper to make pop up work-->
+          <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
+
+            <script src = "bootstrap-4.1.1.js"></script> 
+            <link rel = "stylesheet" href = "bootstrap-4.1.1.css">
+
+
+
+	<link rel="canonical" href="https://javasqlcloud.com/learn-java-getting-off-the-starting-blocks/" />
+
+	
+
+<style>
+
+
+   /* need to have all elements (divs and images) in body with these default props for screens/viewports < 1100 px */
+body {
+  background-color: #FFF8DC; /* yellow */
+  padding: 5px;
+  /*font-weight: bold;*/
+/*default font family is times new roman*/
+font-family: Arial;
+font-size: 19px;
+line-height:30px;
+
+  
+}
+
+
+  /* for screens  > 1100px center all body content and elements */
+@media only screen and (min-width: 1100px) {
+body {
+
+    background-color: lightgray;
+
+ width: 65%;  /*all body content takes up 65% of screen width, then below margin property centers it */
+  margin-left: auto ; 
+  margin-right: auto ;
+
+/*font-family: Avenir;*/
+  /*font-size: 18px;*/
+  /*font-weight: bold;*/
+
+font-family: TimesNewRoman;
+  font-size: 21px;
+  /*line-height:150%;*/
+line-height:40px;
+ 
+  }
+}
+</style>
+
+
+
+<script>
+
+var eu;
+var session;
+
+$.ajax({
+  url: "https://geolocation-db.com/jsonp",
+  jsonpCallback: "callback",
+  //async: false, //does not work in jsonp, this is ignored by jsonp
+  dataType: "jsonp",
+  success: function(location) {
+      //grab stats into variables, country,state and city_name
+ country=location.country_name;
+ state=location.state;
+ city_name=location.city;
+
+       //need this logic here while still in success function..still need to do this for 28 countries in eu
+
+//if(state=="California") {        }
+               if(country=="United Kingdom"||country=="France"||country=="Germany"||country=="Austria"||country=="Belgium"||country=="Bulgaria"||country=="Croatia"||country=="Cyprus"||country=="Czechia"||country=="Denmark"||country=="Estonia"||country=="Finland"||country=="Greece"||country=="Hungary"||country=="Ireland"||country=="Italy"||country=="Latvia"||country=="Lithuania"||country=="Luxembourg"||country=="Malta"||country=="Netherlands"||country=="Poland"||country=="Portugal"||country=="Romania"||country=="Slovakia"||country=="Slovenia"||country=="Spain"||country=="Sweden") {
+
+//if(country=="United States") {
+              
+    //alert("is eu");  //this is working
+    //var eu = "yes";  //i think we should not use var because not using ensures that var created is global...need to try this
+     eu = "eu yes";
+}
+
+
+  } //end success...i think success is replaced by done in later jquery versions and use promises instead of async:false to synchronize calls ...seems complicated
+      //async:false is deprecated so at a later date we will need to replace
+
+});
+
+  //geo info is now in the head tag so it loads before body
+
+      
+
+$.ajax({
+                method: "GET",
+                url: "https://blog.javasqlweb.org/test.php",
+                dataType:'text',
+                //data: somedata;
+                success : function(response){
+                    //echo what the server sent back...
+                    //alert(response);
+                    //$('#ip').html(response);
+                   session = response;
+
+                }
+            });
+
+
+</script>
+
+</head>
+
+
+
+
+
+<!--<body>-->
+<body onLoad="closePage();">
+
+<script>
+ 
+function closePage(){
+
+var name;  //this will be the session id
+var count;  //if var is string must have single quotes, otherwise no quotes for int
+var pg;
+var responseText;     
+
+pg="learn java"; //this sets home page and adds unload listener, ajax below identifies page after click but has no unload for those
+count=1;
+name = "test new";
+
+$.ajax({
+           
+url     : 'https://javasqlweb.org/examples/servlets/servlet/AjaxHandler3',
+method     : 'POST',
+async: false,
+data : {   name : name,  name1 : count, page2:pg, country2 : country, state2:state, city2:city_name, eu2:eu, session2:session }, 
+success    : function(response){
+      responseText = response;  //pass this session to timeout servlet, this post allows 1 callback which is a get response object from servlet
+      //$('#result').html(response); //getting session id back from ajaxhandler3 response object
+   },
+error : function(jqXHR, exception){console.log('Error occured!!'); }
+
+});  //end of ajax function
+
+
+window.addEventListener('unload', function(event) {
+
+fetch("https://javasqlweb.org/examples/servlets/servlet/TimeOut", {
+     method: 'POST',
+     headers: new Headers({
+             'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type..headers required for param to work
+    }),
+     body: "name111="+responseText,  //from above..need comma because we are also adding keepalive..name111 is the param we get in servlet
+     keepalive: true  //required for window unload
+})
+    .then(res => res.text()) //this is the promise fka callback..not being used for this post request but needs to be used in get
+    .then((out) => {
+       // console.log('Output: ', out);
+}).catch(err => console.error(err));
+
+               
+});  //end of window unload
+ 
+
+} //end of closePage function
+
+
+</script>
+
+
+
+
+
+<div>
+
+		<header id="masthead" class="site-header">
+
+			<div class="site-branding-container">
+				<div class="site-branding">
+
+
+                
+		<p class="site-title">
+
+                <span><a href="https://javasqlcloud.com/" rel="home">Ricks Blog</a>
+				..............A Resource to Learn Programming for the beginner	
+                </span></p>
+                
+					</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main">
+
+			
+
+		<header>
+		
+
+
+<h1 class="entry-title">Learn Java, Getting off the Starting Blocks</h1>
+
+
+<div class="entry-meta">
+	<span class="byline">
+
+<svg class="svg-icon" width="16" height="16" aria-hidden="true" role="img" focusable="false" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path><path d="M0 0h24v24H0z" fill="none"></path>
+
+</svg>
+
+<span class="screen-reader-text">Posted by </span><span class="author vcard"><a class="url fn n" href="https://javasqlcloud.com/author/admin/">Rick Delpo</a></span></span>	<span class="posted-on">
+
+<svg class="svg-icon" width="16" height="16" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><path id="a" d="M0 0h24v24H0V0z"></path></defs><clipPath id="b"><use xlink:href="#a" overflow="visible"></use></clipPath><path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
+
+</svg>
+
+<a href="https://javasqlcloud.com/learn-java-getting-off-the-starting-blocks/" rel="bookmark"><time class="entry-date published" datetime="2019-05-13T16:16:21+00:00">May 13, 2019</time></a>
+
+</span>	
+
+<span class="comment-count">
+					</span>
+	</div>   <!-- .entry-meta -->
+
+	</header>
+	
+
+
+
+	<div>
+		
+<p>Are we in denial about learning Java? This is advice to beginners from Rick Delpo, a retired Senior Data Engineer at GE. I will help you reason thru this dilemma of getting started with Java, breaking the ice and ending that fear and procrastination.</p>
+
+
+
+<p>If we don&#8217;t cut to the chase early and learn the very basics of Java then we may never learn java and thus will be precluded from lucrative employment opportunities. Yes u will leave money on the table while others grab at these 6 figure opportunities and leave u in the dust.</p>
+
+
+
+<p>When I was a beginner 20 years ago I tried to read some technical articles and became way over my head on the second sentence. There are many writers out there who love to spar around with complicated java jargon which does only one thing in my opinion, it scares the beginner. I was so discouraged. Then Google research became a kind of research hell going in 20 different directions with writers spewing advice at advanced levels where I was not. And to make matters worse there are way too many choices for the beginner and he or she does not even know where to start.</p>
+
+
+
+<p>      inheritance, interfaces, polymorphism, annotations, multiple arguments, recursion, encapsulation &#8230;.. I don&#8217;t blame u for being afraid</p>
+
+
+
+<p>All this stuff involves interaction between multiple classes when the beginner is struggling just to create one class. Then the one class, usually a &#8216;hello world&#8217; class does not teach too much so where is the beginner to go?</p>
+
+
+
+<p>If u are in school then u may not be able to avoid these topics and will also be quizzed on them. So teachers in school will brush over some of these topics too fast and not all students will equally soak up the knowledge like a sponge. They will be left behind, and this could sometimes be the majority of students in a given class. If you are not in a school setting then u MUST avoid these complicated topics in the very beginning and can easily revisit them later when ready and if needed. </p>
+
+
+
+<p>What to do now being damned if u do and damned if u don’t</p>
+
+
+
+<p>Let&#8217;s understand that we can learn Java basics just by knowing some shortcuts and now comes the SQL piece. Nobody said u need to know all of Java.</p>
+
+
+
+<p>Why SQL? Understanding SQL with Java skips over all this intimidating stuff that is preventing the beginner from learning or is steering the fearful beginner over to Python which is much easier but hides many programming concepts in the background which also prevents the struggling beginner from learning. Out of site, out of mind is not good for a beginner. SQL knowledge gives the beginner a chance because in SQL we generally use only one class at a time with a Java connection object which is why I prefer to do a Java Servlet to access the data. And we also use generally one or 2 imports and only one or two methods in our class which keeps it simple for the beginner. We get another bonus by using http protocol  in a webapp.</p>
+
+
+
+<p>So in addition to using SQL as a springboard I like to teach beginners also about Python and SQL. The reason I do this is so we can expand our knowledge of Python and Java by comparing both languages and also so we don&#8217;t limit ourselves to just one language. I also have another reason. I like to include Python because many Python users dis Java as being too hard to learn. Bottom line, we can learn both languages by comparing one to another.</p>
+
+
+
+<p>Try the suggested Java/SQL approach by studying my FREE tutorials and then use our new found knowledge as a foundation to build on this knowledge at your own pace. Within days u will be able to boast to your friends that u know 2 programming languages along with Sql and Webapp dev<br></p>
+
+
+
+<p>click <a href="https://javasqlweb.org/free-tutorials">here</a> for free tutorials</p>
+
+
+
+<p>click <a href="https://www.facebook.com/rick.delpo.7">here</a> for my Facebook page</p>
+
+
+
+<p>click <a href="https://javasqlweb.org/about">here</a> for more about the author Rick Delpo<br></p>
+
+
+
+
+
+
+	<h2 class="widget-title">Recent Posts</h2>		<ul>
+											
+											<li>
+		<a href="https://blog.javasqlweb.org/intro.html">Intro Blog</a>
+									</li>
+											<li>
+		<a href="https://javasqlcloud.com/personality-traits-of-a-beginner-programmer/">Personality of the Beginner Programmer</a>
+									</li>
+					</ul>
+		</section>					</div>
+					</body>
+</html>
+
