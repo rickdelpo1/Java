@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+
+<title>Dashboard</title>
+
+<!--<script src="jquery-3.1.1.min.js"></script>-->
+<script src="jquery-3.4.1.js"></script> <!--grab this locally-->
+
+</head>
+
+
+<!--<body>--> 
+<body onLoad="callJqueryAjax();">  <!-- try document ready function instead of this -->
+                    <!--MUST use body onLoad in order to write ajax result to div, not sure why -->
+<br>
+<h2>Geo Tracker Dashboard</h2>
+
+<b><thead><th>country</th><span>      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </span><th>unique users</th>&nbsp;&nbsp;&nbsp;<th>page visits</th></thead></b>
+    
+
+<script>
+
+ 
+function callJqueryAjax(){
+       
+	var table = '<table>';     //create table in html
+	var tr;
+	
+	
+$.ajax({ //type: "GET",   
+         url: "https://javasqlweb.org/examples/servlets/servlet/Tables",
+         method     : 'POST', 
+         dataType: "json",
+         colNames : [ 'country', 'ip', 'hit' ], //not working in html table until we do an html table header
+         colModel : [ { country : 'country' }, { ip : 'ip' }, { hit : 'hit' } ],
+         
+      
+      //this success function returns side by side but vals are undefined, adding colmodel fixed this
+         //this one is for multi columns and must use json object format vs plain arraylist like below
+      
+      success : function (response) {
+        
+    	  
+    	  //<thead>       how to do headers         
+          //var output =
+          //"<table><thead><tr><th>country</th><th>ip address</th></thead><tbody>";
+    
+   // var count = 0;
+    for (var i = 0; i < response.length; i++) {
+        tr = $('<tr/>');
+        tr.append("<td width='150'>" + response[i].country + "</td>");
+        tr.append("<td width='100'>" + response[i].ip + "</td>");
+        tr.append("<td>" + response[i].hit + "</td>");
+        $('table').append(tr);
+        
+    }      //end for loop
+    
+    
+    //also try set interval ...note setTimeout is blinking , will fade in work
+    
+    /*
+    setTimeout(function(){
+    	$('#result').empty(); //empty contents before next pass
+    	callJqueryAjax(); //this will send request and return success every 5 seconds;
+    }, 5000);
+    */
+    
+    //console.log(count);
+        }   //end success
+        
+      
+   }); //end ajax
+
+         //use this for 2nd multi col success function
+table += '</table>';
+
+$(result).append(table);
+  
+ 
+} //end of callJQueryAjax function   
+
+
+</script>
+
+
+
+<div id="result"></div>  <!-- arraylist shows up here -->
+
+</body>
+</html>

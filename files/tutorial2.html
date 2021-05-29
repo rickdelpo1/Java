@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+
+
+
+<!--
+
+*****************************************
+
+this page was edited on 8-10-2019
+when republishing I need to add a section about which eclipse version u download, if u 
+download the j2ee version then u dont need to provision with j2ee perspective
+to get dynamic web project which is needed to do a servlet
+
+so advise the user to look first to see if he has choice of dynamic web project and servlet
+
+
+
+also add my own css style page that centers content and chooses correct fonts for h1 and paragraph
+
+
+***********************************
+
+
+-->
+
+
+
+
+
+
+
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    
+    <meta charset="utf-8"/>
+   
+    
+        <meta id="wixMobileViewport" name="viewport" content="width=980, user-scalable=yes"/>
+    
+    <!-- META DATA -->
+
+
+    
+        
+            <title>Tutorial 2 | cloud computing, data integration | your Cloud With a Silver Lining</title>
+        
+            <link rel="canonical" href="https://www.cloudwithasilverlining.com/tutorial-2"/>
+        
+          
+        
+            <meta name="keywords" content="Boston, Connecticut, Hartford, New York, ct, java training, java tutor, learn java, learn sql"/>
+        
+    
+
+<style>
+
+.font_0 {
+
+font-family: arial;
+font-size: 26px;
+
+  width: 90%;  /*content takes up 50% of screen width, then below centers it */
+  margin-left: auto ; 
+  margin-right: auto ;
+
+
+}
+
+
+.center {
+
+/*
+  font-family: Avenir;
+  font-size: 26px;
+  font-weight: bold;
+  color: red; 
+  text-align: justify;
+*/
+
+     /* these next 3 lines center the div content */
+  width: 80%;  /*content takes up 50% of screen width, then below centers it */
+  margin-left: auto ; 
+  margin-right: auto ;
+
+
+}
+
+
+  /* need div class similar to this where we hava avenir 16 and width no more that 320 px or can just use these widths */
+       /* orig idea about centering is not to be used in mobile */
+  /* this one is mobil only vs we use width and height for desktop */
+
+.image{
+
+    max-width: 80%; /* for mobil we are resizing down from 100%, this can also be 50% */
+  /*  min-width: 300px; */
+    height: auto;
+}
+
+
+.img-responsive {
+
+max-width: 100%;
+
+display: block;
+margin-left: auto;
+margin-right: auto;
+      
+  }
+
+
+p.font_7 {
+
+    width: 100%;
+
+
+  margin-left: auto ; 
+  margin-right: auto ;
+
+
+}
+
+p.indent {
+
+  font-size: 17px;
+  font-weight: normal;
+  color: red;
+  width: 70%;  /*content takes up 50% of screen width, then below centers it */
+  margin-left: auto ; 
+  margin-right: auto ;
+
+
+}
+
+/*
+body {
+  font-size: 16px;
+  /*width: 800px;*/   /* might need to get rid of this due to mobile mas is 400ish, this was just used to experiment with min width below */
+
+  
+}
+
+*/
+
+
+
+    /* this class not in use, we are using image class instead , looks like this one is the default class behavior=dont display the mobil image by default*/
+.img-mobile-image {
+  display: none;
+}
+
+@media (max-width:500px) {
+     /* if less than 500 for this class display none, ie this is the mobil version , in other words dont display the img that has this class*/
+  .img-responsive {
+    display: none;
+  }
+
+        /* if less than 500 display this one instead 
+  .img-mobile-image {
+    display: block !important;
+  }
+       we r using above image class
+*/
+
+}
+
+
+@media (min-width:650px) {
+     /* if width is more than 650 for this class display none, ie this is the desktop version , in other words dont display the img that has this class*/
+           /* in css body tag i have 800 px set as the width for this desktop version, otherwise we see the mobile alt version in addition to this one */
+  .image {
+    display: none;
+  }
+
+
+
+.site-footer {
+  background: orange;
+
+     position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 60px;
+
+
+
+}
+
+
+
+</style>    
+
+
+
+        
+
+        </head>
+
+            
+                <body>
+            
+
+    
+    
+    
+
+
+     <!-- was h1 -->
+<h2 class="center">How to Create and Run a Simple Java Program in Eclipse</h2>
+
+  <!-- include image in center format...content + image in same div ..jdk3 has img and paragraph  separate for mobile version??? -->
+    <!-- might still need this for mobil -->
+
+<div class="center">
+
+<p>Before reviewing this tutorial be sure to have the proper Java environment set up, as we learned how to do in 
+
+<a href="https://www.cloudwithasilverlining.com/training/get-started-with-eclipse" target="_self">my previous tutorial</a>
+. Also I am recommending that you enhance your experience by doing a lot of independent research out on Google, in addition to what I am showing you here.</p>
+
+
+
+<p class="font_8" style="font-size:16px;">&nbsp;</p>
+
+<p class="font_8" style="font-size:16px;">
+<span style="font-weight:bold;">
+<span style="font-size:16px;">Before getting started on writing a program we need to create a project in Eclipse. Here is what my Workspace looks like. In the package explorer I have 3 projects set up. The one called test is what we will work on. We will write code in our workspace for the Hello.java file.
+</span></span>
+</p>
+
+        <!-- in jdk3 we needed / in front of /images/path and .JPG vs .jpg  I think for mobile is different -->
+<img alt="workspace";  src="images/workspace.jpg"/>
+
+
+</div>
+
+
+
+<div class="center">
+
+<p>So let&rsquo;s now create a project. Right click anywhere inside Package Explorer and choose new, then java project or just press file then new then java project. We will see this first</p>
+<br>
+
+<img alt="new project";  src="images/new project.jpg"/>
+<br><br>
+
+</div>
+
+
+
+<div class="center">
+
+<p>then we will see this next</p>
+
+<br><br>
+<img alt="create java project";  src="images/create java project.jpg"/>
+<br><br>
+
+</div>
+
+
+
+
+<div class="center">
+
+<p>Fill in a name for the project, keep all else the same on the form and press finish. Next, expand the project folder to view all sub folders in the project, right click on src (this&nbsp;means source files), then choose new and then Class and press enter. This form will come up</p>
+
+<br><br>
+<img alt="create class";  src="images/create class.jpg"/>
+<br><br>
+
+</div>
+
+
+
+
+<div class="center">
+
+<p class="font_8" style="font-size:16px;"><span style="font-weight:bold;"><span style="font-size:16px;">Here we are creating a class object where we will write our code. It is good practice (but not mandatory) to include a package name because we can have multiple classes in a package. Also a class name is mandatory. I chose the package name as test and for the class name please fill in as Hello&nbsp;and we do not need to include .java at the end of the name.Then check the box that says &lsquo;public static void main&rsquo; and press Finish. Main(String args) is also referred to as the main method and we must have this inside our Main class object in order to run this class in Eclipse.</span></span></p>
+
+
+<p class="font_8" style="font-size:16px;"><span style="font-weight:bold;"><span style="font-size:16px;">After Pressing Finish we have now created our Hello.java class and the minimal code will show up in our workspace. If we close the class by xing out of it then we can double click it in package explorer later and the code will reappear in our workspace. As we go along and create more complicated classes it will be okay if you copy and paste the code that I provide in a given tutorial. Right now we just want to get up and running.</span></span></p>
+
+
+<p class="font_8" style="font-size:16px;"><span style="font-weight:bold;"><span style="font-size:16px;">Let us now understand the structure of our newly created class. Inside our public class named Hello we have one method called the main method. And inside this method we are asking the program to print out the phrase Hello World to our console.</span></span></p>
+
+
+<p class="font_8" style="font-size:16px;"><span style="font-weight:bold;"><span style="font-size:16px;">Now let&rsquo;s run the program. Be sure that the file is saved, press file save. Then right click on Hello.java in the package explorer and choose run as and then java application</span></span></p>
+
+<br><br>
+<img alt="run as java app";  src="images/run as java app.jpg"/>
+<br><br>
+
+</div>
+
+
+
+
+<div class="center">
+
+<p>Look down below in the console and we will see Hello World.</p>
+
+<br><br>
+<img alt="console view";  src="images/console view.jpg"/>
+<br><br>
+
+</div>
+
+
+
+<div class="center">
+
+<p class="font_8" style="font-size:16px;"><span style="font-weight:bold;"><span style="font-size:16px;">By now I am sure we have many more questions. My teaching methodology is to teach all the shortcuts so we can fast track our learning process. It is up to you to do homework and research any details about the process or things I may have inadvertently left out. I am only providing the basics. It is also okay to message me on facebook for quick questions.</span></span></p>
+
+<p class="font_8" style="font-size:16px;">&nbsp;</p>
+
+<p class="font_8" style="font-size:16px;"><span style="font-weight:bold;"><span style="font-size:16px;">Most tutorials leave you hanging at this point after creating the Hello World application. What to do next? We have just created a main class and ran it as a java application. This main class is also known as a POJO or plain old java object and we will use many of these types of classes along the way when building larger applications.</span></span></p>
+
+<p class="font_8" style="font-size:16px;">&nbsp;</p>
+
+<p class="font_8" style="font-size:16px;"><span style="font-weight:bold;"><span style="font-size:16px;">PART 2 -&nbsp;now I want to show another type of class we need to learn about. This is the servlet class. By understanding both types of classes up front, main (plain class) and servlet (web class), we can move from a POJO to a web application with servlet architecture. From my experience we can&rsquo;t do much with POJOs in the beginning without lots of education. So I move right into Servlets because this way we can do web apps early on in our learning process. Take my word for it for now, because it is much more fun to work with servlets in my opinion. We can do more things as beginners sooner rather than later and thus keep our curiosity and interest going. Warning, it is very easy to give up on java, I did it many times, but rest assured it is worth it to keep plugging along.</span></span></p>
+
+<p class="font_8" style="font-size:16px;">&nbsp;</p>
+
+<p class="font_8" style="font-size:16px;"><span style="font-weight:bold;"><span style="font-size:16px;">Back to the Servlet class. But first, we are not set up to do servlets yet in this version of eclipse. We will need to start a new project and choose dynamic web project but as of now that choice is not available to us. So lets enable eclipse to do this </span></span></p>
+
+<p class="font_8" style="font-size:16px;">&nbsp;</p>
+
+<p class="font_8" style="font-size:16px;"><span style="font-weight:bold;"><span style="font-size:16px;">Above our workspace Press help then install new software</span></span></p>
+
+<br><br>
+<img alt="install new software";  src="images/install new software.jpg"/>
+<br><br>
+
+</div>
+
+
+
+
+
+<div class="center">
+
+<p class="font_7">In the 'work with' area delete what is there &amp; copy and paste this:</p>
+
+
+<p class="font_7"><object height="0"><a class="auto-generated-link" data-auto-recognition="true" data-content="http://download.eclipse.org/releases/luna" href="http://download.eclipse.org/releases/luna" target="_blank" data-type="external">http://download.eclipse.org/releases/luna</a></object></p>
+
+
+<p class="font_7">then press enter</p>
+
+
+<p class="font_7">then you will see that the program is pending..just wait patiently</p>
+
+<br><br>
+<img alt="install 2 jpg";  src="images/install2.jpg"/>
+<br><br>
+
+</div>
+
+
+
+
+<div class="center">
+
+<p class="font_7">then we&nbsp;see this</p>
+
+<br><br>
+<img alt="install 3 jpg";  src="images/install3.jpg"/>
+<br><br>
+
+</div>
+
+
+
+
+<div class="center">
+
+<p class="font_7">check the last box for Web, XML, Java EE. Here we are choosing to install only web enabled&nbsp;components so Eclipse will then be able to create a web app. It may take several minutes to load all the necessary components. We will see this:</p>
+
+<br><br>
+<img alt="calculating req 2.JPG";  src="images/calculating req 2.jpg"/>
+<br><br>
+
+</div>
+
+
+
+
+
+<div class="center">
+
+<p class="font_7">Don&#39;t worry if you see &#39;cannot perform operation&#39;, it will still load what we need. Then after a few minutes we see this next</p>
+
+<br><br>
+<img alt="install page";  src="images/install page.jpg"/>
+<br><br>
+
+</div>
+
+
+
+
+
+<div class="center">
+
+<p class="font_7">We are wanting mainly web developer tools and java EE...press next twice then review license and accept terms and click finish..it could now take up to 5 minutes to install. In lower right hand corner we will see this:</p>
+
+<br><br>
+<img alt="installing2.JPG";  src="images/installing2.jpg"/>
+<br><br>
+
+</div>
+
+
+
+
+<div class="center">
+
+<p class="font_7">When finished installing we will need to restart Eclipse and then all our web tools will be available to start our Servlet Web Application....So we will need to create a new project. This time&nbsp;choose file new then other, then open the web folder and choose dynamic web project</p>
+
+<br><br>
+<img alt="dynamic web project";  src="images/dynamic web project.jpg"/>
+<br><br>
+
+</div>
+
+
+
+
+<div class="center">
+
+<p class="font_7">After clicking dynamic web project we are going to have to name the project and choose a target runtime to run the project in. For this we need to <span style="text-decoration:underline;">
+
+<a href="https://tomcat.apache.org/download-80.cgi" target="_blank" data-content="https://tomcat.apache.org/download-80.cgi" data-type="external" rel="undefined">download binary&nbsp;core version
+</a></span> and configure tomcat8 to run the Servlet project. So for project name input Servlet Example as shown and then hit new runtime and choose Apache Tomcat v 8.5. This part will not work until after downloading and extracting the tomcat zip file into a target folder which we reference in this&nbsp;configuration.
+
+</p>
+
+<br><br>
+<img alt="dynamic project runtime";  src="images/dynamic project runtime.jpg"/>
+<br><br>
+
+</div>
+
+
+
+
+
+<div class="center">
+
+<p class="font_7">This part might be a bit complicated so bear with me. Open the tomcat 8 folder and then choose the tomcat 8 sub folder for your runtime environment. Browse for the tomcat installation directory and choose this sub folder</p>
+
+<br><br>
+<img alt="dynamic tomcat 8";  src="images/dynamic tomcat 8.jpg"/>
+<br><br>
+
+
+</div>
+
+
+
+
+
+<div class="center">
+
+<p class="font_7">As we navigate through the process we see this notice. Click on open perspective and now we are ready to program a servlet class</p>
+
+
+
+<img id="comp-jtu92ghpimgimage" style="object-position:50% 50%;width:600px;height:180px;object-fit:cover" alt="dynamic open perspective.JPG" data-type="image" itemProp="image" src="https://static.wixstatic.com/media/29f18b_b1af4cd893ce4a989913443460fc7d7c~mv2.jpg/v1/fill/w_180,h_53,al_c,q_80,usm_0.66_1.00_0.01,blur_2/dynamic%20open%20perspective_JPG.jpg"/>
+
+</div>
+
+
+
+
+
+<div class="center">
+
+<p class="font_7">now we can see in upper right hand corner of our workspace that we have the Java perspective that we used for plain java and we jave the JavaEE perspective for web apps. So be sure you click on the right perspective for what you are working on. I have a third one here for Python which we will touch in another tutorial</p>
+
+
+
+<img id="comp-jtu9deohimgimage" style="object-position:50% 50%;width:600px;height:110px;object-fit:cover" alt="" data-type="image" itemProp="image" src="https://static.wixstatic.com/media/29f18b_00646f1632b6495b8159fbc3753bafbe~mv2.jpg/v1/fill/w_177,h_33,al_c,q_80,usm_0.66_1.00_0.01,blur_2/29f18b_00646f1632b6495b8159fbc3753bafbe~mv2.jpg"/>
+
+</div>
+
+
+
+
+
+<div class="center">
+
+<p class="font_7">While creating our project be careful to press all the next buttons in the process. As you press next check create deployment descriptor web xml before clicking on Finish. Going back to our project explorer we now have our Servlet project ready to go using web dev components and in the Java EE perspective</p>
+
+
+<img id="comp-jtuav153imgimage" style="object-position:50% 50%;width:308px;height:306px;object-fit:cover" alt="" data-type="image" itemProp="image" src="https://static.wixstatic.com/media/29f18b_352a47e6c1fb4108bc64a8315487f573~mv2.jpg/v1/fill/w_182,h_184,al_c,q_80,usm_0.66_1.00_0.01,blur_2/29f18b_352a47e6c1fb4108bc64a8315487f573~mv2.jpg"/>
+
+</div>
+
+
+
+
+
+
+<div class="center">
+<p class="font_7">To build the servlet class we will use the same process we used previously to build our main class. Right click on src then select new but this time choose Servlet instead of Class. This screen will become visible</p>
+
+
+
+<img id="comp-jtub34wvimgimage" style="object-position:50% 50%;width:600px;height:390px;object-fit:cover" alt="create servlet.JPG" data-type="image" itemProp="image" src="https://static.wixstatic.com/media/29f18b_581d54bd01db48a495bc5ac2288b1e6b~mv2.jpg/v1/fill/w_180,h_117,al_c,q_80,usm_0.66_1.00_0.01,blur_2/create%20servlet_JPG.jpg"/>
+
+</div>
+
+
+
+
+
+
+<div class="center">
+
+<p class="font_7">Once again&nbsp; use test as package and Hello as Class name. Then click next</p>
+
+
+<img id="comp-jtub63egimgimage" style="object-position:50% 50%;width:600px;height:500px;object-fit:cover" alt="create servlet 2.JPG" data-type="image" itemProp="image" src="https://static.wixstatic.com/media/29f18b_6a5cf34550d7422087ac6d98d4359db6~mv2.jpg/v1/fill/w_179,h_150,al_c,q_80,usm_0.66_1.00_0.01,blur_2/create%20servlet%202_JPG.jpg"/>
+
+</div>
+
+
+
+
+<div class="center">
+
+<p class="font_7">uncheck Constructors from superclass, doPost, doGet and check service, then click finish. Here is what we see in our workspace. Do a file save and now we can tweek this code and run it</p>
+
+<img id="comp-jtubg3pfimgimage" style="object-position:50% 50%;width:600px;height:276px;object-fit:cover" alt="" data-type="image" itemProp="image" src="https://static.wixstatic.com/media/29f18b_fd6594b6f9f74ec0afb04598ba3de7fc~mv2.jpg/v1/fill/w_179,h_83,al_c,q_80,usm_0.66_1.00_0.01,blur_2/29f18b_fd6594b6f9f74ec0afb04598ba3de7fc~mv2.jpg"/>
+
+</div>
+
+
+
+
+<div class="center">
+
+<p class="font_7">One last thing before running our servlet. Double click on web.xml file, click the source tab and copy the following html tags into the file right before the closing /web-app tag, save the file and close it. We have just mapped our servlet to the web app. Don&#39;t forget to do this whenever creating additional servlets</p>
+
+
+<p class="font_7">&lt;servlet&gt; &nbsp; &nbsp;<br />
+&nbsp; &nbsp; &lt;servlet-name&gt;Hello&lt;/servlet-name&gt;<br />
+&nbsp; &nbsp; &lt;servlet-class&gt;test.Hello&lt;/servlet-class&gt;<br />
+&nbsp; &lt;/servlet&gt;<br />
+&nbsp; &lt;servlet-mapping&gt;<br />
+&nbsp; &nbsp; &lt;servlet-name&gt;Hello&lt;/servlet-name&gt;<br />
+&nbsp; &nbsp; &lt;url-pattern&gt;/Hello&lt;/url-pattern&gt;<br />
+&nbsp; &lt;/servlet-mapping&gt;</p>
+
+
+
+<p class="font_7">the completed web xml file should look like this:</p>
+
+
+
+<img id="comp-jtucfh9nimgimage" style="object-position:50% 50%;width:600px;height:312px;object-fit:cover" alt="" data-type="image" itemProp="image" src="https://static.wixstatic.com/media/29f18b_4131d56ac85043798f99be23a522c929~mv2.jpg/v1/fill/w_180,h_94,al_c,q_80,usm_0.66_1.00_0.01,blur_2/29f18b_4131d56ac85043798f99be23a522c929~mv2.jpg"/>
+
+</div>
+
+
+
+<div class="center">
+
+<p class="font_7">I added some code to my service method then resaved the file. Now we are finally ready to run the servlet</p>
+
+
+<p class="font_7">protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;// TODO Auto-generated method stub<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;// we will enter some code here and the run the servlet<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; //just do something simple like this<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;System.out.println(&quot;Hello World&quot;);<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;<br />
+&nbsp;&nbsp; &nbsp;}</p>
+
+
+
+<p class="font_7">Right click on Hello.java, then run as, then run on server. The tomcat server will run this web app and your display will be on http://localhost:8080/Servlet_Example/Hello in your browser. Previously our POJO ran as a java&nbsp;application but this servlet runs as a web application on a real webserver currently at localhost. Now u can also open ur Google Chrome browser while Tomcat is still running and paste the above http address right into the browser to verify that it runs outside of tomcat.</p>
+
+
+
+<p class="font_7">A quick note: this class will not run properly as is, so comment out the following&nbsp;line by placing 2 slashes before the line...then re save file and re run class and it will work</p>
+
+<p class="font_7">//@WebServlet(&quot;/Hello&quot;)</p>
+
+
+<p class="font_7">This is it for now <span style="text-decoration:underline;">
+
+<a href="https://www.cloudwithasilverlining.com" target="_self">click here
+</a></span> to exit. But remember that Servlets are a VERY important part of Java to know about. They pop up frequently in your travels.&nbsp;
+
+</p>
+
+</div>
+
+
+
+
+
+    
+        <!-- No Footer -->
+    
+
+</body>
+</html>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+
+<meta name="description" content="Rick Delpo, Data Professional offering FREE Java and SQL tutorials for the absolute beginner. FREE Java and SQL tutorials, and introduction to Web development">
+
+<meta name="keywords" content="rick delpo,cloud computing, CT, Connecticut, learn java,sql,data management,cloud instruction, tutoring, learn sql, data integration, data instruction,consulting, education, mentoring">
+
+
+
+<title>Rick Delpo</title>
+
+<!--add google tag manager see jdk3 final file-->
+        
+   
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
+  <!--<link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"> 
+      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src = "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+-->
+
+<!--these are the local links-->
+            <script src="jquery-3.4.1.js"></script> <!--grab this locally-->
+            <script src="popper.js"></script> <!--must be in this order - need popper to make pop up work-->
+          <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
+
+            <script src = "bootstrap-4.1.1.js"></script> 
+            <link rel = "stylesheet" href = "bootstrap-4.1.1.css">
+
+
+           <!-- <link rel="stylesheet" href="font-awesome.css"> --> <!-- not using FA anymore due to manual x to close in navbar -->
+          <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"> -->
+
+
+
+            <link rel="canonical" href="https://www.cloudwithasilverlining.com/tutorial-2"/>
+
+                  <!--add ref to favicon-->
+
+            <link rel="icon" href="data.ico" type="image/x-icon"> <!-- create one and save it, done -->
+
+  
+
+<style>
+
+.toshow {
+
+display:none; /* default is hidden, this also hides the space it takes up vs visibility tag that only hides content but not the space */
+top:0;
+position:fixed; /*this makes banner fixed but navbar is not..now it is fixed by changing position on nav when reset */
+padding-bottom: 30px; /* need this to cover white space when no word wrap, this works only for mobile to cover white space when phone is turned horizontal */
+
+}
+
+.main {
+   padding-top: 300px;  /* start content 280 px from top but move content up 160 px when in mobile mode with smaller banner */
+   padding-bottom: 50px; /* added white space at end of div to create more space between divs, avoid overlap */
+}
+
+
+           /* start the nav bar right below the header at position 161 */
+.navbar {
+        top: 161px;
+          /* looks like navbar has a default height of maybe 54 px */
+    } 
+
+
+    
+       /* pagewide is start of banner section above navbar, it is 160px wide */
+.pagewide {
+
+
+      /*  we are only using this class now because it gets destroyed for mobile version */
+     
+
+           }
+
+
+
+.site-footer {
+    background: orange;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 70px;
+
+}
+
+/* ditch the ugly blue outline */
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: 0;
+}
+
+/* hide, close when burger shown */
+.navbar-toggler.collapsed .close-icon {
+    display: none;
+}
+
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+    display: inline;
+}
+
+
+/* below is css from tut 2 */
+
+p.indent {
+
+  font-size: 17px;
+  font-weight: normal;
+  color: red;
+  width: 70%;  /*content takes up 50% of screen width, then below centers it */
+  margin-left: auto ; 
+  margin-right: auto ;
+
+
+}
+
+
+   /* need to have all elements (divs and images) in body with these default props for screens/viewports < 1100 px */
+body {
+  background-color: #FFF8DC;
+  padding: 5px;
+  font-weight: bold;
+  
+}
+
+
+     /* for screens  > 1100px center all body content and elements */
+@media only screen and (min-width: 1100px) {
+  body {
+
+    background-color: lightgray;
+
+ width: 65%;  /*all body content takes up 65% of screen width, then below margin property centers it */
+  margin-left: auto ; 
+  margin-right: auto ;
+
+font-family: Avenir;
+  font-size: 18px;
+  font-weight: bold;
+
+
+  }
+}
+
+
+ 
+</style>
+
+
+
+<script>
+
+var eu;
+
+$.ajax({
+  url: "https://geolocation-db.com/jsonp",
+  jsonpCallback: "callback",
+  //async: false, //does not work in jsonp, this is ignored by jsonp
+  dataType: "jsonp",
+  success: function(location) {
+      //grab stats into variables, country,state and city_name
+ country=location.country_name;
+ state=location.state;
+ city_name=location.city;
+
+       //need this logic here while still in success function..still need to do this for 28 countries in eu
+
+//if(state=="California") {        }
+               if(country=="United Kingdom"||country=="France"||country=="Germany"||country=="Austria"||country=="Belgium"||country=="Bulgaria"||country=="Croatia"||country=="Cyprus"||country=="Czechia"||country=="Denmark"||country=="Estonia"||country=="Finland"||country=="Greece"||country=="Hungary"||country=="Ireland"||country=="Italy"||country=="Latvia"||country=="Lithuania"||country=="Luxembourg"||country=="Malta"||country=="Netherlands"||country=="Poland"||country=="Portugal"||country=="Romania"||country=="Slovakia"||country=="Slovenia"||country=="Spain"||country=="Sweden") {
+
+//if(country=="United States") {
+              
+    //alert("is eu");  //this is working
+    //var eu = "yes";  //i think we should not use var because not using ensures that var created is global...need to try this
+     eu = "eu yes";
+}
+
+
+  } //end success...i think success is replaced by done in later jquery versions and use promises instead of async:false to synchronize calls ...seems complicated
+      //async:false is deprecated so at a later date we will need to replace
+
+
+});
+
+  //geo info is now in the head tag so it loads before body
+      
+
+</script>
+
+
+</head>
+
+
+
+<!--<body>-->
+<body onLoad="callJqueryAjax();">
+
+
+
+<script>
+ 
+function callJqueryAjax(){
+
+var name = "test ssl";  //this will be the session id
+var count=1;  //if var is string must have single quotes, otherwise no quotes for int
+var pg="home";
+var responseText;     
+
+$.ajax({
+           
+url     : 'https://javasqlweb.org/examples/servlets/servlet/AjaxHandler3',
+method     : 'POST',
+async: false,
+data : {   name : name,  name1 : count, page2:pg, country2 : country, state2:state, city2:city_name, eu2:eu }, 
+success    : function(response){
+      responseText = response;  //pass this session to timeout servlet, this post allows 1 callback which is a get response object from servlet
+      //$('#result').html(response); //getting session id back from ajaxhandler3 response object
+   },
+error : function(jqXHR, exception){console.log('Error occured!!'); }
+
+});  //end of ajax function
+
+
+window.addEventListener('unload', function(event) {
+
+fetch("https://javasqlweb.org/examples/servlets/servlet/TimeOut", {
+     method: 'POST',
+     headers: new Headers({
+             'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type..headers required for param to work
+    }),
+     body: "name111="+responseText,  //from above..need comma because we are also adding keepalive..name111 is the param we get in servlet
+     keepalive: true  //required for window unload
+})
+    .then(res => res.text()) //this is the promise fka callback..not being used for this post request but needs to be used in get
+    .then((out) => {
+       // console.log('Output: ', out);
+}).catch(err => console.error(err));
+
+               
+});  //end of window unload
+
+ 
+
+} //end of callJQueryAjax function   
+
+</script>
+
+
+
+      <!-- start of banner followed by navbar -->
+
+<div class="container-fluid">
+
+
+   <div class="pagewide float-left bg-info fixed-top" <!--style="padding-right: 150px;-->"> <!--using pagewide only for destruction of this class on resize-->
+                                <!-- was bg-success which is color green and info is color blue -->
+<span class="float-left p-2">
+ <h2>JavaSQLWeb - fka Cloudwithasilverlining</h2>
+<p>go from zero to hero with my FREE  <a href="free-tutorials" style="color:red">Java Tutorials </a>  </p> 
+
+<!--<p>click here for tutorials.....also include image to the right....and feedback section at bottom</p> -->
+<p>we are under construction so some links are not working right now</p>
+</span>
+
+     <span class="float-right pr-5"><img alt="main logo" src="data2.jpg"> </span>
+   </div> 
+
+
+
+</div> <!-- end container div-->
+
+
+
+
+         <!-- this div is hidden by default along with the space it takes up, and is the alt banner above the navbar when in mobile mode -->
+<!--<div class="toshow bg-primary fixed-top"> sample div, this is an example of a simple banner above navbar to be used only when in mobil and by default is hidden</div>-->
+
+<div class="toshow bg-info fixed-top"> Welcome to JavaSQLWeb.org, formerly Cloudwithasilverlining - under construction - Free Java Tutorials to become available soon</div>
+                      <!-- need fixed top here -->
+
+
+     <!--this is the nav bar, the name as nav is referred to in jquery to reposition the navbar for mobile-->
+<nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark"> <!--a fixed top starting at top=160px below banner div-->
+    <div class="container">
+        <a class="navbar-brand" href="#" target="_self">
+            JavaSQLWeb.org    <!--formerly Cloudwithasilverlining -->
+        </a>
+
+
+<!-- this is the new button with x to close, see older file for other , for this we use font awsome x because glyphicon went away in bootstrap4  -->
+ <button class="navbar-toggler collapsed border-0" type="button" data-toggle="collapse" data-target="#collapsingNavbar">menu
+            <span class="navbar-toggler-icon"></span>
+
+      <!--  <div class="close-icon py-1"><i class="fa fa-times"></i></div> -->
+ <div class="close-icon py-1">x</div>    <!-- use plain x instead of fa -->
+
+         
+        </button>
+
+
+
+
+ <div class="collapse navbar-collapse" id="collapsingNavbar"> <!--this line needed for x to work in bootstrap4 -->
+
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item active">
+                  <!--  <a class="nav-link" href="&lt;?= $this-&gt;basePath('inloggen') ?&gt;">Inloggen<span class="sr-only">(current)</span></a> -->
+                    <a class="nav-link" href="https://javasqlweb.org">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                   <a class="nav-link" href="about -rev1">About</a>
+                </li>
+
+             <!--
+                <li class="nav-item">
+                   <a class="nav-link" href="#">Features</a>
+                </li>
+              -->
+
+                <li class="nav-item">
+                   <a class="nav-link" href="free-tutorials">Free Tutorials</a>
+                </li>
+
+                <li class="nav-item">
+                   <a class="nav-link" href="#">Contact us</a> <!-- put feedback form here -->
+                </li>
+
+      <li class="nav-item dropdown"> <!--alternative to hamburger menu, but for small screens turns into hamburger, see button tag above-->
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">More
+        </a>
+        <div class="dropdown-menu dropdown-info" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">put something here</a>
+          <a class="dropdown-item" href="#">Pricing</a>
+          <a class="dropdown-item" href="#">Privacy Policy</a>
+        </div>
+      </li>
+
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+
+        <!-- this is my main content and id tag makes div move in jquery when navbar repositions for smaller screen -->
+
+  <div class="main" id="movediv">
+
+
+
+<div>
+<ul class="font_2" style="font-size:20px; font-weight:bold;">
+	<li>
+	<h2 class="font_2" style="font-size:20px;"><span style="font-weight:bold;"><span style="font-size:20px;">Do we have what it takes to be a Programmer? <span style="text-decoration:underline;"><a href="personality of the beginner programmer">click here</a></span></span></span></h2>
+	</li>
+</ul>
+</div>
+
+<div><ul class="font_2" style="font-size:20px; font-weight:bold;">
+	<li>
+	<h2 class="font_2" style="font-size:20px;"><span style="font-weight:bold;"><span style="font-size:20px;">Not sure about Java? <span style="text-decoration:underline;"><a href="afraid of java">click here</a></span></span></span></h2>
+	</li>
+</ul>
+</div>
+
+
+
+    <br>
+
+<p>if u like working with numbers, especially spreadsheets, why not consider reinventing urself as a Data Scientist. Experience the basics of Java with my free tutorials. Impress others in ur next job interview with a new skill and recent exposure to Data and Programming</p>
+<br>
+
+  </div>
+
+
+
+
+
+<footer class="site-footer">
+  This site does not use cookies.
+
+<button id="btnClick">ok thanks</button> 
+
+<span> click here for privacy 
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#demo2">
+    policy
+  </button>
+
+<!-- include an if clicked function to push click event to db -->
+
+</span>
+
+<!-- need to also add copywrite info -->
+<!-- perhaps if eu= yes we have site-footer2, a different looking footer just for eu??? -->
+
+
+<!-- Button to Open the Modal, i think old window.open is no longer allowed in js, need to research this, so instead do pure css approach using bootstrap4 -->
+      <!--note that close button was not working so i added some jquery and it worked -->
+
+
+
+
+
+</footer>
+  
+ 
+  <div class="modal" id="demo2">
+ 
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">   
+   
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Privacy Policy</h4>
+             <button type="button" class="close" data-dismiss="modal">X</button></div>
+ 
+        <!-- Modal body -->
+        <div class="modal-body">
+
+<p>In general, we respect the privacy of our users.</p>
+<br><br>
+<p>We do not collect personal information, we do not market or retarget our products.
+ We do not solicit or ask for an email address. We do not sell or share data.
+ In fact, we are not even a business but instead an educational resource offering free tutorials.
+ Thus, there is no impact on privacy whatsoever at this site. Also We do not buy personal data.</p>
+
+
+             </div>   
+    
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" > Close</button>
+        </div>    
+    
+      </div>
+    </div>
+  </div>
+  
+</div>
+<br><br>
+<br><br>
+
+
+  <!-- jQuery -->
+ 
+    <script>
+        $(document).ready(function() {   
+
+            //default position large screen we have large banner above navbar but on <1000 screen we destroy class and run new navbar under default hidden div
+               //no need for if and else just do below on mobile and anything >1000 becomes larger screen default
+               //increased size to >1000 for this to work in firefox, originally at 800 was not working in FF
+  
+  function checkWidth() {
+        var windowsize = $(window).width();
+        if (windowsize < 1100) {
+
+  $(".pagewide").hide(); 
+    $(".col2").hide();
+$("div").removeClass("pagewide"); 
+$("div").removeClass("col2");
+
+
+// new navbar re positioning, instantiate new div called nav using navbae class..75 is the height of mobile banner above navbar 
+$("nav").css({top: 75, left: 0, position:'fixed'}); //this works for fixed, similar to fixed-top above, but this is the css way of doing it
+
+$("div.toshow").show(); // this shows a more simple banner above the menu just for mobil use
+
+
+// then mov whole div of main class up, trying to float a div on re position was not working
+
+
+$('#movediv').animate({
+		'marginTop' : "-=160px" //moves up 160 px for smaller banner on mobile
+		});
+
+
+//put else back in here for larger screen in order to center main content and images, see tut2 rev 2a
+//need to have this jquery on all pages, tut 2a is still trying to use @media instead of this jquery
+
+}
+
+
+    }
+
+    // Execute this function on load
+    checkWidth();
+
+
+
+
+//footer button click events
+    //need to add if eu==yes then show footer....also add 28 eu countries above for eu column  in db
+            // for this to work, default footer needs to hide similar to .toshow class
+
+
+
+$(document).on('click', '#btnClick', function(){ 
+    //alert("button is clicked"); // instead of alert add clicked event to db
+    $(".site-footer").hide(); 
+   
+});
+
+       // privacy policy click event , use this instead of modal, inside click event use if clicked lingo
+$(document).on('click', '#btnClickPolicy', function(){ 
+    alert(" other button is clicked"); // instead of alert add clicked event to db
+    //$(".site-footer").hide(); 
+   
+});
+
+
+
+}); //end of document ready
+
+
+      </script>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+

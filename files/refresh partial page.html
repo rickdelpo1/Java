@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+<p>this is an example of page refresh without loading whole page</p>
+<p>looks like we need to have full template for free tutorials page with content div on that particular page for each tut click</p>
+<p> will free tut clicks work with anchor tags or do we need actual buttons?</p>
+
+<!--<button id="button">click here, note originally had coors issue when trying from c directory</button>--> 
+<!--<a href="javascript:onclickFunction('button')">a</a>-->
+<!--<a href="free-tutorials" onclick="onclickFunction('content');">Click Me</a>-->
+<!--<a id="button" href="#">View Profile</a>-->
+
+<!--<a id="link1" style = "text-decoration:underline;">Go to Google, originally we had href inside this tag</a>-->  <!--use underline decoration?-->
+<a id="link1" href="#">click with no decoration</a> <!--use this one-->
+
+<br>
+<a href="#" id="attach_box">+ Add a Postal Address (If Different)</a>
+<!--
+<script>
+$("button").click(function(){
+  $.ajax({url: "free-tutorials", success: function(result){
+    $("#content").html(result);
+  }});
+});
+</script>
+-->
+
+<!--need to pass value of url into a variable, might need iframe-->
+<script>
+//$(function() {
+    $("#link1").on("click", function() { 
+       // alert("Google Link 'clicked'");
+ $.ajax({url: "free-tutorials", success: function(result){
+        //alert(url); want val of this url, instead dont use ajax, pass url to iframe from href
+    $("#content").html(result);
+      return false; //do this so link does not execute and u get underline without decoration
+
+  }});
+
+    });
+//  });
+
+
+</script>
+
+<script type="text/javascript">
+	$(function(){
+		$('#nav a').click(function(e) { 
+			  $('#content').hide().load( $(this).attr('href') , function(){
+					 $('#content').show()
+			  })
+			  return false
+		})
+	})
+	</script>
+<p> some other content here</p>
+
+<script type="text/javascript"> 
+   $(function() {
+       $('#attach_box').click(function() {
+           $('#sec_box').show();
+           return false; //ensures that actual link does not work just so we can do something else
+       });        
+   });
+</script>
+
+<div id="content"></div>
+
+<div id="nav"> 
+        <a href="free-tutorials">click here for free tutorials</a> 
+<!--        
+<a href="why.html">why</a> 
+        <a href="story.html">a story</a> 
+        <a href="pic.html">a picture</a> -->
+    </div>       
+
+
+<div id="sec_box" style="display: none;">
+Hello world!!               
+</div>
+
+</body>
+</html>

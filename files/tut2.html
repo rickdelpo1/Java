@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+
+
+
+<!-- this will become the template..is tut2 on win 1
+
+added bootstrap4 resources on 1-24-20....we are using images so we want shrink to fit them for viewport size
+in bootstrap 3 it was img-responsive and for bootstrap 4 it is image-fluid
+these are auto classes used here but found in bootstrap link rel css stylesheet below
+so we will not see reference to these classes in our css used on this page as an overide and for the very css basics
+there are many other classes that can be used from bootstrap css but we only use this one for images here
+
+
+
+Bootstrap provides the .img-fluid class to make an image scale appropriately across devices. This class applies max-width: 100% and height: auto to the image. This ensures that the image scales to the parent element.
+
+
+standard style tag below uses other than bootstrap like for example @media tag for viewport size
+
+ -->
+
+<!--
+
+*****************************************
+
+this page was edited on 8-10-2019
+when republishing I need to add a section about which eclipse version u download, if u 
+download the j2ee version then u dont need to provision with j2ee perspective
+to get dynamic web project which is needed to do a servlet
+
+so advise the user to look first to see if he has choice of dynamic web project and servlet
+
+
+
+also add my own css style page that centers content and chooses correct fonts for h1 and paragraph
+
+
+***********************************
+
+
+-->
+
+
+
+
+
+
+
+<!--<html lang="en"> -->
+<head>
+    
+    <!--<meta charset="utf-8"/>-->
+   
+<meta name="viewport" content="width=device-width, initial-scale=1"/>    
+           <!-- note that for images to show properly in mobile (shrink to fit) all references to width css tag need removing
+              also MUST include this meta name tag
+ -->
+      
+    <!-- META DATA -->
+
+
+    
+        
+            <title>Tutorial 2 | cloud computing, data integration | your Cloud With a Silver Lining</title>
+        
+            <link rel="canonical" href="https://www.cloudwithasilverlining.com/tutorial-2"/>
+        
+          
+        
+            <meta name="keywords" content="Boston, Connecticut, Hartford, New York, ct, java training, java tutor, learn java, learn sql"/>
+        
+
+<!-- this is bootstrap 4 used in css, later on we may want to point these https to internal folder instead -->
+      <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"> 
+      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src = "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+<!-- this is font awesome reference, used initially because glyphicon X (close) was taken out of bootstrap4 -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
+    
+
+<style>
+
+
+p.indent {
+
+  font-size: 17px;
+  font-weight: normal;
+  color: red;
+  width: 70%;  /*content takes up 50% of screen width, then below centers it */
+  margin-left: auto ; 
+  margin-right: auto ;
+
+
+}
+
+
+   /* need to have all elements (divs and images) in body with these default props for screens/viewports < 1100 px */
+body {
+  background-color: pink;
+  padding: 5px;
+  font-weight: bold;
+  
+}
+
+
+     /* for screens  > 1100px center all body content and elements */
+@media only screen and (min-width: 1100px) {
+  body {
+
+    background-color: lightgreen;
+
+ width: 65%;  /*all body content takes up 65% of screen width, then below margin property centers it */
+  margin-left: auto ; 
+  margin-right: auto ;
+
+font-family: Avenir;
+  font-size: 18px;
+  font-weight: bold;
+
+
+  }
+}
+
+
+</style>    
+
+
+        </head>
+            
+                <body>
+
+   
+<h1>How to Create and Run a Simple Java Program in Eclipse</h1>
+<br>
+<h1>Introduction to Java Servlets - Part 2</h1>
+
+<br>
+ 
+<div>
+
+<p>Before reviewing this tutorial be sure to have the proper Java environment set up, as we learned how to do in 
+
+<a href="https://www.cloudwithasilverlining.com/training/get-started-with-eclipse" target="_self">my previous tutorial</a>
+. Also I am recommending that you enhance your experience by doing a lot of independent research out on Google, in addition to what I am showing you here.</p>
+
+
+
+<p>&nbsp;</p>
+
+<p>Before getting started on writing a program we need to create a project in Eclipse. Here is what my Workspace looks like. In the package explorer I have 3 projects set up. The one called test is what we will work on. We will write code in our workspace for the Hello.java file.</p>
+
+        <!-- in jdk3 we needed / in front of /images/path and .JPG vs .jpg  I think for mobile is different -->
+
+<br><br>
+<img alt="workspace";  src="images/workspace.jpg" class="img-fluid"/>
+<br><br>
+</div>
+
+
+
+<div>
+
+<p>So let&rsquo;s now create a project. Right click anywhere inside Package Explorer and choose new. We will see this first</p>
+<br>
+
+<img alt="new project";  src="images/new project.jpg" class="img-fluid"/>
+<br><br>
+
+</div>
+
+
+
+<div>
+
+<p>then press java project or just press file then new then java project.</p>
+<p>then we will see this next</p>
+
+<br><br>
+<img alt="create java project";  src="images/create java project.jpg" class="img-fluid"/>
+<br><br>
+
+</div>
+
+
+
+
+<div>
+
+<p>Fill in a name for the project, keep all else the same on the form and press finish. Next, expand the project folder to view all sub folders in the project, right click on src (this&nbsp;means source files), then choose new and then Class and press enter. This form will come up</p>
+
+<br><br>
+<img alt="create class";  src="images/create class.jpg" class="img-fluid"/>
+<br><br>
+
+</div>
+
+
+
+
+<div>
+
+<p>Here we are creating a class object where we will write our code. It is good practice (but not mandatory) to include a package name because we can have multiple classes in a package. Also a class name is mandatory. I chose the package name as test and for the class name please fill in as Hello&nbsp;and we do not need to include .java at the end of the name.Then check the box that says &lsquo;public static void main&rsquo; and press Finish. Main(String args) is also referred to as the main method and we must have this inside our Main class object in order to run this class in Eclipse.</p>
+
+<p>After Pressing Finish we have now created our Hello.java class and the minimal code will show up in our workspace. If we close the class by xing out of it then we can double click it in package explorer later and the code will reappear in our workspace. As we go along and create more complicated classes it will be okay if you copy and paste the code that I provide in a given tutorial. Right now we just want to get up and running.</p>
+
+<p>Let us now understand the structure of our newly created class. Inside our public class named Hello we have one method called the main method. And inside this method we are asking the program to print out the phrase Hello World to our console.</p>
+
+<p>Now let&rsquo;s run the program. Be sure that the file is saved, press file save. Then right click on Hello.java in the package explorer and choose run as and then java application</p>
+
+<br><br>
+<img alt="run as java app";  src="images/run as java app.jpg" class="img-fluid"/>
+<br><br>
+
+</div>
+
+
+
+
+<div>
+
+<p>Look down below in the console and we will see Hello World.</p>
+
+<br><br>
+<img alt="console view";  src="images/console view.jpg" class="img-fluid"/>
+<br><br>
+
+</div>
+
+
+
+<div>
+
+<p>By now I am sure we have many more questions. My teaching methodology is to teach all the shortcuts so we can fast track our learning process. It is up to you to do homework and research any details about the process or things I may have inadvertently left out. I am only providing the basics. It is also okay to message me on facebook for quick questions.</p>
+
+<p>&nbsp;</p>
+
+<p>Most tutorials leave you hanging at this point after creating the Hello World application. What to do next? We have just created a main class and ran it as a java application. This main class is also known as a POJO or plain old java object and we will use many of these types of classes along the way when building larger applications.
+</p>
+
+<p>&nbsp;</p>
+
+<p>PART 2 -&nbsp;now I want to show another type of class we need to learn about. This is the servlet class. By understanding both types of classes up front, main (plain class) and servlet (web class), we can move from a POJO to a web application with servlet architecture. From my experience we can&rsquo;t do much with POJOs in the beginning without lots of education. So I move right into Servlets because this way we can do web apps early on in our learning process. Take my word for it for now, because it is much more fun to work with servlets in my opinion. We can do more things as beginners sooner rather than later and thus keep our curiosity and interest going. Warning, it is very easy to give up on java, I did it many times, but rest assured it is worth it to keep plugging along.</p>
+
+<p>&nbsp;</p>
+
+<p>Back to the Servlet class. But first, we are not set up to do servlets yet in this version of eclipse. We will need to start a new project and choose dynamic web project but as of now that choice is not available to us. So lets enable eclipse to do this</p>
+
+
+<p class="indent">Please be advised that since I originally wrote this piece, that u may want to choose the most recent version of eclipse from the downloads section and also u may want to download the J2EE version so u don't have to modify the current version as described in these next steps.</p>
+
+
+
+
+<p>Above our workspace Press help then install new software</p>
+
+<br><br>
+<img alt="install new software";  src="images/install new software.jpg" class="img-fluid"/>
+<br><br>
+
+</div>
+
+
+
+
+
+<div>
+
+<p>In the 'work with' area delete what is there &amp; copy and paste this:</p>
+
+
+<p><object height="0"><a class="auto-generated-link" data-auto-recognition="true" data-content="http://download.eclipse.org/releases/luna" href="http://download.eclipse.org/releases/luna" target="_blank" data-type="external">http://download.eclipse.org/releases/luna</a></object></p>
+
+
+<p>then press enter</p>
+
+
+<p>then you will see that the program is pending..just wait patiently</p>
+
+<br><br>
+<img alt="install 2 jpg";  src="images/install2.jpg" class="img-fluid"/>
+<br><br>
+
+</div>
+
+
+
+
+<div>
+
+<p>then we&nbsp;see this</p>
+
+<br><br>
+<img alt="install 3 jpg";  src="images/install3.jpg" class="img-fluid"/>
+<br><br>
+
+</div>
+
+
+
+
+<div>
+
+<p>check the last box for Web, XML, Java EE. Here we are choosing to install only web enabled&nbsp;components so Eclipse will then be able to create a web app. It may take several minutes to load all the necessary components. We will see this:</p>
+
+<br><br>
+<img alt="calculating req 2.JPG";  src="images/calculating req 2.jpg" class="img-fluid"/>
+<br><br>
+
+</div>
+
+
+
+
+
+<div>
+
+<p>Don&#39;t worry if you see &#39;cannot perform operation&#39;, it will still load what we need. Then after a few minutes we see this next</p>
+
+<br><br>
+<img alt="install page";  src="images/install page.jpg" class="img-fluid"/>
+<br><br>
+
+</div>
+
+
+
+
+
+<div>
+
+<p>We are wanting mainly web developer tools and java EE...press next twice then review license and accept terms and click finish..it could now take up to 5 minutes to install. In lower right hand corner we will see this:</p>
+
+<br><br>
+<img alt="installing2.JPG";  src="images/installing2.jpg" class="img-fluid"/>
+<br><br>
+
+</div>
+
+
+
+<div>
+
+<p class="indent">This is the end of the install instructions that u can skip by downloading the j2ee version of eclipse</p>
+
+<p>When finished installing we will need to restart Eclipse and then all our web tools will be available to start our Servlet Web Application....So we will need to create a new project. This time&nbsp;choose file new then other, then open the web folder and choose dynamic web project</p>
+
+<br><br>
+<img alt="dynamic web project";  src="images/dynamic web project.jpg" class="img-fluid"/>
+<br><br>
+
+</div>
+
+
+
+
+<div>
+
+<p>After clicking dynamic web project we are going to have to name the project and choose a target runtime to run the project in. For this we need to 
+
+<a href="https://tomcat.apache.org/download-80.cgi" target="_blank" data-content="https://tomcat.apache.org/download-80.cgi" data-type="external" rel="undefined">download Tomcat binary&nbsp;core version
+</a> and configure tomcat8 to run the Servlet project. So for project name input Servlet Example as shown and then hit new runtime and choose Apache Tomcat v 8.5. This part will not work until after downloading and extracting the tomcat zip file into a target folder which we reference in this&nbsp;configuration.
+
+</p>
+
+<br><br>
+<img alt="dynamic project runtime";  src="images/dynamic project runtime.jpg" class="img-fluid"/>
+<br><br>
+
+</div>
+
+
+
+
+
+<div>
+
+<p>This part might be a bit complicated so bear with me. Open the tomcat 8 folder and then choose the tomcat 8 sub folder for your runtime environment. Browse for the tomcat installation directory and choose this sub folder</p>
+
+<br><br>
+<img alt="dynamic tomcat 8";  src="images/dynamic tomcat 8.jpg" class="img-fluid"/>
+<br><br>
+
+
+</div>
+
+
+
+
+
+<div>
+
+<p>As we navigate through the process we see this notice. Click on open perspective and now we are ready to program a servlet class</p>
+
+<br><br>
+<img alt="dynamic open perspective";  src="images/dynamic open perspective.jpg" class="img-fluid"/>
+<br><br>
+
+
+</div>
+
+
+
+
+
+<div>
+
+<p>now we can see in upper right hand corner of our workspace that we have the Java perspective that we used for plain java and we jave the JavaEE perspective for web apps. So be sure you click on the right perspective for what you are working on. I have a third one here for Python which we will touch in another tutorial</p>
+
+
+<br><br>
+<img alt="perspectives";  src="images/perspectives.jpg" class="img-fluid"/>
+<br><br>
+
+
+</div>
+
+
+
+
+
+<div>
+
+<p>While creating our project be careful to press all the next buttons in the process. As you press next check create deployment descriptor web xml before clicking on Finish. Going back to our project explorer we now have our Servlet project ready to go using web dev components and in the Java EE perspective</p>
+
+
+<br><br>
+<img alt="servlet structure2";  src="images/servlet structure2.jpg" class="img-fluid"/>
+<br><br>
+
+</div>
+
+
+
+
+
+
+<div>
+<p>To build the servlet class we will use the same process we used previously to build our main class. Right click on src then select new but this time choose Servlet instead of Class. This screen will become visible</p>
+
+<br><br>
+<img alt="create servlet";  src="images/create servlet.jpg" class="img-fluid"/>
+<br><br>
+
+</div>
+
+
+
+
+
+
+<div>
+
+<p>Once again&nbsp; use test as package and Hello as Class name. Then click next</p>
+
+<br><br>
+<img alt="create servlet2";  src="images/create servlet 2.jpg" class="img-fluid"/>
+<br><br>
+
+
+</div>
+
+
+
+
+<div>
+
+<p>uncheck Constructors from superclass, doPost, doGet and check service, then click finish. Here is what we see in our workspace. Do a file save and now we can tweek this code and run it</p>
+
+<br><br>
+<img alt="create servlet4";  src="images/create servlet 4.jpg" class="img-fluid"/>
+<br><br>
+
+
+</div>
+
+
+
+
+<div>
+
+<p>One last thing before running our servlet. Double click on web.xml file, click the source tab and copy the following html tags into the file right before the closing /web-app tag, save the file and close it. We have just mapped our servlet to the web app. Don&#39;t forget to do this whenever creating additional servlets</p>
+
+
+<p>&lt;servlet&gt; &nbsp; &nbsp;<br />
+&nbsp; &nbsp; &lt;servlet-name&gt;Hello&lt;/servlet-name&gt;<br />
+&nbsp; &nbsp; &lt;servlet-class&gt;test.Hello&lt;/servlet-class&gt;<br />
+&nbsp; &lt;/servlet&gt;<br />
+&nbsp; &lt;servlet-mapping&gt;<br />
+&nbsp; &nbsp; &lt;servlet-name&gt;Hello&lt;/servlet-name&gt;<br />
+&nbsp; &nbsp; &lt;url-pattern&gt;/Hello&lt;/url-pattern&gt;<br />
+&nbsp; &lt;/servlet-mapping&gt;</p>
+
+
+
+<p>the completed web xml file should look like this:</p>
+
+<br><br>
+<img alt="web xml";  src="images/web xml.jpg" class="img-fluid"/>
+<br><br>
+
+
+</div>
+
+
+
+<div>
+
+<p>I added some code to my service method then resaved the file. Now we are finally ready to run the servlet</p>
+
+
+<p>protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;// TODO Auto-generated method stub<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;// we will enter some code here and the run the servlet<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; //just do something simple like this<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;System.out.println(&quot;Hello World&quot;);<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;<br />
+&nbsp;&nbsp; &nbsp;}</p>
+
+
+
+<p>Right click on Hello.java, then run as, then run on server. The tomcat server will run this web app and your display will be on http://localhost:8080/Servlet_Example/Hello in your browser. Previously our POJO ran as a java&nbsp;application but this servlet runs as a web application on a real webserver currently at localhost. Now u can also open ur Google Chrome browser while Tomcat is still running and paste the above http address right into the browser to verify that it runs outside of tomcat.</p>
+
+
+
+<p>A quick note: this class will not run properly as is, so comment out the following&nbsp;line by placing 2 slashes before the line...then re save file and re run class and it will work</p>
+
+<p>//@WebServlet(&quot;/Hello&quot;)</p>
+
+
+<p>This is it for now
+
+<a href="https://www.cloudwithasilverlining.com" target="_self">click here
+</a> to exit. But remember that Servlets are a VERY important part of Java to know about. They pop up frequently in your travels.&nbsp;
+
+</p>
+
+</div>
+
+
+
+
+
+    
+        <!-- No Footer -->
+    
+
+</body>
+</html>

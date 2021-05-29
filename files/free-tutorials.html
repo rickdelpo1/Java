@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+
+<head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-121628832-1"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-121628832-1');
+</script>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+
+<meta name="description" content="Rick Delpo, Data Professional offering FREE Java and SQL tutorials for the absolute beginner. FREE Java and SQL tutorials, and introduction to Web development">
+
+<meta name="keywords" content="free java tutorials, rick delpo, cloud computing, CT, Connecticut, learn java,sql,data management,cloud instruction, tutoring, learn sql, data integration, data instruction,consulting, education, mentoring">
+
+
+
+<title>FREE Java Tutorial</title>
+  
+
+<!--these are the local links-->
+            <script src="jquery-3.4.1.js"></script> <!--grab this locally-->
+            <script src="popper.js"></script> <!--must be in this order - need popper to make pop up work-->
+          <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
+
+            <script src = "bootstrap-4.1.1.js"></script> 
+            <link rel = "stylesheet" href = "bootstrap-4.1.1.css">
+
+
+           <!-- <link rel="stylesheet" href="font-awesome.css"> --> <!-- not using FA anymore due to manual x to close in navbar -->
+          <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"> -->
+
+
+
+        <!--    <link rel="canonical" href="https://www.cloudwithasilverlining.com"/> -->
+
+                  <!--add ref to favicon-->
+
+            <link rel="icon" href="data.ico" type="image/x-icon"> <!-- create one and save it, done -->
+
+  
+
+<style>
+
+.toshow {
+
+display:none; /* default is hidden, this also hides the space it takes up vs visibility tag that only hides content but not the space */
+top:0;
+position:fixed; /*this makes banner fixed but navbar is not..now it is fixed by changing position on nav when reset */
+padding-bottom: 30px; /* need this to cover white space when no word wrap, this works only for mobile to cover white space when phone is turned horizontal */
+
+}
+
+.main {
+   padding-top: 300px;  /* start content 280 px from top but move content up 160 px when in mobile mode with smaller banner */
+   padding-bottom: 50px; /* added white space at end of div to create more space between divs, avoid overlap */
+}
+
+
+           /* start the nav bar right below the header at position 161 */
+.navbar {
+        top: 161px;
+          /* looks like navbar has a default height of maybe 54 px */
+    } 
+
+
+    
+       /* pagewide is start of banner section above navbar, it is 160px wide */
+.pagewide {
+
+
+      /*  we are only using this class now because it gets destroyed for mobile version */
+     
+
+           }
+
+
+
+.site-footer {
+    background: orange;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 70px;
+
+}
+
+/* ditch the ugly blue outline */
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: 0;
+}
+
+/* hide, close when burger shown */
+.navbar-toggler.collapsed .close-icon {
+    display: none;
+}
+
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+    display: inline;
+}
+
+
+/* below is css from tut 2 */
+
+p.indent {
+
+  font-size: 17px;
+  font-weight: normal;
+  color: red;
+  width: 70%;  /*content takes up 50% of screen width, then below centers it */
+  margin-left: auto ; 
+  margin-right: auto ;
+
+
+}
+
+
+   /* need to have all elements (divs and images) in body with these default props for screens/viewports < 1100 px */
+body {
+  background-color: #FFF8DC; /* yellow */
+  padding: 5px;
+  /*font-weight: bold; */
+  line-height:40px;
+  
+}
+
+
+     /* for screens  > 1100px center all body content and elements */
+@media only screen and (min-width: 1100px) {
+  body {
+
+    background-color: lightgreen;
+
+ width: 65%;  /*all body content takes up 65% of screen width, then below margin property centers it */
+  margin-left: auto ; 
+  margin-right: auto ;
+
+font-family: Avenir;
+  font-size: 20px;
+ /* font-weight: bold; */
+  line-height:40px;
+
+  }
+}
+
+
+ 
+</style>
+
+
+
+<script>
+
+var eu;
+var session;
+
+$.ajax({
+  url: "https://freegeoip.app/json",
+  //url: "https://geolocation-db.com/jsonp",
+  jsonpCallback: "callback",
+  //async: false, //does not work in jsonp, this is ignored by jsonp
+  dataType: "jsonp",
+  success: function(location) {
+      //grab stats into variables, country,state and city_name
+ country=location.country_name;
+ //state=location.state;
+       state=location.region_name;  //changed 4-22-21 for new geoip due to invalid cert from old free geo ip
+ city_name=location.city;
+
+       //need this logic here while still in success function..still need to do this for 28 countries in eu
+
+//if(state=="California") {        }
+               if(country=="United Kingdom"||country=="France"||country=="Germany"||country=="Austria"||country=="Belgium"||country=="Bulgaria"||country=="Croatia"||country=="Cyprus"||country=="Czechia"||country=="Denmark"||country=="Estonia"||country=="Finland"||country=="Greece"||country=="Hungary"||country=="Ireland"||country=="Italy"||country=="Latvia"||country=="Lithuania"||country=="Luxembourg"||country=="Malta"||country=="Netherlands"||country=="Poland"||country=="Portugal"||country=="Romania"||country=="Slovakia"||country=="Slovenia"||country=="Spain"||country=="Sweden") {
+
+//if(country=="United States") {
+              
+    //alert("is eu");  //this is working
+    //var eu = "yes";  //i think we should not use var because not using ensures that var created is global...need to try this
+     eu = "eu yes";
+}
+
+
+  } //end success...i think success is replaced by done in later jquery versions and use promises instead of async:false to synchronize calls ...seems complicated
+      //async:false is deprecated so at a later date we will need to replace
+
+
+});
+
+  //geo info is now in the head tag so it loads before body
+      
+
+$.ajax({
+                method: "GET",
+                url: "https://javasqlweb.org/test.php",
+                dataType:'text',
+                success : function(response){
+                     session = response;
+
+                }
+            });
+
+
+</script>
+
+
+</head>
+
+
+
+<!--<body>-->
+<body onLoad="closePage();">
+
+
+
+<script>
+ 
+function closePage(){
+
+var name;  //this will be the session id
+var count;  //if var is string must have single quotes, otherwise no quotes for int
+var pg;
+var responseText;     
+
+pg="tutorials"; //this sets home page and adds unload listener, ajax below identifies page after click but has no unload for those
+count=1;
+name = "test new";
+
+$.ajax({
+           
+url     : 'https://javasqlweb.org/examples/servlets/servlet/AjaxHandler3',
+method     : 'POST',
+async: false,
+data : {   name : name,  name1 : count, page2:pg, country2 : country, state2:state, city2:city_name, eu2:eu, session2:session }, 
+success    : function(response){
+      responseText = response;  //pass this session to timeout servlet, this post allows 1 callback which is a get response object from servlet
+      //$('#result').html(response); //getting session id back from ajaxhandler3 response object
+   },
+error : function(jqXHR, exception){console.log('Error occured!!'); }
+
+});  //end of ajax function
+
+
+window.addEventListener('unload', function(event) {
+
+fetch("https://javasqlweb.org/examples/servlets/servlet/TimeOut", {
+     method: 'POST',
+     headers: new Headers({
+             'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type..headers required for param to work
+    }),
+     body: "name111="+responseText,  //from above..need comma because we are also adding keepalive..name111 is the param we get in servlet
+     keepalive: true  //required for window unload
+})
+    .then(res => res.text()) //this is the promise fka callback..not being used for this post request but needs to be used in get
+    .then((out) => {
+       // console.log('Output: ', out);
+}).catch(err => console.error(err));
+
+               
+});  //end of window unload
+
+
+ window.addEventListener("blur", function(event) {
+
+fetch("https://javasqlweb.org/examples/servlets/servlet/TimeOut", {
+     method: 'POST',
+     headers: new Headers({
+             'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type..headers required for param to work
+    }),
+     body: "name111="+responseText,  //from above..need comma because we are also adding keepalive..name111 is the param we get in servlet
+     keepalive: true  //required for window unload
+})
+    .then(res => res.text()) //this is the promise fka callback..not being used for this post request but needs to be used in get
+    .then((out) => {
+       // console.log('Output: ', out);
+}).catch(err => console.error(err));
+
+                  
+}); //end window listener
+
+
+
+ 
+
+} //end of closePage function
+
+
+</script>
+
+
+      <!-- start of banner followed by navbar -->
+
+<div class="container-fluid">
+
+
+   <div class="pagewide float-left bg-info fixed-top" <!--style="padding-right: 150px;-->"> <!--using pagewide only for destruction of this class on resize-->
+                                <!-- was bg-success which is color green and info is color blue -->
+<span class="float-left p-2">
+ <h2>JavaSQLWeb - fka Cloudwithasilverlining</h2>
+<p>go from zero to hero with my FREE  <a href="free-tutorials" onclick='setThrough(this);' target="receiver3" style="color:red">Java Tutorials </a>  </p> 
+
+<!--<p>click here for tutorials.....also include image to the right....and feedback section at bottom</p> -->
+<p>please note that more tutorials and blog posts are in the works</p>
+</span>
+
+     <span class="float-right pr-5"><img alt="main logo" src="data2.jpg"> </span>
+   </div> 
+
+
+
+</div> <!-- end container div-->
+
+
+
+
+         <!-- this div is hidden by default along with the space it takes up, and is the alt banner above the navbar when in mobile mode -->
+<!--<div class="toshow bg-primary fixed-top"> sample div, this is an example of a simple banner above navbar to be used only when in mobil and by default is hidden</div>-->
+
+<div class="toshow bg-info fixed-top"> click here for - <a href="free-tutorials" onclick='setThrough(this);' target="receiver3" style="color:red">FREE Java Tutorials </a>....also note that more tutorials and blog posts are in the works</div>
+                      <!-- need fixed top here -->
+
+
+     <!--this is the nav bar, the name as nav is referred to in jquery to reposition the navbar for mobile-->
+<nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark"> <!--a fixed top starting at top=160px below banner div-->
+    <div class="container">
+        <a class="navbar-brand" href="#" target="_self">
+            JavaSQLWeb.org    <!--formerly Cloudwithasilverlining -->
+        </a>
+
+
+<!-- this is the new button with x to close, see older file for other , for this we use font awsome x because glyphicon went away in bootstrap4  -->
+ <button class="navbar-toggler collapsed border-0" type="button" data-toggle="collapse" data-target="#collapsingNavbar">menu
+            <span class="navbar-toggler-icon"></span>
+
+      <!--  <div class="close-icon py-1"><i class="fa fa-times"></i></div> -->
+ <div class="close-icon py-1">x</div>    <!-- use plain x instead of fa -->
+
+         
+        </button>
+
+
+<!--menu section-->
+
+ <div class="collapse navbar-collapse" id="collapsingNavbar"> <!--this line needed for x to work in bootstrap4 -->
+
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item active">
+                  <!--  <a class="nav-link" href="&lt;?= $this-&gt;basePath('inloggen') ?&gt;">Inloggen<span class="sr-only">(current)</span></a> -->
+                    <a class="nav-link" href="https://javasqlweb.org">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item">
+                  <!-- <a class="nav-link" href="about -rev1">About</a> -->
+                   <!--    <a class="nav-link" href='about' onclick='setThrough(this);' target="receiver3">About</a> -->
+         <!-- need collapse.show syntax so menu collapses after item is selected, do this for other menu links -->
+            <!-- the .show method replaces .in method which makes this work only on mobile device...collapse is for mobile only -->
+ <a class="nav-link" href='about' onclick='setThrough(this);' target="receiver3" data-toggle="collapse" data-target=".navbar-collapse.show">About</a>             
+                       <!-- then go to set through this script and reposition content up 100 px for mobile only after collapse -->
+
+                </li>
+
+             <!--
+                <li class="nav-item">
+                   <a class="nav-link" href="#">Features</a>
+                </li>
+              -->
+
+                <li class="nav-item">
+                  <!-- <a class="nav-link" href="free-tutorials">Free Tutorials</a>-->
+                       <a class="nav-link" href='free-tutorials' onclick='setThrough(this);' target="receiver3" data-toggle="collapse" data-target=".navbar-collapse.show">Free Tutorials</a>
+
+
+                </li>
+
+                <li class="nav-item">
+                   <a class="nav-link" href="comments" onclick='setThrough(this);' target="receiver3" data-toggle="collapse" data-target=".navbar-collapse.show">Submit Comment</a> <!-- put feedback form here -->
+                </li>
+
+      <li class="nav-item dropdown"> <!--alternative to hamburger menu, but for small screens turns into hamburger, see button tag above-->
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">More
+        </a>
+        <div class="dropdown-menu dropdown-info" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="contact" onclick='setThrough(this);' target="receiver3" data-toggle="collapse" data-target=".navbar-collapse.show">contact us</a>
+          <a class="dropdown-item" href="pricing" onclick='setThrough(this);' target="receiver3" data-toggle="collapse" data-target=".navbar-collapse.show">Pricing</a>
+          <!--<a class="dropdown-item" href="#">Privacy Policy</a>-->
+   <a class="dropdown-item" href="privacy" onclick='setThrough(this);' target="receiver3" data-toggle="collapse" data-target=".navbar-collapse.show">Privacy Policy</a>    
+        </div>
+      </li>
+
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+
+        <!-- this is my main content and id tag makes div move in jquery when navbar repositions for smaller screen -->
+
+  <div class="main" id="movediv">
+
+
+
+
+<h1>Java Tutorial with some SQL and Comparison to Python, for beginners</h1>
+<br>
+
+
+
+<div><h1 class="font_0" style="font-size:18px;"><span style="font-size:18px;"><span style="text-decoration:underline;">
+
+<a href="getting-started-with-Java-using-eclipse">click here</a></span> for tutorial 1 - installing the Java Environment</span></h1>
+</div>
+
+<br>
+
+
+<div><h1 class="font_0" style="font-size:18px;"><span style="font-size:18px;"><span style="text-decoration:underline;">
+
+<a href="Introduction-to-Java-Servlets">click here</a></span> for tutorial 2 - create and run a simple program in Eclipse. Introduction to Tomcat and Java Servlets</span></h1>
+</div>
+
+<br>
+
+<div ><h1 class="font_0" style="font-size:18px;"><span style="font-size:18px;"><span style="text-decoration:underline;">
+
+
+<a href="Java-Inheritance-Libraries-and-http-Servers-with-Comparison-to-Python">click here</a></span> for tutorial 3 - Java Inheritance, Libraries and http Servers with Comparison to Python</span></h1>
+</div>
+
+
+<br>
+
+<div><h1 class="font_0" style="font-size:18px;"><span style="font-size:18px;"><span style="text-decoration:underline;">
+
+<a href="Learn-SQL-and-JDBC-in-Eclipse-using-Embedded-SQLite-Database">click here</a></span> for tutorial 4 - Learn SQL and JDBC in Eclipse using an Embedded SQLite Database</span></h1>
+</div>
+
+
+
+<br>
+<p>tutorials below are not operational yet, please go back to my old wix site to access them</p>
+<a href="https://rickdelpo.wixsite.com/cloud/free-tutorial">click here to go back</a>
+<br><br>
+
+
+
+<div><h1 class="font_0" style="font-size:18px;"><span style="font-size:18px;"><span style="text-decoration:underline;">
+
+
+<a href="https://www.cloudwithasilverlining.com/tutorial-5" target="_self">click here</a></span> for tutorial 5 - Read data from Excel Spreadsheet into SQL Database using Java</span></h1></div>
+
+
+
+
+<div><h1 class="font_0" style="font-size:18px;"><span style="font-size:18px;"><span style="text-decoration:underline;">
+
+
+<a href="https://www.cloudwithasilverlining.com/tutorial-5a" target="_self">Tutorial 5a</a></span> - repeat SQLite inserts from Tutorial 5 but do the same using Python instead of&nbsp;Java</span></h1></div>
+
+
+
+<div><h1 class="font_0" style="font-size:18px;"><span style="font-size:18px;"><span style="text-decoration:underline;">
+
+
+<a href="https://www.cloudwithasilverlining.com/tutorial-6" target="_self">click here</a></span> for tutorial 6 - Execute SQL to HTML result in both Python and Java, compare the code in each</span></h1></div>
+
+
+
+
+<div><h1 class="font_0" style="font-size:18px;"><span style="font-size:18px;"><span style="text-decoration:underline;">
+
+
+<a href="https://www.cloudwithasilverlining.com/tutorial-7" target="_self">Tutorial 7</a></span>- SQL Online practice area with commands for Advanced Beginners.&nbsp;Export data to CSV and render&nbsp;to Excel using Java</span></h1></div>
+
+
+
+
+<div><h1 class="font_0" style="font-size:18px;"><span style="text-decoration:underline;">
+
+
+<a href="https://javasqlweb.org/afraid-of-java"><span style="font-size:18px;">Don&#39;t See anything we like here?</span></a></span></h1>
+
+</div>
+
+
+
+    
+
+    
+        <!-- No Footer -->
+    
+<br>
+    <p>please leave a comment below</p>
+
+<p>we welcome ur Feedback. Comments are not posted. If a response is needed please include email or text link in message</p>
+<br>
+
+<textarea rows="5" cols="40" id="comment2" onfocus="myFunction(this)">click here to Add a Comment</textarea>
+
+        <p><button id="button">Submit Feedback</button></p>
+
+<div id="result"></div>  <!--show servlet response here-->
+
+      
+    <script>
+
+           //non jquery way of doing this
+function myFunction(x) {
+  x.style.background = "yellow";
+  x.value = "";  //when onfocus default text disappears
+}
+
+           //the jquery way of doing click function
+//$(document).on('click', '#button', function(){ 
+$(document).one('click', '#button', function(){ 
+            //change to .one method to avoid multiple event firing using jquery
+     // alert("button is clicked"); // instead of alert add clicked event to db
+
+var comment1 = $("#comment2").val(); //get value of user input
+
+//do ajax here
+
+$.ajax({
+          type: "POST",
+    //      url: "http://localhost:8080/json/Comments",
+          url     : 'https://javasqlweb.org/examples/servlets/servlet/Comments',
+
+          data: { message : comment1}, //pass val comment one into message param which gets picked up in servlet get param
+                         //define response object for success function
+          success : function(response){
+          
+              //get servlet response object into result tag.... we got ur comment if u want a reply include email
+
+                      $('#result').html(response); //getting message back from servlet response object, need div with id=result
+
+
+          } //end success
+        }); //end ajax
+
+
+
+//then reset default message
+  comment2.style.background = "lightblue";
+  comment2.value = "thank you, wait 3 seconds for new page and enter new comment or exit";
+
+//await wait(5000);  //wait 5 seconds go back to original free tuts to see how we paused
+$(function() {
+    setTimeout(redirect, 5000);  //5000= 5 seconds..need to wait so db script has time to load
+});
+
+     //note that since .one method is in use we cannot re enter comment here because this script only allows it once, must go back to free tut page
+   //perhaps do a redirect to free tut page or instruct user to start over
+
+//$("#content").load("https://javasqlweb.org/free-tutorials");
+
+ }); //end of button click function
+
+
+function redirect(){
+    //var url= "https://www.cloudwithasilverlining.com/main"; 
+    //window.location = url;  
+
+$("#content").load("https://javasqlweb.org/free-tutorials");
+}
+
+      </script>
+
+
+
+<!-- main content ends above here -->
+
+
+    <br>
+
+  </div>  <!-- end of main div-->
+
+
+<!-- selected content shows up in this div-->
+<div class="main" id ="content"> </div>
+
+<br>
+
+       <!--changed default of iframe to be hidden-->
+<iframe name="receiver3" id="receiver3" style="display:none;"></iframe>
+
+
+<!-- page views show up in content section with template header and navbar -->
+
+     <script>
+
+//closeNew();  //tried this and close new was undefined because it was not inside set through function probably
+
+      //Your variable declaration
+    var yourVariable3;
+   var responseText2;
+var check = false;  //set boolean here initially as false, might need to set on body onload instead
+                       //on first pass through close new var check is false so it does not fire unload script
+
+
+      //Your function to set the value of your variable through href link clicked
+
+    function setThrough(yourLink){
+
+      //********************************* put this one back when live
+closeNew(); //run this in beginning of pass so it picks up old session val to update on second pass
+               //as content is changed run timeout servlet to grab previous page timeout...also has alert content changed
+               //do this for each pass except first pass where check boolean is still false
+//var pg;
+         yourVariable3 = yourLink.href;  //get val of href
+//alert("in first function");
+//alert(yourVariable3);
+if(yourVariable3=="https://javasqlweb.org/about") {var newvar="about";}
+if(yourVariable3=="https://javasqlweb.org/free-tutorials") {var newvar="tutorials";}
+if(yourVariable3=="https://javasqlweb.org/personality-of-the-beginner-programmer") {var newvar="personality";}
+if(yourVariable3=="https://javasqlweb.org/afraid-of-java") {var newvar="afraid";}
+if(yourVariable3=="https://javasqlweb.org/comments") {var newvar="comments";}
+if(yourVariable3=="https://javasqlweb.org/privacy") {var newvar="privacy";}
+if(yourVariable3=="https://javasqlweb.org/contact") {var newvar="contact";}
+if(yourVariable3=="https://javasqlweb.org/pricing") {var newvar="pricing";}
+
+
+//alert(newvar);  //this is the page variable we want to set based on reading the href object
+
+$("#receiver3").hide(); //need this when using target iframe so content does not appear in 2 places..hide iframe
+$("#movediv").hide();
+$("#content").load(yourVariable3);  //load each href click into the content tag
+
+
+name = "test new2";  //this will be the session id
+count=1;  //if var is string must have single quotes, otherwise no quotes for int
+pg=newvar;  // set page variable to our new var
+//var responseText2;     
+
+//closeNew(); //originally ran this here
+               //then after close new, check if true or false, is run get new session below as response2
+
+$.ajax({
+           //pass each pageview into tracker table
+url     : 'https://javasqlweb.org/examples/servlets/servlet/AjaxHandler3',
+method     : 'POST',
+//async: false,  //I turned this off, not sure if it had anything to do with updating, ie when this ajax is fired
+data : {   name : name,  name1 : count, page2:pg, country2 : country, state2:state, city2:city_name, eu2:eu, session2:session }, 
+success    : function(response){
+      responseText2 = response;  //pass this session to timeout servlet, this post allows 1 callback which is a get response object from servlet
+     },
+error : function(jqXHR, exception){console.log('Error occured!!'); }
+
+});  //end of ajax function
+
+
+ window.addEventListener("blur", function(event) {
+
+fetch("https://javasqlweb.org/examples/servlets/servlet/TimeOut", {
+     method: 'POST',
+     headers: new Headers({
+             'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type..headers required for param to work
+    }),
+     body: "name111="+responseText2,  //from above..need comma because we are also adding keepalive..name111 is the param we get in servlet
+     keepalive: true  //required for window unload
+})
+    .then(res => res.text()) //this is the promise fka callback..not being used for this post request but needs to be used in get
+    .then((out) => {
+       // console.log('Output: ', out);
+}).catch(err => console.error(err));
+
+                  
+}); //end window listener
+
+
+
+
+    } //end of set through function
+
+</script>
+
+
+
+
+<!-- end of main -->
+
+
+<!--
+<footer class="site-footer">
+  This site does not use cookies.
+
+<button id="btnClick">ok thanks</button> 
+
+<span> click here for privacy 
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#demo2">
+    policy
+  </button>
+
+<!-- include an if clicked function to push click event to db -->
+
+</span>
+
+<!-- need to also add copywrite info -->
+<!-- perhaps if eu= yes we have site-footer2, a different looking footer just for eu??? -->
+
+
+<!-- Button to Open the Modal, i think old window.open is no longer allowed in js, need to research this, so instead do pure css approach using bootstrap4 -->
+      <!--note that close button was not working so i added some jquery and it worked -->
+
+</footer>
+-->
+
+  
+<!-- popup section --> 
+  <div class="modal" id="demo2">
+ 
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">   
+   
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Privacy Policy</h4>
+             <button type="button" class="close" data-dismiss="modal">X</button></div>
+ 
+        <!-- Modal body -->
+        <div class="modal-body">
+
+<p>In general, we respect the privacy of our users.</p>
+<br><br>
+<p>We do not collect personal information, we do not market or retarget our products.
+ We do not solicit or ask for an email address. We do not sell or share data.
+ In fact, we are not even a business but instead an educational resource offering free tutorials.
+ Thus, there is no impact on privacy whatsoever at this site. Also We do not buy personal data.</p>
+
+
+             </div>   
+    
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" > Close</button>
+        </div>    
+    
+      </div>
+    </div>
+  </div>
+  
+</div>
+<br><br>
+<br><br>
+
+<!-- end of popup-->
+
+
+
+
+
+
+
+  <!-- other jQuery -->
+ 
+    <script>
+        $(document).ready(function() {   
+
+            //default position large screen we have large banner above navbar but on <1000 screen we destroy class and run new navbar under default hidden div
+               //no need for if and else just do below on mobile and anything >1000 becomes larger screen default
+               //increased size to >1000 for this to work in firefox, originally at 800 was not working in FF
+  
+  function checkWidth() {
+        var windowsize = $(window).width();
+        if (windowsize < 1100) {
+
+  $(".pagewide").hide(); 
+    $(".col2").hide();
+$("div").removeClass("pagewide"); 
+$("div").removeClass("col2");
+
+
+// new navbar re positioning, instantiate new div called nav using navbae class..75 is the height of mobile banner above navbar 
+$("nav").css({top: 75, left: 0, position:'fixed'}); //this works for fixed, similar to fixed-top above, but this is the css way of doing it
+
+$("div.toshow").show(); // this shows a more simple banner above the menu just for mobil use
+
+
+// then mov whole div of main class up, trying to float a div on re position was not working
+
+
+$('#movediv').animate({
+		'marginTop' : "-=160px" //moves up 160 px for smaller banner on mobile
+		});
+
+
+//put else back in here for larger screen in order to center main content and images, see tut2 rev 2a
+//need to have this jquery on all pages, tut 2a is still trying to use @media instead of this jquery
+
+}
+
+
+    }
+
+    // Execute this function on load
+    checkWidth();
+
+
+
+
+//footer button click events
+    //need to add if eu==yes then show footer....also add 28 eu countries above for eu column  in db
+            // for this to work, default footer needs to hide similar to .toshow class
+
+
+
+$(document).on('click', '#btnClick', function(){ 
+    //alert("button is clicked"); // instead of alert add clicked event to db
+    $(".site-footer").hide(); 
+   
+});
+
+       // privacy policy click event , use this instead of modal, inside click event use if clicked lingo
+$(document).on('click', '#btnClickPolicy', function(){ 
+    alert(" other button is clicked"); // instead of alert add clicked event to db
+    //$(".site-footer").hide(); 
+   
+});
+
+  
+
+
+
+}); //end of document ready
+
+
+      </script>
+
+
+
+<script>
+ 
+function closeNew(){
+    //on first pass var is false so below will not run but on next pass and subsequent will run
+  //on next pass old response2 val is used before new one is assigned, maybe we still need fetch because i turned off async false in ajax
+
+if (check){
+ //add listener to div tag content when content is changed, originally used .on now using .one, so event handler only fires once
+    //prior to this .on method registered handler each time and caused out of memory in db with semi infinite loop 
+$("body").one('DOMSubtreeModified', "#content", function() {
+    //alert("content changed");
+
+     //ajax update timeout here, response2 val is the old one to close previous page on unload...this one closes when href clicked
+
+fetch("https://javasqlweb.org/examples/servlets/servlet/TimeOut", {
+     method: 'POST',
+     headers: new Headers({
+             'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type..headers required for param to work
+    }),
+     body: "name111="+responseText2,  //from above..need comma because we are also adding keepalive..name111 is the param we get in servlet
+    // keepalive: true  //required for window unload
+})
+    .then(res => res.text()) //this is the promise fka callback..not being used for this post request but needs to be used in get
+    .then((out) => {
+       // console.log('Output: ', out);
+}).catch(err => console.error(err));
+
+
+}); //end of content changed function
+  }                                       
+
+check=true;
+
+} //end of closeNew function
+
+
+</script>
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Page1</title>
+<!-- old file was pass_variable1.html..now is free tutorials.html...and now is page1a which is https version-->
+         <!-- free tutorials was tested as a forward from wix in nov but was all http without mixed content in http -->
+<!--<script src="jquery-3.1.1.min.js"></script> -->
+    <!-- this is the jquery that supports ssl -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+   
+<!--<script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script> = old geo-->
+
+<!-- as of 2-15 got rid of asynch :false because is deprecated and only 1 ajax is in this body so no need consecutive ajax calls
+   also need to do favicon (see mdb site for this) and also import jquery locally
+-->
+
+
+
+<script>
+$.ajax({
+  url: "https://geolocation-db.com/jsonp",
+  jsonpCallback: "callback",
+  //async: false, //does not work in jsonp, this is ignored by jsonp
+  dataType: "jsonp",
+  success: function(location) {
+      //grab stats into variables, country,state and city_name
+ country=location.country_name;
+ state=location.state;
+ city_name=location.city;
+
+       //need this logic here while still in success function..still need to do this for 28 countries in eu
+if(country=="United States") {
+              // if(country=="United Kingdom"||country=="France"||country=="Germany") {
+    //alert("is eu");  //this is working
+    //var eu = "yes";  //i think we should not use var because not using ensures that var created is global...need to try this
+     eu = "eu yes";
+}
+
+
+  } //end success...i think success is replaced by done in later jquery versions and use promises instead of async:false to synchronize calls ...seems complicated
+      //async:false is deprecated so at a later date we will need to replace
+
+
+});
+
+  //geo info is now in the head tag so it loads before body
+      
+
+</script>
+
+
+
+</head>
+
+
+<!--<body> -->
+<body onLoad="callJqueryAjax();">
+ <!--<body onLoad="callGeo();">-->
+
+<br>
+<h2>This is page 1 where jquery is https version</h2>
+
+
+<script>
+ 
+function callJqueryAjax(){
+
+var name = "test ssl";  //this will be the session id
+var count=1;  //if var is string must have single quotes, otherwise no quotes for int
+var pg="page1";
+var responseText;     
+
+$.ajax({
+                //need fully qualified path
+     //using https endpoint does not give mixed content error..need to put Ajaxhandler3 servlet in tomcat standalone
+//url     : 'https://javasqlweb.org/examples/servlets/servlet/HelloWorldExample',
+//url     : 'http://18.191.142.3:8080/Frontend_Javascript_Connection/AjaxHandler3',
+url     : 'https://javasqlweb.org/examples/servlets/servlet/AjaxHandler3',
+method     : 'POST',
+async: false,   //execute this before next script which is redirect..turn off async functionality
+                      //country variable pulls in val of city from above and in AjaxHandler we get this param and pass to db
+                                  //first var is servlet var name assigned here, 2nd var is JS var assigned from above
+                                     //example, country2 gets instantiated and pulls val from country var above that gets response val
+data : {   name : name,  name1 : count, page2:pg, country2 : country, state2:state, city2:city_name, eu2:eu },   //pulling multiple vals to post to servlet, use req.getparam for both - serverside
+//data : {   name : name,  name1 : count, country2 : country, state2:state, city2:geo, eu2:eu },
+success    : function(response){
+      responseText = response;  //pass this session to timeout servlet, this post allows 1 callback which is a get response object from servlet
+      $('#result').html(response); //getting session id back from ajaxhandler3 response object
+   },
+error : function(jqXHR, exception){
+console.log('Error occured!!');
+}
+});  //end of ajax function
+
+
+window.addEventListener('unload', function(event) {
+//(window).on('unload', function() {  //this was not a function... error
+
+//fetch('https://javasqlweb.org/examples/servlets/servlet/TimeOut',{keepalive: true,}) //the keepalive flag must be set to true, otherwise servlet does not execute
+
+fetch("https://javasqlweb.org/examples/servlets/servlet/TimeOut", {
+     method: 'POST',
+     headers: new Headers({
+             'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type..headers required for param to work
+    }),
+     body: "name111="+responseText,  //from above..need comma because we are also adding keepalive..name111 is the param we get in servlet
+     keepalive: true  //required for window unload
+})
+    .then(res => res.text()) //this is the promise fka callback..not being used for this post request but needs to be used in get
+    .then((out) => {
+       // console.log('Output: ', out);
+}).catch(err => console.error(err));
+
+    //looks like we cannot have this fetch in a separate script like below
+               
+});  //end of window unload
+
+ 
+
+} //end of callJQueryAjax function   
+
+</script>
+
+<!--  below is all old stuff with notes
+//<script> //replaced by above window add event listener..beforeunload requires new syntax plus fetch keepalive..chrome not allowing ajax
+//$(window).on("beforeunload", function () {
+//return "Are you sure to leave this page?";
+           // var name = "test ssl";
+           // var name21;
+//var responseText='rick';     
+
+//        $.ajax({
+  //           type: 'POST',    //must be a post not a get, also syntax is updted for higher browser versions..this is current unload syntax
+                                      //no need to put onbeforeunload in the body tag
+             //url: 'http://18.191.142.3:8080/Frontend_Javascript_Connection/TimeOut',
+    //           url     : 'https://javasqlweb.org/examples/servlets/servlet/TimeOut',
+      //         async: false, //need this because request might be cancelled before it is finished, also do above so queries go in order
+        //       data : { name111 : responseText },
+//success    : function(){
+ //responseText = response;  //pass this session to timeout servlet, responseText needs to be a global var used in both ajax calls
+   //$('#result').html(response);
+
+   //$('#result').html(resultText);
+//},
+//error : function(jqXHR, exception){
+//console.log('Error occured!!');
+//}
+
+             
+
+//        });
+  //  });
+
+//</script>
+-->
+
+<!--
+<script>
+  //this was original test for fetch, then tried keepalive below and finally did fetch post request
+fetch('https://javasqlweb.org/examples/servlets/servlet/AjaxHandler3')
+    .then(res => res.text())
+    .then((out) => {
+        console.log('Output: ', out);
+}).catch(err => console.error(err));
+</script>
+-->
+
+<!--
+<script>  this is the correct unload syntax, redid 2 servlets to pass session in attribute for now, need to redo later 
+window.addEventListener('unload', function(event) {
+//(window).on('unload', function() {  //this was not a function... error
+                 //this was original keepalive test which used servlet attribute
+//fetch('https://javasqlweb.org/examples/servlets/servlet/TimeOut',{keepalive: true,}) //the keepalive flag must be set to true, otherwise servlet does not execute
+                         //this is new post request that grabs the above session originally pulled down to this page for storage             
+fetch("https://javasqlweb.org/examples/servlets/servlet/TimeOut", {
+     method: 'POST', //also note that headers required or param does not work
+     body: "name111="+responseText,  //from above..need comma because we are also adding keepalive
+     keepalive: true  //required for window unload
+})
+    .then(res => res.text())
+    .then((out) => {
+       // console.log('Output: ', out);
+}).catch(err => console.error(err));
+
+
+               
+});
+</script>
+-->
+
+<div id="result" ></div>
+
+
+</body>
+</html>

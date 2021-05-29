@@ -1,0 +1,273 @@
+<html>
+
+<head>
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+                          <!-- jquery UI library -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+
+<style>
+              /* this looks like a global setting for the whole puzzle, ie all the pieces relative to one another or not */
+.jigsaw1, .jigsaw2, .jigsaw3, .jigsaw4, .jigsaw5 {
+  width: 6em; /* these 2 lines set size of piece */
+/*  height: 6em; */ 
+   height: 6em;
+
+  margin: 0px;  /* this was set at 50, space in between pieces needs to be 0 so pieces fit together */
+  position: relative;  /* if we put fixed here then actual left and top of each piece below work independently, otherwise pieces r relative to each other */
+  -webkit-border-radius: .5em;
+  -moz-border-radius: .5em;
+  border-radius: .5em;
+  cursor: pointer;
+}
+
+.jigsaw1,
+.jigsaw1 span {
+ background-color: #0284cf; 
+ left: 96px;
+top: 190px;  /* need to figure out why top of whole puzzle is not at 0, why is it at 190 and 3-5 have no top =190 */
+}
+
+.jigsaw2,
+.jigsaw2 span {
+ background-color: #00008B; 
+ left: 96px;
+top: 190px;
+
+}
+
+.jigsaw3,
+.jigsaw3 span {
+ background-color: red; 
+ 
+}
+
+.jigsaw4,
+.jigsaw4 span {
+ background-color: yellow; 
+}
+
+.jigsaw5,
+.jigsaw5 span {
+ background-color: orange; 
+}
+
+
+
+
+    /* set where on piece text appears  */
+.text {
+  display: block;
+  color: #fff;
+  font-size: 1.2em;
+/*  text-align: center; */
+  text-align: left;
+  /*padding: 1.9em 0 0 1.2em;*/
+
+/*  padding: 2.1em 0 0 1.8em; */
+padding-top: 1.1em;
+padding-left: .5em;
+
+
+
+  /* position: relative;   */
+ /* position: fixed;*/  /* change to fixed otherwise text disappears*/
+  position: relative;
+  background: transparent !important;
+}
+
+.text2 {
+  display: block;
+  color: #fff;
+  font-size: 1.2em;
+  text-align: center;
+  /*padding: 1.9em 0 0 1.2em;*/
+  padding: 7.1em 0 0 1.8em;
+  /* position: relative;   */
+  position: fixed;  /* change to fixed otherwise text disappears*/
+  background: transparent !important;
+}
+
+
+
+.jigsaw1 .t, .jigsaw2 .t, .jigsaw3 .t, .jigsaw4 .t, .jigsaw5 .t {
+ width: 2em;
+  height: 2em;
+  position: absolute;
+  /*  position: relative; */
+  top: -1.5em;
+  left: 2em;
+  -webkit-border-radius: 4em;
+  -moz-border-radius: 4em;
+  border-radius: 4em;
+}
+
+.jigsaw1 .r, .jigsaw2 .r, .jigsaw3 .r, .jigsaw4 .r, .jigsaw5 .r {
+ width: 2em;
+  height: 2em;
+  position: absolute;
+  top: 2em;
+  left: 5.5em;
+  -webkit-border-radius: 4em;
+  -moz-border-radius: 4em;
+  border-radius: 4em;
+}
+
+.jigsaw1 .b, .jigsaw2 .b, .jigsaw3 .b, .jigsaw4 .b, .jigsaw5 .b { 
+ width: 1.8em;
+  height: 1.8em;
+  position: absolute;
+  top: 4.5em;
+  left: 2.2em;
+  -webkit-border-radius: 4em;
+  -moz-border-radius: 4em;
+  border-radius: 4em;
+  background-color: #fff;
+}
+
+.jigsaw1 .l, .jigsaw2 .l, .jigsaw3 .l, .jigsaw4 .l, .jigsaw5 .l { 
+ width: 1.8em;
+  height: 1.8em;
+  position: absolute;
+  top: 2.2em;
+  left: -.4em;
+  -webkit-border-radius: 4em;
+  -moz-border-radius: 4em;
+  border-radius: 4em;
+  background-color: #fff;
+}
+
+
+#rightcontent {
+    float: right;
+    width: 400px;
+    position: absolute; left: 400px; top: 200px;
+    background-color: #F0F0F0;
+}
+
+#leftcontent {
+    float: left;
+    width: 50%;
+    
+  
+}
+
+
+</style>
+
+ </head>
+
+
+
+
+
+
+
+<body>
+
+<!--   classes top=t, right=r, bottom=b, left=l  -->
+
+<div  style="float : left;">
+
+<div class="jigsaw1">
+	 <!-- <span class="t"></span> -->
+	  <span class="r"></span>
+	  <span class="b"></span>
+	  <span class="l"></span>
+  <span class="text">test</span>
+	</div>
+
+<div class="jigsaw2">
+	  <span class="t"></span>
+	  <span class="r"></span>
+	  <span class="b"></span>
+	  <span class="l"></span>
+  <span class="text2">Drag me</span>
+	</div>
+
+<div class="jigsaw3">
+
+        <!--  <span class="t"></span> -->  <!-- can get rid of top piece for end piece -->
+
+	  <span class="r"></span>
+	  <span class="b"></span>
+     <!--	  <span class="l"></span> -->
+  <span class="text"><a href="https://www.w3schools.com">click me</a></span>
+	</div>
+
+
+<div class="jigsaw4">
+
+          <span class="t"></span>   <!-- can get rid of top piece for end piece -->
+
+	  <span class="r"></span>
+	  <span class="b"></span>
+     <!--	  <span class="l"></span> -->
+  <span class="text"><a href="https://www.w3schools.com">click me</a></span>
+	</div>
+
+<div class="jigsaw5">
+
+          <span class="t"></span>   <!-- can get rid of top piece for end piece -->
+
+	  <span class="r"></span>
+	<!--  <span class="b"></span> -->
+     <!--	  <span class="l"></span> -->
+<!--  <span class="text"><a href="http://3.18.106.249:8080/Forms/FormOne" target="receiver3">target</a></span> -->
+
+
+  <span class="text"><a href="https://javasqlweb.org/tut2.html" target="receiver3">target</a></span>
+
+	</div>
+
+<!--
+<div id="rightcontent">
+        <p>result from click event</p>
+        <p>click a puzzle piece and see result here in right frame</p>
+        <p>looks like we need iframes for this versus plain divs</p>
+        <p>click on orange puzzle piece to view result in iframe to the right</p>
+        <p> need to adjust top of iframe to be further down the page </p>
+        <p> instead of style element inside div do in css like for other divs </p>
+<p> new idea, first 8 pieces are for each tutorial and then 9th piece is feedback form</p>
+<p> also take a photo of puzzle and include it on fb group so we have a visual for user to see, plus click here instructions </p>
+<p>iframe object holds all images, hrefs and interactable servlets, press regular back button and iframe will go to previous page </p>
+<p>migration to visuals plus interactive visuals </p>
+
+    </div>   
+-->
+
+</div> <!-- end of left div -->
+
+
+    <!-- this is the iframe, clear both enables div beneath other div, first div needs float left and clear both in second div -->
+
+<div style='border:1px solid #ccc; clear : both;'>
+
+<br><br>
+
+<iframe name="receiver3" id="receiver3" width="400" height="300"></iframe>
+</div>
+
+<!--<div style='overflow:auto;width:35%;height:400px;margin-left:100px;border:1px solid #ccc; float: left;'><iframe name="receiver3" id="receiver3" width="500" height="300"></iframe></div> -->
+
+<script>
+
+//$(function() {
+  //  $( ".jigsaw1,.jigsaw2,.jigsaw3" ).fixed();
+  //});
+
+
+     //this one uses draggable method of JQuery UI library, above uses fixed 
+$(function() {
+    $( ".jigsaw1,.jigsaw2,.jigsaw3" ).draggable();
+  });
+
+
+
+</script>
+
+<br><br>    
+</body>
+</html>
+

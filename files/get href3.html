@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+<script src="jquery-3.4.1.js"></script> <!--grab this locally-->
+
+</head>
+
+<body>
+
+<!-- This will call your function and the return false will prevent the navigation from occurring -->
+<!--<a href='http://forums.asp.net' onclick='setThroughLink(this); return false;'>Your Link</a>-->
+<!--<a href='http://forums.asp.net' onclick='setThroughLink(this);'>Your Link</a>-->
+
+
+<!--get the href val and then make this var the page name, note return false means that actual link will not be returned-->
+
+
+<div id="content"></div>
+
+<br>
+<p>this one by passes target property/iframe and triggers jquery from anchor tag</p>
+
+
+  <a href="#" id="sample">click here and trigger load function to grab html page to appear in content</a>
+
+<script type='text/javascript'>
+//$(window).load(function(){
+//$(window).on('load', function() {   //Attaches load event because it was deprecated in jquery 3, this is the workaround
+$(window).one('load', function() {    //one method returns js only once..prevents multiple fireings
+    $(document).ready(function(){
+        $('#sample').click(function() {
+            console.log('yo yo yo .....you good to go.!!!');
+            $("#content").load("https://javasqlweb.org/comments"); //this works because it is same site
+           // $("#content").load("https://rickdelpo.wixsite.com/cloud/tutorial-2");  //cors issue, need redirect below
+            //  $("#content").load("https://google.com"); //also cors issue
+
+
+                 //add ajax here for timein and time out
+                 //this replaces the setthrough method where we use hidden iframe
+ 
+        });
+        //$('#sample').trigger('click');
+        $(window).trigger('load'); //Triggers load event manually
+    });
+});
+</script>
+
+
+<!--see this link for new rules-->
+<!--https://jqueryhouse.com/jquery-3-0-fix-url-indexof-is-not-a-function-error/#:~:text=0%20is%20out%2C%20and%20if%20you%20started%20working,one%20of%20the%20change%20made%20to%20jQuery%203.0.-->
+
+
+<br><br>
+<a href="javascript:void(0)" onclick="goToURL(); return false;">this one works as a redirect but not as a load to current page</a>
+
+<script>
+    function goToURL() {
+      location.href = 'https://rickdelpo.wixsite.com/cloud/tutorial-2';     //this works...only a redirect works
+     // $("#content").load("https://google.com");   //this is blocked by cors
+
+            //perhaps put ajax here to record hit and only the timeout will not work
+
+    }
+  </script>
+
+<script>
+$(document).ready(function(){
+   
+   //$('#content2').load("https://google.com");  //this is also blocked by cors
+
+});
+</script>
+
+<div id="content2"></div> <!--use a redirect instead of a load to current page -->
+
+
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+
+
+<!-- still need to put locale in handler3 and also pull jquery down locally -->
+
+<title>Page1</title>
+                  <!-- js and other libraries like font awsome go in head, also ref to css goes here -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+<!-- try putting geo script here because head loads first before body ..as opposed to .done function in straight ajax?-->
+<!-- also i think by using jsonp for geo we enable a GET function without needing CORS...not sure about this-->
+
+<script>
+$.ajax({
+  url: "https://geolocation-db.com/jsonp",
+  jsonpCallback: "callback",
+  //async: false, //does not work in jsonp, this is ignored by jsonp
+  dataType: "jsonp",
+  success: function(location) {
+          //only need these if using in html on the page, otherwise just get the vars inside success function
+   // $('#country').html(location.country_name);
+    //$('#state').html(location.state);
+    //$('#city').html(location.city);
+    //$('#latitude').html(location.latitude);
+    //$('#longitude').html(location.longitude);
+    //$('#ip').html(location.IPv4);
+
+ country=location.country_name;
+ state=location.state;
+ city_name=location.city;
+
+       //need this logic here while still in success function
+if(country=="United States") {
+              // if(country=="United Kingdom"||country=="France"||country=="Germany") {
+    //alert("is eu");  //this is working
+    //var eu = "yes";  //i think we should not use var because not using ensures that var created is global...need to try this
+     eu = "eu yes";
+}
+
+
+  } //end success...i think success is replaced by done in later jquery versions and use promises instead of async:false to synchronize calls ...seems complicated
+      //async:false is deprecated so at a later date we will need to replace
+
+
+});
+
+  //declare this globally here
+//var responseText= ' ';
+      
+
+</script>
+
+
+</head>
+
+
+<!--<body> --> 
+<body onLoad="callJqueryAjax();">  <!-- try document ready function instead of this, i think doc ready is only if js is a separate page -->
+
+<br>
+<h2>This is page 2</h2>
+
+
+
+<script>
+
+ 
+function callJqueryAjax(){
+
+var responseText;
+
+var name = "test ssl";  //this will be the session id
+var count=1;  //if var is string must have single quotes, otherwise no quotes for int
+var pg="page1";
+
+$.ajax({
+     //post geo stuff and also get response object which is session id and store in responseText, this post acts as both post and get because post allosw 1 calback
+url     : 'https://javasqlweb.org/examples/servlets/servlet/AjaxHandler3',
+method     : 'POST',
+async: false,   //execute this before next script which is redirect..turn off async functionality
+data : {   name : name,  name1 : count, page2:pg, country2 : country, state2:state, city2:city_name, eu2:eu },   //pulling multiple vals to post to servlet
+success    : function(response){
+   responseText = response;  //pass this session to timeout servlet, responseText needs to be a global var used in both ajax calls
+   $('#result').html(response);
+},
+error : function(jqXHR, exception){
+console.log('Error occured!!');
+}
+
+});  //end of ajax function
+
+
+$(window).on("beforeunload", function () {
+        $.ajax({
+             type: 'POST',    //must be a post not a get, also syntax is updted for higher browser versions..this is current unload syntax
+                                      //no need to put onbeforeunload in the body tag
+               url     : 'https://javasqlweb.org/examples/servlets/servlet/TimeOut',
+               async: false, //need this because request might be cancelled before it is finished, also do above so queries go in order, they are synchronized
+                   //pass responseText back to servlet where it becomes the request object
+               data : { name1 : responseText },
+ success : function(response)   //grab response as text and not json from servlet do get method
+         {
+           //  responseText = response;   //for cols , gets array list from ColModel servlet
+             //alert(responseText);   //instead of alert here just pass var to either console below or use anywhere
+             //$('#rick').html(response); //pass result to div below
+            console.log(responseText)
+                 
+         }
+
+             
+        });
+    });
+
+
+
+
+} //end of callJQueryAjax function   
+</script>
+
+
+
+
+<div>Country: <span id="country"></span></div>
+<div>State: <span id="state"></span></div>
+<div>City: <span id="city_name"></span></div>
+<div id="result" ></div>
+
+</body>
+</html>

@@ -1,0 +1,375 @@
+<html>
+
+<head>
+
+ <meta charset="utf-8"/>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1"/>    
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+                          <!-- jquery UI library -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+
+<style>
+              /* this looks like a global setting for the whole puzzle, ie all the pieces relative to one another or not */
+.jigsaw3, .jigsaw4, .jigsaw5 , .jigsaw6{
+  width: 6em; /* these 2 lines set size of piece */
+/*  height: 6em; */ 
+   height: 6em;
+
+  margin: 0px;  /* this was set at 50, space in between pieces needs to be 0 so pieces fit together */
+  position: relative;  /* if we put fixed here then actual left and top of each piece below work independently, otherwise pieces r relative to each other */
+  -webkit-border-radius: .5em;
+  -moz-border-radius: .5em;
+  border-radius: .5em;
+  cursor: pointer;
+}
+
+
+
+.jigsaw3,
+.jigsaw3 span {
+ background-color: red; 
+}
+
+.jigsaw4,
+.jigsaw4 span {
+ background-color: yellow; 
+}
+
+.jigsaw5,
+.jigsaw5 span {
+ background-color: orange; 
+}
+
+.jigsaw6,
+.jigsaw6 span {
+ background-color: blue; 
+/*left: 96px;*/
+/*top : 0px;*/
+}
+
+
+
+    /* set where on piece text appears  */
+.text {
+  display: block;
+  color: #fff;
+  font-size: 1.2em;
+/*  text-align: center; */
+  text-align: left;
+  /*padding: 1.9em 0 0 1.2em;*/
+
+/*  padding: 2.1em 0 0 1.8em; */
+padding-top: 1.1em;
+padding-left: .5em;
+
+
+
+  /* position: relative;   */
+ /* position: fixed;*/  /* change to fixed otherwise text disappears*/
+  position: relative;
+  background: transparent !important;
+}
+
+.text2 {
+  display: block;
+  color: #fff;
+  font-size: 1.2em;
+  text-align: center;
+  /*padding: 1.9em 0 0 1.2em;*/
+/*  padding: 7.1em 0 0 1.8em;*/
+padding-top: 1.1em;
+padding-left: .5em;
+
+
+   position: relative;  
+  /*position: fixed; */  /* change to fixed otherwise text disappears*/
+  background: transparent !important;
+}
+
+
+
+.jigsaw3 .t, .jigsaw4 .t, .jigsaw5 .t, .jigsaw6 .t {
+ width: 2em;
+  height: 2em;
+  position: absolute;
+  /*  position: relative; */
+  top: -1.5em;
+  left: 2em;
+  -webkit-border-radius: 4em;
+  -moz-border-radius: 4em;
+  border-radius: 4em;
+
+}
+
+ .jigsaw3 .r, .jigsaw4 .r, .jigsaw5 .r, .jigsaw6 .r {
+ width: 2em;
+  height: 2em;
+  position: absolute;
+  top: 2em;
+  left: 5.5em;
+  -webkit-border-radius: 4em;
+  -moz-border-radius: 4em;
+  border-radius: 4em;
+ 
+}
+
+.jigsaw3 .b, .jigsaw4 .b, .jigsaw5 .b, .jigsaw6 .b { 
+ width: 1.8em;
+  height: 1.8em;
+  position: absolute;
+  top: 4.5em;
+  left: 2.2em;
+  -webkit-border-radius: 4em;
+  -moz-border-radius: 4em;
+  border-radius: 4em;
+  background-color: #fff;
+}
+
+ .jigsaw3 .l, .jigsaw4 .l, .jigsaw5 .l, .jigsaw6 .l { 
+ width: 1.8em;
+  height: 1.8em;
+  position: absolute;
+  top: 2.2em;
+  left: -.4em;
+  -webkit-border-radius: 4em;
+  -moz-border-radius: 4em;
+  border-radius: 4em;
+  background-color: #fff;
+}
+
+
+
+
+
+</style>
+
+ </head>
+
+
+
+
+
+
+
+<body>
+
+<h1>Programming is like a Puzzle</h1>
+
+<!--   classes top=t, right=r, bottom=b, left=l  -->
+
+
+
+<div  style="float : left;">
+
+
+<div class="jigsaw3" >
+
+        <!--  <span class="t"></span> -->  <!-- can get rid of top piece for end piece -->
+
+	 <span class="r" ></span>
+	  <span class="b"></span>
+     <!--	  <span class="l"></span> -->
+  <span class="text"><a href="https://www.w3schools.com">web design</a></span>
+
+    <!--looks like i need to put #6 first for piece to fit correctly ie move behind #3 -->
+
+
+	</div>
+
+<div class="jigsaw4">
+
+          <span class="t"></span>   <!-- can get rid of top piece for end piece -->
+
+	  <span class="r"></span>
+	  <span class="b"></span>
+     <!--	  <span class="l"></span> -->
+
+
+  <span class="text"><a href="https://www.w3schools.com">html</a></span>
+	</div>
+
+<div class="jigsaw5">
+
+          <span class="t"></span>   <!-- can get rid of top piece for end piece -->
+
+	  <span class="r"></span>
+	<!--  <span class="b"></span> -->
+     <!--	  <span class="l"></span> -->
+
+
+  <span class="text"><a href="https://javasqlweb.org/tut2.html" target="receiver3">target</a></span>
+
+	</div>
+
+
+</div> <!--end of first column of 3 puzzle objects-->
+
+
+
+
+
+
+
+   <!--this is the 2nd column, note all cols are wrapped in divs with float=left on each-->
+
+<div style="float : left;">
+
+
+<div class="jigsaw6" >
+
+        <!--  <span class="t"></span> -->  <!-- can get rid of top piece for end piece -->
+
+	 <span class="r" ></span>
+	  <span class="b"></span> 
+       <span class="l" style="background-color: red;"></span> 
+
+  <!--<span class="text"><a href="https://www.w3schools.com">click me</a></span>-->
+            <span class="text2">Drag me</span>
+    <!--looks like i need to put #6 first for piece to fit correctly ie move behind #3 -->
+           <!--included background color=red on left tab to avoid this-->
+
+
+	</div>
+
+<div class="jigsaw4" style="background-color: pink;"> <!--adding inline style for color overwrites above default-->
+
+          <span class="t"></span>   <!-- can get rid of top piece for end piece -->
+
+	  <span class="r"></span>
+	  <span class="b"></span>
+     <!--	  <span class="l"></span> -->
+
+
+  <span class="text"><a href="https://javasqlweb.org/free-tutorials.html" target="receiver3">free Java Tutorials</a></span>
+	</div>
+
+<div class="jigsaw5" style="background-color: green;">
+
+          <span class="t"></span>   <!-- can get rid of top piece for end piece -->
+
+	  <span class="r"></span>
+	<!--  <span class="b"></span> -->
+     <!--	  <span class="l"></span> -->
+
+
+  <span class="text"><a href="https://javasqlweb.org/about -rev1.html" target="receiver3">target</a></span>
+
+	</div>
+
+
+</div>
+
+
+
+<div style="float : left;">
+
+
+
+
+
+   
+
+<!-- third col-->
+
+<div class="jigsaw3" >
+
+        <!--  <span class="t"></span> -->  <!-- can get rid of top piece for end piece -->
+
+	<!-- <span class="r" ></span> -->
+	  <span class="b"></span>
+     	  <span class="l" style="background-color: blue;"></span> 
+  <span class="text"><a href="https://www.w3schools.com">css</a></span>
+
+    <!--looks like i need to put #6 first for piece to fit correctly ie move behind #3 -->
+
+	</div>
+
+<div class="jigsaw4" style="background-color: purple;">
+
+          <span class="t"></span>   <!-- can get rid of top piece for end piece -->
+
+	  <span class="r"></span>
+	  <span class="b"></span>
+     <!--	  <span class="l"></span> -->
+
+
+  <span class="text" ><a href="https://www.w3schools.com" style="color:white">javascript</a></span>
+	</div>
+
+<div class="jigsaw5">
+
+          <span class="t"></span>   <!-- can get rid of top piece for end piece -->
+
+	  <!--<span class="r"></span>-->
+	<!--  <span class="b"></span> -->
+     <!--	  <span class="l"></span> -->
+
+
+  <span class="text"><a href="https://javasqlweb.org/tut2.html" target="receiver3">overall architecture</a></span>
+
+	</div>
+
+
+</div>
+
+
+
+
+
+<!--
+<div class="jigsaw6"  >
+-->
+         <!-- <span class="t"></span>-->   <!-- can get rid of top piece for end piece -->
+<!--
+	  <span class="r"></span>
+	  <span class="b"></span> 
+       <span class="l" ></span> 
+
+<span class="text2">Drag me</span>
+
+	</div>
+-->
+
+
+
+<!--</div>--> <!-- end of left div -->
+
+
+<!-- if i put #6 here it will not fit to #3, it will move over the top of 3 and show white tab instead of moving behind #3 -->
+
+
+<!-- this is the iframe, clear both enables div beneath other div, first div needs float left and clear both in second div -->
+
+<div style='border:1px solid #ccc; clear : both;'>
+
+
+<br><br>
+<p>click a puzzle piece and read about it here</p>
+
+<iframe name="receiver3" id="receiver3" width="400" height="300"></iframe>
+</div>
+
+
+<script>
+
+//$(function() {
+  //  $( ".jigsaw1,.jigsaw2,.jigsaw3" ).fixed();
+  //});
+
+
+     //this one uses draggable method of JQuery UI library, above uses fixed 
+$(function() {
+    $( ".jigsaw6" ).draggable();
+  });
+
+
+
+</script>
+
+<br><br>    
+</body>
+</html>
+
