@@ -1,0 +1,2723 @@
+
+In Spring MVC, use <form:textarea /> to render a HTML textarea field. For example,
+
+	<form:textarea path="address" rows="5" cols="30" />
+Copy
+It will render the following HTML code
+
+	<textarea id="address" name="address" rows="5" cols="30"></textarea>
+
+
+
+instead of text area in jsp do above in jdbc form
+do a side by side display with text area on left and text file result on right
+
+on submit grab the text area text and append the file on right
+  will file on right show scroll bars when full? since servlet output will be within jdbc html tags
+I think it will be so
+
+start with output on right with blank text area on left
+hopefully we can copy and paste text from right to left
+
+create 2 frames with jdbc html....2 <td> next to one another  
+
+******************************
+
+runtime start jar_start in bin file...opens notepad and saves to java file
+enter program text in notepad
+ctrl save
+runtime start jar_start on desktop...runs javac program for saved java file above
+     then run program which writes result to file A
+     display back to user
+
+also create file b as a running tally of all actions with append
+  grab txt from java file, then grab result and append in b
+
+show file b in right side of td as above
+on left side of td show new blank notepad...this is not possible
+  but if program runs 2 processes for both jar_starts..looks like notepad and servlet will open
+
+
+    try an inline frame object to contain servlet on right side and notepad in left frame
+<iframe src="news.html"
+width="40%" height="80"
+align="right">
+<p>See our <a href="news.html">newsflashes</a>.</p>
+</iframe>
+
+or try 1 jsp with 2 iframes each calling same servlet with 2 views....this might be easier than embedding
+  need to find some examples of this  
+
+
+  see this to get started on side by side iframes
+http://samisite.com/moreiframes/double.htm
+
+
+might need 2 separate servlets
+  left frame has servlet with listener to detect changes in text and to write to the save file
+  right frame with separate servlet to read and compile and display result to right frame
+
+left is main and right is target frame so execute servlet in right after left is saved
+
+
+instead of trying to open text file in servlet, just open text area in jsp and get its param and write to file in servlet...this may be easier than trying to open notepad...see last fav
+   similar to getting param from form entry...just put text area on form like capturing other form object...ie the table name...get the name a person enters...for text area we will be getting all the text entered not just one item like the table name
+
+I am over thinking the solution by trying to open notepad
+
+will need to refresh servlet on right every time we run one on left
+  i think simple redirect will do put at beginning of servlet?
+  or maybe a submit button to rerun a particular method in the servlet as needed?
+
+    like a repaint
+ java servlet class cl = new java servlet class();        .....or plain class
+     cl.specific_method_in_class();   ..instantiate new class and run only certain method
+
+               set up javascript button to do above
+
+
+project gather business needs and implement the design
+
+1) need access to file system so we cannot use elastic beanstalk...use plain jdk
+2) set up windows virtual server instead of sending war file to eb
+3) need servlets but dont want complicated setup with config....use jetty
+4) need left and right frame....use iframes in jsp and not embedded jdbc
+5) need listener to detect changes in text....jsp text area instead of trying to wrestle with notepad
+
+
+
+iframes    *******************************see forms/form1 with iframe example....orig side by side was in display table
+
+set up 2 iframes on 1 page and name iframeleft and iframeright
+
+set up form on left and use target attribute of form to get result in right iframe
+<form action="demo_form.asp" method="get" target="iframeright">
+
+<iframe id="AlertMaintenance" style="border-style: none; border-color: inherit; border-width: 0px; height:1222px; width:100%;" src="AlertMaintenance.html"></iframe>
+<iframe id="DelayReason" style="border-style: none; border-color: inherit; border-width: 0px; height:1222px; width:100%;" src="DelayReason.html"></iframe>
+
+see iframes example on desktop replace google and yahoo source with html sources
+
+
+May 16, 2018
+
+now minimal server is set up and above project steps 1-5 are done, iframe issue is resolved + sqlite enabled, so minimal data environment is also working
+      but still need to get excel on win1 or can go without for now, cannot do jxl, use txt files for data
+
+next steps:... effort needs to remain minimal, get alot with not cost
+
+issue - SEO appears to be a long process getting web page noticed by web crawlers
+  how to get noticed quicker and get clicks before wix site is public - only issue is to get free clicks at the moment
+  will not be able to accomplish quickly with just facebook and wix alone
+
+proposal & resolution - will turbo charge the SEO effort and provide tracking.. no limits on # of pages
+
+1) create many multiple single html pages in S3 and enable their seo thru meta tags
+     found google rank application and web hit counter, can add both to each page
+2) get on blogspot and start blogging...can have multiple free blogs
+3) install jetty server on win1 and create html and jsp pages there
+4) experiment with certain keywords and phrases..create tracking spreadsheet to show progress and which words worked quicker...example devote one or more pages to blockchain but channel all visitors to my other pages because "want to create a blockchain" is directly related to data and programming..take advantage of certain popular keywords and somehow tie them to data
+   separately..create page data instruction, java instruction, other titles...on each page, name each page title creatively....so blockchain might get more hits because it is a hot topic at the moment
+
+
+
+6-24-18 facebook page was indexed by google inside of 6 weeks
+     need to put my name / private tutor in the about section of page (about section of facebook is meta tag showing description)
+
+     need to have all link pages with a keword format path to get noticed quicker (search keywords in the page path)
+
+    i typed this search into google and got 10 results with this page included  (learn sql, learn java, plainville)
+         meta tag (learn java) on page picked up the page
+https://www.onlc.com/training/java/hartford-downtown-ct.htm.....how do i create this path for my pages
+
+looks like i need sub pages....or wix refers to as dynamic pages??  see this for showing url of specific pages
+   https://support.wix.com/en/article/finding-the-url-of-a-specific-page-on-your-site-8514779
+   https://support.wix.com/en/article/creating-dynamic-page-urls
+
+summary.....start with this on every page...se learn sql or learn java or training or tutoring will all appear in all 4 tags
+   title tag on page
+   meta tag
+   page path with keywords in path
+   h1 tag
+                   example, my facebook page got picked up using keyword plainville, so now need other relevant keywords to enhance seo , like add rick delpo to meta tag, add learn sql to page path, etc, so there are 4 chances for seo to notice me faster
+
+
+
+**********************************
+6-25 go live wix only...implemented sub pages like above
+
+ original published address
+
+https://rickdelpo.wixsite.com/rickdelpo/services
+
+
+https://rickdelpo.wixsite.com/rickdelpo/
+     changed to
+https://rickdelpo.wixsite.com/cloud/
+
+
+
+https://rickdelpo.wixsite.com/rickdelpo/services2/training2/learn-sql/basics
+
+to get this format first need a dynamic page, but need a collection (my collection name is called training)
+***must also add an item to the collection with a title and **must synch sandbox to live for expanded url to be accessible
+   then can link any page item to the dynamic page the standard way with edit text and add link
+   dynamic page does not show up in menue on home page....try to get a site map
+
+ps originally needed to go to code tab to turn on developer tools before creating database collection
+
+    on dashboard page did a rename for site name but only the path portion, left name as rickdelpo but path says cloud instead of rickdelpo...renamed only site address part
+
+https://rickdelpo.wixsite.com/cloud/services2/training2/learn-sql/basics
+
+
+     *******************
+
+view sitemap
+
+https://rickdelpo.wixsite.com/cloud/sitemap.xml
+
+    see this for submitting sitemap to google
+https://support.wix.com/en/article/submitting-your-sitemap-directly-to-google
+
+   
+
+6-28-18 went live with cloudwithasilverlining URL..pointed godaddy dns nameservers to wix
+
+
+6-29 set up google analytics.....rickd = account name....website name=cloud...tracking id = UA-121628832-1
+
+Website Tracking
+Global Site Tag (gtag.js)
+This is the Global Site Tag (gtag.js) tracking code for this property. Copy and paste this code as the first item into the <HEAD> of every webpage you want to track. If you already have a Global Site Tag on your page, simply add the config line from the snippet below to your existing Global Site Tag.
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-121628832-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-121628832-1');
+</script>
+
+https://analytics.google.com/analytics/web/?authuser=0#/report-home/a121628832w179590685p177884295
+https://www.google.com/analytics/#?modal_active=none
+google account...rickdelpo@gmail.com....pass=32954yes secret word is Katie
+
+
+To view your site's source code:
+In your browser's address bar, add ?_escaped_fragment_= to the end of your page URL. For example:
+Your home page URL - www.wixexample.com
+Source Code URL - www.wixexample.com/?_escaped_fragment_=
+Example page URL - www.wixexample.com/AboutUs
+Source Code URL - cloudwithasilverlining.com/examples/?_escaped_fragment_=
+Right-click on the page that opens.
+Click View Page Source (or View Source).
+
+
+7-2-18 tested and submitted sitemap thru google search console....17 items
+          previously submitted fetch as google on 6-29.....site crawled on 7-1
+
+
+7-19 2 initiatives going
+   1) boosted to fb posts
+   2) created multiple dynamic pages with keywords in path and fetched in google
+
+next initiative is to send the mass mail and try google ad words CPC and put website link on linkedin
+
+
+to find other sites pages type site:ashcreek.com for example
+    this site came up on page 1 when searching cloud computing CT because it has cloud computing in path name
+    and with connecticut in title and ct in meta description....site only has 1330 pages
+
+    other example search cloud computing ma shows gizmofish on pg1 with only 104 pages....has good seo, path, title desc
+
+
+7-21-18 added website url to linkedin
+
+7-23 signed on to ad words keword planner and semrush keyword magic tool.....to get right keywords with highest searches
+          example, java tutors gets very low searches where learn java gets high monthly search
+          need to optimize only for most popular keywords...dont waste alot of pages on java tutors
+
+7-24 received notice that google had 260 impressions starting on 7-20......looks like they are all mine
+
+7-25 first organic visitor from san antonio visited 6 pages....most likely recruiter from dice or linkedin
+     fb 2 promotions ended with no links clicked
+     started ad on Quora 
+
+8-5-18 site submitted to mcafee trustedsource.org for web reputation status...received minimal risk status = green
+
+8-26-18 site is still gray
+
+10-13-18 site is still gray
+
+
+********************************************************
+
+6-28-2019
+
+	it is now 1 year since going live on cloudwithasilverlining at wix
+
+issues:
+
+name is too long
+catchy phrase did not go over well. No one cares about what cloud with a silver lining stands for
+the site is still not green 1 year later while my ec2 and wordpress sites are both green
+using new name javasqlweb.com at ec2 - will retire wix site by year end
+  is only $3 per month vs 204 per year at wix
+  we can put javascript at apache http server - wix does not allow
+  we do not own our wix pages
+  seo does not reach all sub pages, note that only 9 pages are indexed on google vs other 30 or so not indexed
+
+
+other issues over past year:
+  doing facebook business page ez cloud was a bust
+  advertising on fb was a bust (boosting a post) - also in sept quora would not even accept me for an ad
+  having wix e commerce site was a bust - can use paypal
+  screen sharing idea was a bust - only did free back and forth over fb messenger for amybe 10 customers - not one phone call
+  seo campaign last july was a bust - java tutors in CT...1 yr later only had 3 visitors from organic ...also trying to get backlinks a bust
+  examples page at ec2 was a bust - blog worked much better as an intro vs see my examples idea - not one person created a table, mild interest in other eg. 20 in 1 year
+  download my resume was a bust - recruiters did not care about my site one iota - having sitee did not enhance career possibilities or job search
+  email advertising was a bust and also bulk text, sms
+  whatsapp was a bust
+ idea of screen sharing was a bust
+ screen sharing app above was a bust, really need websockets or chat app and of course an audience of willing participants 
+
+
+  only thing that worked was facebook groups - starting 2-24-2019 - and blog at wordpress.com - first year objective was to get hits so we achieved this ( include number of page views)
+     marketing campaigns for april and may 19 - was limited to fb - when back will try free tuts at reddit and medium and fb
+     US participation very low at 17% (check this)
+
+
+
+part 2 - year 2 - my adventure in javascript and move to javasqlweb.com
+
+
+on my aniversery date 1 year later enabled javasqlweb.com at aws existing ec2 instance
+https://console.aws.amazon.com/route53/home?#hosted-zones:
+
+   javasqlweb.com:8071 is now live as of 6-28-19 at 11 am
+dns check passed right away..have not searched rick delpo yet
+recheck to see if searching for rick delpo returns new address and is green  www.javasqlweb.com:8071
+     initially it looks like my ec2 page is still there plus the new name as a separate page...expecting ec2 page to be replaced instead of 2 separate pages
+     check back each day to followup...ec2 address should no longer exist soon ?? 
+
+still not resolved on 6-30..found out that dns needs port 80 to resolve ssl on bluehost..enabled port 80 on ec2, set inbound rule for win firewall, changed and restarted apache http server..need to followup in coming days
+
+flushed dns  run cmd as administrator and enter   C:\WINDOWS\system32>ipconfig /flushdns - did not work
+
+7-1 am no change yet
+
+ssl issue at bluehost - recheck
+
+on 7-3 javasqlweb shows in google with grey question mark and not green, predecessor ec2 was green..ssl still not evident, call bluehost soon about this
+
+
+
+
+
+
+
+************* dont forget to change examples link address on wix....or try them daily to see if and when they stop seeing the old address
+
+ changed all but create table..go back to see when this one goes out
+also on 7-3 downgraded from t2 micro to t2 nano instance....new ip address is 3.18.106.249 after stopping and restarting ec2 instance to change instance type
+    seems like tomcat is not impacted nor apache 24..now 512 mg of ram vs 1 gig ram..seems like eclipse and apache are ok with this
+still need to address ssl for both ec2 instance and javasqlweb.com....fyi both cloudwithasilverlining and javasqlcloud.com have ssl, win1 at ec2 never had ssl
+
+
+needed to restart remote desktop at 3.18.106.249
+     ******** credentials are, user name = Administrator    pass=unh12806!
+need to restart tomcat....seems like apache is still running.....restarted eclipse first then tomcat ...status is ok
+stopped mysql and reset service to manual
+never restarted jetty instances...they are retired now
+keep only minimal apache and tomcat running because t2 nano is on 512 mg of ram vs 1 gig..no need for other services to run at the moment
+   also remote desktop is running..so apache, mysql and rdp did not quit on me..note that services panal says rdp is set on manual..I thought it was auto
+   rdp seemed to restart ok..i guess i might have re enabled it when i made new connection 
+
+
+
+
+tried to reconnect...did not work
+http://javasqlweb.com:8080/DownloadWordDoc/SendWord
+
+not sure if i need to re enable port 8080 at ec2 instance..if so do only this one and dont bother with 8071 because i opened up port 80
+
+http://ec2-52-15-160-113.us-east-2.compute.amazonaws.com:8080/Forms/FormOne
+http://ec2-3-18-106-249.us-east-2.compute.amazonaws.com:8080/Forms/FormOne   ************use this as new address..ports are preserved ie: port 8080 working
+
+
+http://javasqlweb.com:8080/Forms/FormOne   ..this config not working, not sure if needs to resolve to new ip?
+change all connections to examples to above address..http://ec2-3-18-106-249.us-east-2.compute.amazonaws.com:8080
+
+also recheck blog to be sure if any connections there or do they all go just to examples page
+  changed examples page and about page only...not sure if there are other connections to 8080....tested ok
+
+
+**as of 7-3-19 t2 nano discovered..free tier onlu had t2 micro................looks like bill will be about $10 per month versus 15
+still we have ssl issue...we have wix for another 7 months which has ssl automatically
+   blog site has ssl too auto included...see bluehost which uses free service..forgot name..can look up
+
+then we still have the grey green issue for javasqlweb.com..previously ec2 was green
+
+
+7-5-19
+lets encrypt site for free ssl...bluehost provides free for every wordpress site and parked domains but apparently not when I do new dns to aws
+so we will get our own cert and learn how to install....wildcard certificate auto renews
+
+install certbot...this is for lets encrypt
+
+aws has a free lessor known cert authority similar to lets encrypt see fav
+
+used aws certification manager  .. ACM  see fav
+
+8:23 am on 7-5.. at 9:15 still waiting on propagation - turns out we are missing last step which is elb or cloudfront distribution (a cdn ..content delivery network)
+
+Success
+The DNS record was written to your Route 53 hosted zone. It may take up to 30 minutes for the changes to propagate, and for AWS to validate the domain
+
+
+
+7-6 looks like we need elastic load balancer or cloudfront to enable https..see favs
+  I think cloudfront is only .08 cents per month but looks like elb is .02 per minute or $15 per month
+
+
+maybe we dont need apache if we have cloudfront?..7-7 cloudfront hooks to either s3 or http..and is last step to enable https on ec2 win1
+
+
+
+
+
+7-8-2019 star supply ...Greg
+
+***************************************
+7-12 new idea....for each page on new site ajax into servlet for a hit count...then compare these hits to google analytics hits to find ones that use a blocker
+              also onbeforeunload function in js for when user is about to leave page...this way we can grab time for users who put me in favs and become 100% bounce
+              or try on exit event get time stamp when user xs out of a page or if user presses back button record the time
+
+
+https://stackoverflow.com/questions/147636/best-way-to-detect-when-a-user-leaves-a-web-page
+
+*******************************
+
+
+     be sure cors is resolved..allow access to javasqlweb.com for example..see if this works because i am still going from front end port 80 to 8080
+     or somehow do a redirect if cors does not work or try jsp as front end to each tut...try anything that gets our hit countrer working
+             or reconfig apache 24 to talk to port 8080..this might be only way to do it if above does not work
+
+     2) re entry into advertising ..start on reddit and see id it is true that they allow advertising for free tutorials  
+     3) advertise at my site , no minimums, $5 per month - put this ad in freelance digital marketing
+
+
+go to s3 bucket permissions first to attach ssl cert....host at s3 before trying apache 24...after attaching try to run with https to s3 bucket address
+         looks like permissions tab also has cors config...need to figure out where in permissions tab we attach ssl
+   make sure s3 file name is index.html and not the page1 that we already have..need to create new index.html page
+
+
+looks like we cannot directly attach cert to s3 but cloudfront has 2 options, auto cert and custom cert...dont choose custom cert
+   even if we need a new auto cloudfront cert get one...custom cert costs 600 mper month..seems like cloudfront is mandatory but has no cost option for cert
+   otherwise use cloud flare or lets encrypt and attach cert to apache 24
+
+
+**************************  created index page..looks like it is automatically ssl..pulled cert automatically???
+not sure about this but perhaps page1.html was always https
+went back to aws notes when i originally created page1.html and link shows that it was https then....so we have https now, just need to point route 53 to it
+                                                            **************************************************************************************************
+no need for cloudfront ???  ie route 53 can point to cloudfront distribution but should also be able to point to s3 ??? ************* try this FIRST
+
+************  this link already has ssl ********** https://ez-cloud-data-services.s3.us-east-2.amazonaws.com/index.html
+     page1 was the original option
+
+I think we can create a new cname record in route 53 that points to this address...ie point javasqlweb.com to this address
+   see most recent fav where it says that aws does not charge for s3 aliases
+   it appears that we are merely creating an alias in route 53
+       so did not know i was already ssl in s3 and also did not have full understanding of what alias is 
+       also looks like i already had a ssl cert to begin with when i first created s3 bucket..did not need to get new one
+
+this revelation is just as bad as finding out that nano was cheaper when they stuck me with a t2 micro instance for free tier
+I find out everything the hard way
+
+so long as we hav alias pointing to javasqlweb.com it does not matter if pages are hosted in s3 versus apache 24
+did not want to risk setting up custom cloudfront ssl at $600 per month when s3 is free and already has ssl and can also have alias at no charge
+  next step is to try cors policy configuration on s3 bucket..see permissions tab
+  then ajax new pages to hit counter servlet
+
+  then write tutorial or blog about all this because aws does not tell u much up front..on ur own after free tier cuts out
+                                                                                            this could be title of blog post
+                                                                                            series of informative how to articles    
+
+
+**************************************
+************************************************
+
+7-18-2019
+
+Going beyond Wix and Wordpress is about customization - wix and wordpress are quick and easy for most but only developers can go beyond - originally I needed something quick and easy and immediately to get my word out. I had to develop an infrastructure so had no time to design web pages. Then as things evolved I found out how to get clicks. Then I ended up wanting to reinvent my own wheel because now I have the time to do it and for many other reasons too such as lower cost and analyzing the clicks and just for the pure challenge because I can. (written 9-8-19)
+
+redoing my architecture without wix and wordpress
+
+objective is to point cloudflare (free vs cloudfront, cdn with free custom ssl vs cloudfront at $20 per day) to s3 instead of apache24 origin server
+                  8-6 objective is now changed to use both apache and s3 because we need apache for php and tomcat
+                                           also found that browser session mgmt is better used in PHP because it does not use cookies on client side
+                                              servlet cannot manage session because we are only in servlet part of the time and always in the browser
+                                           need apache to host tomcat so we can access servlets thru https://javasqlweb.com/servlet/... instead of ec2path:8080
+                                           also need apache to route all sub domains to virtual hosts all running from port 80 vs one main host pointing to just one of the sub domains..right now it is pointing to php.javasqlweb
+
+                  s3 endpoint  now http://javasqlweb.com.s3-website.us-east-2.amazonaws.com
+
+                             also
+
+                  Object URL
+                  https://s3.us-east-2.amazonaws.com/javasqlweb.com/index.html
+
+
+
+1. get javasqlweb.com away from apache 24 as home page..orig idea was to retire apache completely but we need it for php and tomcat (real install with mod jk)
+
+      DNS notes, set up s3 buckets with domain name, then click alias = yes on A record and point to s3 bucket endpoint
+         this way we have subdomains pointing to apache server and main domain in s3 bucket with index.html pointing to s3 endpoint path
+      So A record can be alias yes or no, if no then point to main ip address and config apache to hook on to it
+      Cname records are ONLY for subdomains and www is one of these subs....www.javasqlcloud.com is sub of javasqlcloud.com
+
+      when cloudflare takes over then cname in cloudflare points to s3 endpoint instead of A (alias record) pointing to the same  
+
+
+2. follow instructions to make javasqlweb as home page in s3 storage instead of apache..we are now wanting both, so php.javasqlweb.com points to apache now
+
+https://wsvincent.com/static-site-hosting-with-s3-and-cloudflare/    ..see this tutorial and do first part of s3 and not the cloudflare part
+https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/RoutingToS3Bucket.html  ..this is the route53 part
+
+        as of 8-6-19  main site javasqlweb.com points to s3 bucket with same name and php.javasqlweb.com points to apache
+                  created A record for subdomain php in route53 and reconfigured apache to point to php.javasqlweb.com
+        in route53 point A (address) record to s3 bucket..click on alias section and in target s3 bucket link shows up after creating bucket
+             chose the s3 bucket target and press save
+
+       **** don't forget to set up second bucket for www.javasqlweb.com   ....done 9-13-19
+
+
+3. after creating buckets use route 53 for alias to point javasqlweb to s3 bucket index.html (need this step regardless of where dns servers are)
+
+        step 2 creates bucket and this step is done, alias is now set....under s3 target the bucket link will show up
+   
+4. also set cors policy on s3 bucket and test a page
+
+        as of 8-6...before doing this test cors on apache..8-7 apache post test done, cors was not an issue, only needed it on servlet side
+                                                                          apache get test after cors shows access violation exception
+                                                                          only apache post is needed to track users stats               
+
+
+https://benjaminhorn.io/code/setting-cors-cross-origin-resource-sharing-on-apache-with-correct-response-headers-allowing-everything-through/
+
+jquery-3.1.1.min.js:4 Access to XMLHttpRequest at 'http://localhost:8080/json/ColModel' from origin 'null' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+jquery-3.1.1.min.js:4 Access to XMLHttpRequest at 'http://localhost:8080/json/ColModel2' from origin 'null' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+
+
+4a. download and enable php7 on win1 by adding directives to apache httpd conf file
+          completed this on 8-15-19 and tested ok
+
+this is the tutorial   .....https://www.furqansiddiqui.com/install-php-7-with-apache-2-on-windows-10/
+
+
+
+5. join cloudflare, move dns servers there and get https, I think cloudflare takes care of port 443 as we would have had to manually set up in apache
+       done 9-13
+cloudflare (a dns app) manages dns for 3rd party software like aws...did not mention apache as 3rd pty sw..looks like we still need route 53 for routing at aws
+                  https://support.cloudflare.com/hc/en-us/articles/360020991331 
+   using Amazon S3 as storage at 3rd party (origin server)
+Consult Amazon’s documentation on how to create an Amazon S3 bucket.
+
+Note the full host URL assigned to the bucket.
+
+**Add a CNAME record for the AWS bucket in Cloudflare DNS. For example, if the full host URL of the bucket is files.example.com, add a CNAME record similar to the following:
+
+files  CNAME  files.example.com.s3.amazonaws.com
+Amazon requires that the CNAME match the bucket name as in the above example.
+
+**then set up ssl while in cloudflare..point to domain and all sub domains
+        done 9-13
+
+
+6. point cloudflare to origin s3 bucket     done 9-13  
+7. look into 3 page rule
+
+8. need to get ssl for port 8080 since we r no longer using apache we now cannot merge 8080 with port 80..cannot start real tomcat install
+          repoint port 8080 to 8443 for this to work....either 443 or 8443
+
+       will not be able to do this, instead run both s3 and apache 2.4 (using subdomain, php.javasqlweb.com..added A record in route 53, 8-5-19)
+       ssl should cover subdomain prefix wildcard ie *.javasqlweb.com, so users can access either or subdomain
+
+       use real tomcat install and point apache 24 to tomcat servlet so we can use https://javasqlweb.com/servlet/name of servlet
+          need real tomcat install and mod jk  config apache so we can access it with above https address...right now it is separate ec2 address on eclipse
+
+9. look into cloudflare workers kv for $5 per month to eventually replace my aws s3.....retire wix to aws..retire apache to s3..ultimately retire aws to kv
+       kv launched in may 2019..experiment and write blog post..kv reads javascript..this could be part of my JS adventure
+
+10. try to get green mark for javasqlweb.com with trusted source.org ..........submitted 9-13-19 subsequent to getting https
+
+11. start moving wix pages over...do some facebook group tests so i get hits on new pages and to test tracking system  ....ongoing
+
+12. retire apache 2.4
+       decided not to do this, use php.javasqlweb.com for php and tomcat access since php needs apache 24 to run and cannot run in s3 bucket
+       end result, we run both apache and s3 for different purposes
+       
+
+13. retire wix
+
+
+as of 4-29-20 these are my updates for above
+  could not run port 8080 or 8443 from cloudflare, php does not run in s3 bucket, no javascript available in wix, using free wixsite pages after retirement
+  ended up abandoning both cloudflare and s3 in favor of apache 24, tomcat is now standalone behind apache due to mixed case issue and problems with tomcat cert in 8443.
+  got rid of cloudflare for 2 reasons...1 has cookie and 2..does not support port 8080 
+
+
+https://coderanch.com/t/675037/application-servers/port-HTTPS
+Port 8443 is the standard for Tomcat secured (SSL/TLS) data, corresponding to the common HTTPS port 443. 
+
+You cannot use the same port for both http and https. Unlike some other types of servers, webservers do not negotiate encryption. If it's encrypted (https), it must be sent to 443/8443. If it's plain text (http) it must be sent to 80/8080. 
+
+**consider a srv dns record (specialized dns record) which specifies a service at a port, eg: tomcat is the service at port 8080...might not need 8443 or 443 etc
+
+
+The default setting for tomcat's server.xml file reflect those standards. 
+
+The requirement for a given URL to be http or https is determined by your transport security rules that you set up in the webapp's WEB-INF/web.xml file.
+
+****do we need to add cname to route 53 for ssl to 8080?
+maybe set apache to listen on 8080..not sure if this works for ssl..may still need to config ssl in apache?? even though we have s3 and cloudflare??
+maybe set up second cloudflare account to use port 8443? then apply for ssl a second time
+***set aws ec2 instance to allow port 8443 and also do on win firewall..then apply for cert?
+
+
+enable tomcat to listen on port 8443 or 443...need to edit server.xml file..which means we need real tomcat install for this and not eclipse version
+https://www.networkworld.com/article/2286106/running-tomcat-to-listen-on-standard-ssl-port.html
+
+*******************************
+*************************************
+7-18-2019 submitted to trusted source.org and after a few hours cloudwithasilverlining.com is now finally green *************************
+   see links2 for mcafee info, paid $35 to mcafee subscription....maybe this had something to do with it
+   next work on javasqlweb.com, after we migrate to cloudflare
+
+
+***********dont forget to turn off auto renews by jan 1 and be off wix by then
+**************costs
+100 wix year 1 non recurring
+204 wix year 2 non recurring
+100 javasqlcloud.com blog 3 years, bluehost
+50 for 4 domains 1 year
+35 for mcafee
+50 for mailing list non recurring
+10 per month aws, 15 for first month, now on nano as of 7-2019 only spent first $15
+
+goal is to get all at aws, get rid of wix and unused domains, keep blog for 2 more years
+
+
+
+
+7-20-2019
+
+http://3.18.106.249/test_form.html........doing javasqlweb.com/test form did not work....needed actual path address to work...config issue in apache
+       use test form to try javascript experiment                                                                    will be non issue in s3 hopefully
+       see test\get time in eclipse and also desktop\files\country to try to get country
+
+path to servlet...we seem to require physical paths but hopefully routing in route 53 changes this (with s3 buckets vs apache for storage)
+     when we get https ssl then cname alias points all to physical address as https://javasqlweb.com
+http://ec2-3-18-106-249.us-east-2.compute.amazonaws.com:8080/Feedback_Form/FormOneA
+http://ec2-3-18-106-249.us-east-2.compute.amazonaws.com:8080/Frontend_Javascript_Connection/AjaxHandler3
+
+
+
+  this is the sample servlet on win1 that returns your name as a response and also grabs the value 1 which will be inserted in a db
+     need to do connection to db from AjaxHandler servlet...this servlet is free to use as we use ajaxhandler1 for other program
+http://3.18.106.249/pass_variable.html.....this successfully ran remotely and did required JS..need this call in sample html test_form also residing in htdocs
+                                    start with db to register hit but also do other js on other servlets to get country and timestamp
+                                    using multiple ajax calls like we do in sample11.js
+
+***************this is the new test file and in sqlite db is called downloads**test run successful on 8-7-19
+http://php.javasqlweb.com/pass_variable1.html
+
+note that javasqlweb.com home page is now in s3 bucket and passvariable1 runs in apache htdocs in subdomain
+
+
+************* 9-13-2019 *******officially on cloudflare with https for javasqlweb.com, also awaiting trusted source for green mark
+
+consider joining dev.to in order to have another source to tutorials in addition to fb
+   reddit and quora not suitable, did not try medium yet
+
+also join hackernoon
+
+
+10-5-2019  new issue
+   soon google chrome will block all http behind https...this means my endpoint at s3 = http://javasqlweb.com.s3-website.us-east-2.amazonaws.com
+      so I think if we move home page out of s3 to apache then cloudflare https stays as https and does not refer to http endpoint
+             but as seen below my servlets will not work......****still need to make apache start tomcat and hopefully below issue goes away, also do vhosts
+      also it appears that examples path works only with http and not https = http://3.18.106.249:8080/DownloadWordDoc/SendWord
+                    cloudflare did warn us about this....might need to get official cert or redo apache like above plus move home page out of s3
+                    is cloudflare doing anything about this?
+         and only with 3.18.106.249 and not javasqlweb.com because apache has 3.18.106.249 set as home page vs javasqlweb.com
+
+
+    tests on 10-5 show we are at risk going to examples page or running any servlet including my new ajax servlet  
+this is called the mixed content issue...check in console when running ajax to see if mixed content message shows up...looks like early 2020 for enforcement on this
+be aware of mixed content issue.... http within https
+
+
+** add to blog - google has a do not track setting under cookies...this is in addition to others using ad blockers to conceal themselves from tracking
+                         wondering if google has any way to block JS from registering a hit on the db...btw put ajax at end of page so it loads last
+                         will google prevent JS from loading
+
+** new idea, schedule cron job in aws lambda serverless..ie. run report once per day to show my new stats
+     need this exercise to write about..it involves simple sql at serverless level
+     then look into static workers site at cloudflare...can we use js inside static site? for ajax calls. cloudflare is built on google v8 js engine
+     can we use ajax inside static site to post and retrieve data in and out of cloudflare KV database 
+
+
+        or program with java.util.TimerTask,  import java.util.Timer;
+        then do query at certain interval and save output to csv
+        then email report to me periodically using email example
+
+
+10-9-19 update on tomcat...must use port 8443 as cloudflare does not support port 8080 over https
+    so we will do https://localhost:8443  see fav for this...then config apache to auto load tomcat at localhost or get cert for new path..but since we will be using a site where we already have the cert hopefully domain/port will also show https
+                   self generated ssl cert at localhost will never show up anywhere because ajax has path burried...we merely fulfil the requirement here so we eliminate the mixed content issue...chrome will not see the http because at localhost it will be https
+Your web server needs to be listening for HTTPS on Port 8443. Then Cloudflare will proxy any visitor requests on 8443 through to your server.
+   in apache need to enable mod ssl and use extra ssl folder and uncomment include conf\extra\ssl etc
+
+
+
+10-17-19
+
+used corvid on wix to forward home page
+open js editor, click on home page code at bottom of editor
+
+js should look like this inside onready function...note, also include imports to enable wixlocation.to method
+
+// For full API documentation, including code examples, visit https://wix.to/94BuAAs
+import wixLocation from 'wix-location'; 
+import wixWindow from 'wix-window';
+
+$w.onReady(function () {
+	//TODO: write your page related code here...
+	wixLocation.to("http://3.18.106.249/pass_variable1.html");
+
+});
+    auto forward cloudwithasilverlining/home to win1, grab city location, post to downloads, then js forward back to cloudwithasilverlining.com/main
+                 
+
+
+try to reset expiration of ga tag
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-xxx"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-xxx', {
+      'anonymize_ip': true,
+      'cookie_expires': 31536000,  {# 1 Year in seconds #} //TODO not working
+      'send_page_view': false    take this part out
+  });
+
+
+Anonymize the user's IP address in Analytics:
+If you would like to anonymize the user's IP address when using Google Analytics, you can replace this: 
+
+gtag('config', 'UA-00000000-0');
+with this:
+
+gtag('config', 'UA-00000000-0', { 'anonymize_ip': true });
+
+
+*******************************************
+10-26-2019 preparation for migration away from wix..implemented round trip wix to js back to wix
+
+new page makeover - getting away from tutoring as a business..objective is to not look like a business so not needing gdpr
+  add blurb to about page saying we are an educational provider (not a business) as a public service, free of charge
+
+took away link to examples page
+   using ipdata link to get geo info..looks like due to forwarding that ipdata cookie is not captured 
+create table tracker(
+hit,
+session,
+date,
+page_name,
+country,
+region,
+city,
+is_eu,
+is_california,
+time_in,
+time_out,
+time_total,    // do a calc in update servlet to calc total time
+Consent_button_pressed,
+refused_cookies,
+privacy_policy_clicked
+    // need to alter table tracker add column locale then add local var to js, then get local , then insert into db 
+      // or for now i can just put locale is_california col
+);
+
+created test2.db at one level above sqlite3 folder and new tracker db resides there
+
+http://3.18.106.249:8080/Forms/FormOne
+
+
+once we migrate totally over to javasqlweb then redo GA cookie to be anonymous and also to expire in 24 hrs..then view settings/cookies
+   also take away local storage from 3.18.106.249, it is appearing under cookies, perhaps wix is setting it right now?? or i have experiment running
+   not sure where it is picked up from..keep doing ongoing cookie tests..objective is to look like we have no cookies lingering on peoples computers after 24 hrs or perhaps can set for only 1 hour, just to grab data into db..this way we do not store cookies, we collect then dispose but do not store
+
+  **major problems with speed of nano instance did below and now is much faster...but for how long..maybe tomcat running for a month hogged up small memory
+       might need this maintenance periodically....sign in every day to check speed
+10-30-19 ************ due to slowing down of nano instance, do not reboot ec2 only stop and restart to speed up performance..gets new ip address..keeps all settings
+first shutdown tomcat and apache in win 1, go to httpd conf file and change ip address to new one
+stopped and restarted ec2 instance - instructions
+gets new ip address
+log on to remote desktop with user = Administrator and pass = unh12806! using new ip address and restart tomcat..need user name (Administrator) to log on
+go to cloudflare and reset home.javasqlweb.com plus other sub domains including www to new ip address, note cloudflare only needs 2 cname records for pointing to aws s3,  should only need to change home and www subdomains to new ip
+leave everything the same at route 53
+in cloudflare @ or root points to s3 bucket endpoint without the http in front
+  looks like we only need to change home sub domain because s3 index forwards to home subdomain
+  s3 index file found in practice files folder
+wix forwarding needs to be changed to new ip
+go back to win 1 and restart apache and tomcat
+be sure to repoint JS page called free tutorials to new ip, all ajax calls use this ip path
+
+note that cloudflare is main dns routing source for javasqlweb.com..still points to s3 bucket endpoint, but seems like route 53 is no longer used except for s3 alias record and not for main dns which still shows javasqlweb pointing to aws servers..apparently cloudflare took over
+
+***********************
+11-2-2019 finally eliminated php session in favor of servlet session so php session cookie is not placed on client machine. But issue became that cloudflare is still placing a cookie called _cfduid at the client side and we are trying to be cookie free
+
+objective is to have cookie free solution
+
+11-3-19  finally did my own ssl cert to avoid cloudflare cookie
+11-3-19  created and set javasqlweb.org in route 53 as additional hosted domain
+         enabled ec2 instance launch wizard1 security group to add port 443
+         then created inbound rule on firewall in win1 to listen on port 443 (see instructions in AWS notes file)
+         used ssl for free (see fav for acquiring cert instructions) to get certificate and then installed cert in apache on win1 (cert expires 2-1-2020)
+               require me to create folder called .well-known to verify me as owner (windows has trouble with dot prefixed, place dot and beg and end to achieve)
+         ....these were the install instructions..........https://geekflare.com/apache-setup-ssl-certificate/
+         needed to load mod_socache_shmcb in http conf file and include extra\http-ssl file
+         then enabled hhtp-ssl file and installed cert and listened to port 443
+         but had trouble restarting httpd..could not see the actual errors
+         solution was to run httpd.exe at command prompt in apache so i could find and correct errors. on a would not start this dos version showed an error
+         then after correcting errors, restart worked using services apache start and stop
+         now we have https://javasqlweb.org working with ssl and no cookie , cucessfully circumvented cloudflare cookie setting
+                ** note that we need complete path https://javasqlweb.org and secure shows up but if we just do javasqlweb.org it does not show as secure
+         so now run ipdata with ajax request does not create cookie, we have no php session anymore or cloudflare cookie
+
+         we now have cookie free solution only at javaslqweb.org and not at javasqlweb.com (the cloudflare ssl setup)
+
+        
+11-4 javasqlweb.org is now properly configed for port 443 only as a vhost and is cookieless
+       ***********need one last test with cookiebot to see if it picks up ipdata cookie..google chrome does not
+
+11-5-19
+
+set up v hosts with the port 80 version of javasqlweb.org having a permanent redirect to the https 443 version
+now that we have individual vhosts, needed to put rewrite code in each one to remove file extension..put rewrite at end of 443 page
+   noticed that javasqlweb.com forwards to javasqlweb.org and not sure why...seems like default behavior for httpd is to redirect everything to .org
+   perhaps since we have main listener on port 80 .....so anything coming into port 80 forwards ???? we might need to take javasqlweb.com off aws s3
+also noticed that ipdata stopped working
+found alternative..see new geo tracker in practice files and favs for geoplugin.com
+also went to files/test.php and changed expiration on GA tag to negative date so no cookie is placed by GA except for _gid which lasts only 24 hours
+
+
+11-6 still need to do free ssl for subdomain, need wildcard cert... created tutorials.javasqlweb.org but cert is only with main domain
+          if you look up https://tutorials.javasqlweb.org we get the dangerous 'do you want to go there' screen
+          solution is to get wildcard cert at ssl for free..when signing up u need to put *. in front of website u are applyting for
+
+11-6 abandoned s3 setup in favor of multiple v hosts in apache
+         no need to forward from s3 over to home.xxx.php, this was causing issues
+
+     changed cloudflare to point directly to ip address A record instead of s3 bucket address CNAME ref
+     looks like we can get rid of javasqlweb.com hosted zone now, old config had s3 bucket address pointing to alias ??
+        A record was pointing to alias target... s3-website.us-east-2.amazonaws.com.
+        since cloudflare took over it was ok to do this all along....tested and site still works without it..was afraid to delete earlier
+        repointed cloudflare @... to 18.191.142.3 instead of cname pointing to s3 bucket..using @ because it is root
+     updated 2 v hosts in httpd...test successful
+
+
+11-6 new idea blog.cookiefreecoding.com blog for gdpr group...for main page idea we can start with a feedback form similar to a chat page
+                                                                collect new ideas here..then other page comparing laws gdpr ccpa perc, other reagions, generic privacy
+             my offering is a tracking program advertised on blog and offered on main page for small donation to website
+                or program for $25 and support for $100 (support is to coach them on setting up environment and to monitor for 6 months)
+                                                       then if they want to renew support maybe $50 per year or have different plans
+                idea is to make money off support similar to licensing
+                I can start with a fully refundable clause for first year as an experiment ..condition is fully refundable after 3 months
+                also explore the idea for free, first month free consulting..just periodic discussions to get them acclemated
+                   place ur ideas here on chat page or set up private chat
+                chat about whats out there and what we can do as a programmer..a think tank
+
+             my offering can also be a hosted solution instead of a standalone program
+
+             caveot for all this is that it is only tracking that is cookie less, not re targeting which needs to stalk/track the customer over time via cookie
+                 at the moment I have no solution for this..idea of cookieless advertising
+             my competition is piwik which is a php solution..my program is not php and more streamlined offering an embedded db instead of mysql. . features...
+             how would I differentiate my product from piwik pro which has custom pricing and lots of overkill
+             also Matomo at $19 per month essential and $29 per month for business
+
+             I can be the low end offering and develop as we go along from ideas off chat page
+             I'm the custom programmer lets talk
+             I would appreciate a donation to cover my costs, lets talk
+
+other domain ideas
+  cookiefree.com is taken
+  nocookies.com is taken
+  cookiefreecoders.com  - attract other coders in addition to my offering - together we come up with something - partners - join our coders community
+
+look for ccpa group and other privacy groups
+
+
+11-7-19  new issue with ssl - for JS geoplugin to work need https version , ALSO need https version of jquery so all our js works
+                then need ajax endpoint to be https://18.191.142.3:8443.....this is the ssl version of tomcat, otherwise page is throwing mixed content error
+    see page1.html in htdocs/java folder...this is the root folder for javasqlweb.com
+
+11-12 installed tomcat 9 as a service on 18.191.142.3 running as standalone server at 8080...tomcat 8 in eclipse turned off so only 1 server is listening on 8080 (ie the standalone tomcat server) no need to have 8080 as virtual host or listen 8080 in httpd because tomcat server is standalone
+
+next step is to enable port 8443
+then config tomcat 9 with keystore and ssl cert for .org site
+apparently we cannot use cloudflare cert for this but perhaps we can still set page rule on cloudflare for one of the subdirectories to forward to 8443..not sure
+
+then retest page1 with ALL https for ajax endpoint to be https so we don't get mixed content message
+
+also run apache in front of tomcat using ajp protocal, but must first listen on 80 and 8080 in apache, turn off rclipse tomcat and enable tomcat 8080 for this and looks like we need to use ip based vhosts vs name server vhosts....do ajp if above tomcat ssl does not work or do in addition to be sure we can do it
+
+
+
+
+
+11-13-19
+https://howtodoinjava.com/tomcat/how-to-configure-tomcat-with-ssl-or-https/
+    self signed cert
+replaced 8443 in server.xml with
+
+ <Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+               maxThreads="150" SSLEnabled="true" keystoreFile="C:/Users/rickd/.keystore" keystorePass="unh12806">    
+<!--
+    <SSLHostConfig>
+
+            <Certificate certificateKeystoreFile="conf/localhost-rsa.jks"
+                         type="RSA" />
+
+
+            <Certificate certificateKeystoreFile="C:/Users/rickd/.keystore"
+                         type="RSA" />
+
+        </SSLHostConfig> 
+
+-->
+    </Connector>
+
+
+1)
+keytool -genkey -alias mydomain -keyalg RSA -keystore myyKeyStore.jks -keysize 2048
+before doing this allow access to bin file
+
+set up with password = unh12806
+
+
+2)
+need to install cert in trusted certs area
+https://customer.globessl.com/knowledgebase/19/Certificate-Installation-Java-based-Webservers-eg-Tomcat-using-keytool.html
+
+
+keytool -import -trustcacerts -alias root -file ca_bundle.crt -keystore myyKeyStore.jks.......looks like it is not the lets encrypt cert found in apache 443
+
+keytool -import -trustcacerts -alias server -file certificate.crt -keystore myyKeyStore.jks            I pulled certs from downloads file..seems like wrong ones
+
+keytool -import -trustcacerts -alias key -file private.key -keystore myyKeyStore.jks  could not do this
+
+
+C:\Program Files\Java\jdk1.8.0_221\bin = path to keystore file
+
+C:\Program Files\Apache Software Foundation\Tomcat 9.0\conf = path to tomcat 9 installed as a service
+
+
+win 1 keystore path
+
+C:/Program Files/Java/jdk1.8.0_151/bin/myyKeyStore.jks
+
+tomcat server.xml revised
+<Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+               maxThreads="150" SSLEnabled="true" keystoreFile="C:/Program Files/Java/jdk1.8.0_151/bin/myyKeyStore.jks" keystorePass="unh12806">    
+    </Connector>
+
+
+
+when accessing cert message says to import into trusted root certificates authoritires store
+   instructions are here for windows 10
+https://www.thewindowsclub.com/manage-trusted-root-certificates-windows...this is the mmc method *********** cert imported but not the lets encrypt cert
+
+but it only takes pkcs#12 format and we were warned about this
+
+
+
+i think we can create a pkcs keystore ..looks like we need openssl regardless
+or use openssl to convert
+
+see below, convert jks to pkcs
+
+
+
+used this to convert jks to p12 format (pkcs#12 format)
+
+keytool -importkeystore -srckeystore [c:/users/Administrator/myyKeyStore.jks] -destkeystore [c:/users/Administrator/MY_FILE.p12] -srcstoretype JKS -deststoretype PKCS12 -deststorepass [PASSWORD_PKCS12]
+ -srcalias [ALIAS_SRC] -destalias [ALIAS_DEST]
+
+    took out the brackets to read local files in jdk directory
+keytool -importkeystore -srckeystore myyKeyStore.jks -destkeystore MY_FILE.p12 -srcstoretype JKS -deststoretype PKCS12
+  enter above first then follow prompts
+
+ -deststorepass [unh12806] -srcalias [Rick] -destalias [Rick]
+
+
+*************
+remember that I changed jre security file to pkcs format vs jks
+
+C:\Program Files\Java\jre1.8.0_151\lib\security\java.security
+
+
+
+https://javasqlweb.org:8443/examples/servlets/servlet/HelloWorldExample
+
+
+****problem seems that by creating keystore first and importing in certs..it looks like it is a self signed cert
+    need to go get official certs in apache and try to bundle into p12 format bypassing the keystore
+
+    seems like openssl will do it
+
+
+****still try ajp method proxy 443 to ajp
+
+11-14-2019
+
+put tomcat behind apache using ajp
+set up mod proxy on *:80 and this path worked
+http://javasqlweb.org:8080/examples/servlets/servlet/HelloWorldExample
+
+also added port 8443 to ssl name server
+
+next step, try to proxy on 443
+
+rewrote proxy to go to 8080 vs ajp on both 80 and 443..perhaps now we do not need port 8443..note both ajp and http worked but with ajp we need to specify port on the request
+this works now without 8080
+http://javasqlweb.org/examples/servlets/servlet/HelloWorldExample
+
+this also works because it reverse proxys http 8080 vs ajp
+https://javasqlweb.org/examples/servlets/servlet/HelloWorldExample
+
+basically we are forwarding both port 80 and port 443 requests to http port 8080...no need for ajp..servlet path works behind ssl using apache certs..and no need to key in port number
+
+this is the fav I used
+https://pwu-developer.blogspot.com/2011/04/securing-tomcat-with-apache-web-server.html
+
+
+now for some reason my port 80 redirect stopped working but is ok for now because we can now move on and test ajax on https
+revisit this redirect issue later...turns out it is working
+
+big test is to be sure jquery ajax https proxying to http does not throw a mixed content message
+most likely will not because my ajax endpoint is https vs http and the proxy forwarding hopefully cannot be known on the javascript side of things
+  if it does pick up mixed content we can go back to ajp I think
+
+
+11-15-19
+
+initial retesting...now page 1a in htdocs/files directory...which is the doc root of 443 javasqlweb.org
+   mixed content does not show but still need to migrate servlet over to tomcat standalone
+   also no need to move org site to default nameserver domain as it works as is and home page shows as ssl and helloworld works on tomcat standalone
+
+changed servlet mapping in tomcat web.xml to
+http://localhost:8080/examples/HelloWorldExample.......may need to drop new servlets here...cannot get myServlets folder to work
+  from this old one below
+http://localhost:8080/examples/servlets/servlet/HelloWorldExample
+
+tested where am able to compile in external jdk and drop class directly into tomcat..but need to restart tomcat..also add to web.xml
+http://localhost:8080/examples/Hello
+
+tried to set up new folders in tomcat for myServlets webapp.....not working...so will continue to use examples folder with new servlet mapping
+   context path is webapps then folder name for project then servlet mapping does rest of url
+
+next up
+
+need to recompile Ajaxhandler3 in jdk...dont forget to include sqlite.jar in bin folder
+then run ajax with this servlet as endpoint in page1a
+
+will be retesting with javasqlweb.org
+
+
+*********
+*******
+
+copied ajaxhandler3 over to win1...put sqlite driver in web-inf lib...
+ran servlet and test2 db appeared empty in tomcat root directory
+copied sqlite over to root directory and accessed the db
+created tracker table in the db and reran page1a at org site with new https endpoint in ajax
+
+https://javasqlweb.org/page1a.html   ..this is in the files folder of htdocs
+https://javasqlweb.org/examples/servlets/servlet/AjaxHandler3   is the endpoint
+
+next up is to put the time out servlet in and on onload script on page 1a  uncomment it
+
+
+11-16              servlet context path = webapps > name of folder to start path > web-inf inside that folder > rest of path under servlet mapping in web.xml
+finally got webapps/myServlet working...configging tomcat standalone is more than just dropping in app folder with web-inf
+  1 did manual start of tomcat..in bin folder double click startup.bat to see errors in dos startup
+  2 noticed that full control was not given to logs folders..went to security tab in properties for this folder and allowed full control..be sure myServlets also allows
+       tomcat startup requires access to log folders, thus need full control in props...windows 10 is not defaulted to full control for most folders
+  3 noticed after logs started working that some listeners were not starting, thus myServlet start had error
+  4 copied over full contents of WEB-INF folder from examples page...this contains the jsp listeners required for tomcat 9
+  5 edited web.xml to be just a minimal version...note that in servlet mapping is where extended path to servlet is....can be shortened
+  6 edited classes folder for minimal version...note that i took out props related to helloworldexample servlet which not does not work...not needed anymore
+       Hello class that I manually dropped in is working
+  7 also remember to change path for servlet mapping in web.xml........this is where extended path is
+
+only did above at localhost, still needs doing at win1....myServlets can be renamed to main for example...javasqlweb.org/main/AjaxHandler3
+
+tested timeout servlet and is working on win1
+   note: tomcat 9 is not processing annotations so web.xml is required for now
+         also, oddly method not allowed.....do post method not working so replaced with service method...got 405 error
+         also startup.bat not working like on localhost..press tomcat9 service icon to start manually
+
+
+
+11-18 next up, test to see if we can put tomcat behind cloudflare..curious if existing certs on port 443 are used..cloudflare might not go to my 443
+   initially looks like we cannot use apache vhost if we are using cloudflare because we can't get ahold of cloudflare certs in the free version
+     It did work but is using the port 80 vhost (forwards to cloudflare) and not my 443 certs
+
+next up...practice with jsp pages for persistent sessions....see eclipse workspace 2 at hello servlet
+            on timeout page condition is where session = x and page = y (all pages carry same session) using jsp
+            when doing ajax session condition right now is only where session = x because each page has its own session
+    and also use html pages with ajax call to session
+
+    then do rewrite rule to hide both html and jsp extensions. looks like existing rule is only for php extension ..see end of httpd conf file
+
+
+
+11-21
+experimented with adding locale to ajaxhandler3 servlet..visitors hiding identity register only with locale id..need to add locale as db entry
+put notice out on java group
+in 2 days got 33 hits according to ga and 39 hits from win1...6 hits or 15% hid their identity, 3 were from eu = 7%
+want to copy sqlite to csv and also compare to ga for 2 days..export ga to csv in ga.....and copy log file from eclipse...to compare all three
+or run cron job daily..but cron is for linix so windows equivilent is 'task scheduler' where we can run a bat file daily
+see fav to set up bat file for sqlite and try to run daily job..also see if task scheduler can send an email every day with results 
+or fire off servlet as an alternative..in servlet copy db to csv
+
+
+11-22 next up...go back to viewport issue for both home page and tuts pages
+   test jdk3 page which uses viewport....also enable an x in hamburger menu to return home..also do home menu item and prvacy policy as menu item
+   thenretest out on fb 
+
+11-30-2019
+
+now testing viewport. Found out about bootstrap with default css page that can be used. Add img-responsive class to image and  viewport knows what to do to adjust for mobile view vs desktop view. No need to include separate css. But this solution is just for image management. So with text we need to put padding in etc and probably have our own custom css for that. Look into nav bar tag called <nav>. I think this is specific to bootstrap, not sure
+
+test file is javasqlweb.org/nav-with-x2.html....see original nav-with-x and also tutorial2 page and jdk3 page
+
+
+
+12-12 restored previous wix home page (10-26 version) and stopped forwarding test
+        also
+    in home page code at bottom of edit these were the forwarding instructions
+// For full API documentation, including code examples, visit https://wix.to/94BuAAs
+import wixLocation from 'wix-location'; 
+import wixWindow from 'wix-window';
+
+$w.onReady(function () {
+	//TODO: write your page related code here...
+	wixLocation.to("http://18.191.142.3/free_tutorials.html");
+
+	});
+
+
+
+    ********************
+1-11-20 update
+
+we have abandoned s3, cloudflare, php in favor of basic apache 24 http server on ec2 windows 10 app server with route 53
+
+it is time to renew ssl before feb1
+
+recap
+
+we have 2 vhosts on appache http as a proxy in front of tomcat
+we use 443 and not 8443 and forward all 80 traffic to 443
+our certs are stored in path shown on ssl vhost
+
+we do not use ssh, certbot, cpanel, openssl, csr prep - our solution is simple windows solution, store the files directly in htdocs folder in .welknown file using sslforfree
+
+see fav for wildcard installation *.javasqlweb.org
+
+
+*******************
+
+1-25-2020
+
+tomcat standalone retested with page1a.html .....note does not work with rewrite engine on to hide html extension
+  also remember to start sqlite in tomcat to see results....select * from tracker;
+C:\Program Files\Apache Software Foundation\Tomcat 9.0
+also time in and time out working with back button on mobil but not desktop?   need full retesting with back button and full x out
+  for desktop looks like only x out is working and might be x out of all open files in browser as opposed to 1 or 2 open files
+
+also dont forget that we use program files\java\jdk 151 version to compile java files for use in tomcat...this is where ajaxhandler3 is
+
+
+next up, modify page1a and put in new https geo tracker found in country2 file
+  retest on page1a is successful except for  'country in eu' not available so we can do an if statement for 28 countries
+  if we are going to use both wix and win1 during transition then we need both tomcats open..meaning will need to be on different ports
+    ie tut 1 and tut 2 go over to new system (just change the link) and other tuts stay with wix
+
+
+quick review on screen capture
+ 1 open snip tool
+ go to area
+ press ctrl and prtsc key to capture without losing ur selection
+
+
+2-1-20
+ see screen shots on cert expired under SSL... in pics folder
+ even with jquery , page does not load upon cert expiring 
+
+
+
+actual renewal - sslforfree 2-5-20
+originally we can pick the 2nd option if we have dns pointing to port 80...note that 3rd option requires adding txt file to domain
+but if we want wildcard cert it only gives us option 3 which is manual dns
+if on aws we MUST create txt record in route 53...for value include both values in quotes under 1 txt file name
+remember to remove the dot extension from host record because aws already points to .javasqlweb.org - txt record has .extension twice, remove one of them
+also dont forget to remove old certs in apache and restart
+press verify and now sslfor free sees the txt record
+download certs and put in conf file..dont forget to press download then go down page and press download again after entering login info (user and pass to notify on expiration)
+allow certain amt of time to take effect   ?????? took about 1.5 hours but found that root is not covered by sslforfree but may be covered by others
+   I cleared browser history and restarted apache after updating certs
+
+
+need to enter *.javasqlweb.org javasqlweb.org to cover both with one cert and website says that only option 3 works with wildcards
+see this fav sslforfree.com and see advanced options  ******try this in a few days for a redo or go to aws and do c name? to forward root to www,...not sure this will work
+
+also looks like i must put https in front of blog.javasqlweb.org on a search, if i just enter blog.javasqlweb.org it assums http and not https
+
+multiple names on one request is also called subject alternative names - separate by spaces ** note need to list domain twice to cover both root domain plus subs
+  it is ok for 1 cert to cover *.javasqlweb.org javasqlweb.org cookiefreecoders.com  ........this is a SAN request
+
+lets encrypt has rate limits - see fav, they are generous ie u can apply for several certs over a period of time
+
+**** need to have a redo on 2-6 to cover both root and the sub domains
+
+be careful when testing to delete history frequently otherwise chrome will remember that now javasqlweb.org is the same as https://www.javasqlweb.org
+but after refreshing, http entry is really different from an https entry
+
+
+how to revoke, do new request, login to account and delete old cert after new is created
+so on 2-6 do SAN request so root domain is covered in addition to sub domains
+
+looks like it is best to do SAN request in order to avoid all above *********************   root address MUST be recognized in addition to sub domains
+
+2-6-20
+did san request for *.javasqlweb.org javasqlweb.org
+this time it required 2 txt files so for aws, value option has 2 values in 1 file separated by a line and quotes for each val
+
+redid httpd both conf files so blog.javasqlweb.org would auto forward to https
+  **still need to do for tutorials and www subdirectory also, so the port 80 version is not available
+
+also cleaned up both conf files and placed backup on desktop....removed 8443 from ssl file and only have forward command in main conf file 
+
+2-6
+aws created new hosted zone for cookiefreecoders
+create new hosted zone
+grab for ns vals from ns record, go to bluehost and edit name servers..press custom and put 4 vals in without the period
+create A record and point to ec2 ip address 18.191.142.3      routing policy is the default which is simple
+
+presently it points to generic server and works
+still need to do vhost, forward to ssl and apply for cert
+also set up sub domains later including www subdomain as cname to forward to main name
+  lets assume now that no one willever put in the www because they will only be clicking on my link
+
+
+
+for cookiefree i applied for ssl using middle option
+  created vhost
+  put .well known file there but also required that we have a www identity so went back to route53 to create cname pointing to main name
+    when retrieving well known files i also had to put the well known folder in my java folder which is the default for my vhosts..not sure why www went there looking for the txt file
+       ps, dont forget to register for the reminder, so cert shows up when u log in, otherwise i have new cert for .org that does not show there but also expires may 6...log in to certs with pass unh12806
+
+cookiefreecoders ssl tested ok cert is in conf different directory, main page auto forwarded from port 80 to port 443
+
+
+need to do all this for cloudwithasilverlining when it expires
+
+
+
+
+3-29-2020
+
+turned off auto renew for javasqlcloud.com 2-18-21  - wordpress instance
+turned off auto renew for javasqlweb.com 6-27-2020   -  cloudflare instance
+cloudwithasilverlining auto renews 4-6, let this happen then turn off for next cycle - wix instance ....done
+
+
+javasqlweb.org  keep....this one replaces cloudwithasilverlining.com
+cookiefree coders  ..need to build out with new architecture
+puzzle pieces  ..need to build out with new architecture
+
+have 6 domains...keep only 3 into 2021
+
+
+web.org and cookiefree ssl expires 5-6-20
+on 4-5-20 transfered cloudwithasilverlining.com over to aws....ssl expires 7-4-20
+
+
+4-12
+
+src="/oracle jdk.jpg"
+src="/windows choice.jpg"
+src="/downloads section.jpg"
+src="/java next.jpg"
+src="/eclipse intro.jpg"
+src="/get eclipse.jpg"
+src="/eclipse down.jpg"
+src="/eclipse installer.jpg"
+src="/eclipse launch.jpg"
+src="/eclipse welcome.jpg"
+src="/eclipse icon.jpg"
+src="/eclipse path.jpg"
+
+
+4-15
+
+asked for review on trustedsource.org for javasqlweb.org and went green within 2 hours.....also available under google search Rick Delpo (= title tag on index page)
+when someone is searching rick delpo they see green, click on it and can do a padlock cookie test
+  need to do same for puzzle pieces and cookie site before my mcafee membership runs out on 7-18
+  what is different is that i actually signed in to mcafee and requested a ticket and got instant service
+
+4-17 got notice on ec2 that i need java commercial license....I am not a business    ie, gdpr and java licensing....monitor this development
+
+     also when mcafee runs out do i still get trusted mark green? 
+
+4-27-20 fixed apache so .html does not show up as file extension, rewrite engine on in \files directory in httpd.conf - ssl folder
+        needed to rewrite all references to html links in index file and getting-started file under javasqlweb.org live
+        original files in practice2 folder are not the most recent....need to copy over files from win1 dated 4-27
+        got rid of override none, added options line..solution was to do rewrite commands earlier in the process..inside directory tag of each vhost instead of at end of httpd
+
+4-27 went live with new template on win1
+
+
+new idea 5-8-20 upskilling with tutoring - see fav guild education. They have universities, what about tutors for learning new skill, reinventing urself?
+
+
+
+5-10-20
+we finally have a working page template with all the functionality requirements but problem is that we don't want to update multiple pages each time we make a change. It dawns on me that we can use ajax refresh content only for this solution. see original examples for ajax, jsgrid vs jqgrid. This is the use case for refresh some of the page on demand when user clicks new page.
+   use jquery load method to load content into div without refreshing whole page, see recent favs 
+   load method takes one required property called url...so looks like we simply return url content to a specific div on the page
+     only the div is populated on button click which we will need
+
+click event needs to fire with an anchor tag in addition to a button, we are simply refreshing only the content of one div id
+rather than putting result inside a div consider using an iframe with target (jigsaw2 uses an iframe)...example
+
+new challenge is for the page to know which page it is on, ie home or tut1 etc so it passes appropriate page val into db
+  tracker knows what page we are on and for how long and page template stays the same while content only refreshes based on href link
+                                         this way when updating the template it is only in one place and not for each page (the recent dilemma)
+
+idea, dont do body on load because page script executes immediately. (note: script doesn't start unless we have push to start like on load or on click) *****Wait for page click to execute page script...put this script inside onclick event. Will need to declare page variable but now that we are exuting onclick existing declaration should work
+          onclick execute the named function.....still need to have name for function...we just dont execute it on page load
+****load all the html first, then page script at end, this way we declare page variable at the href level and update db at end of process
+run page script only when user clicks on a page....will window close timeout also work here??  what happens when user clicks off the page
+
+
+5-14-20 submitted cookiefree site to mcafee..now green within one day....still need to do for puzzle pieces before july mcafee registration runs out
+
+5-22
+working on event listener for div content changes in addition to on click event run timeout servlet where bodyonload set the listener beforeunload
+    divs don't hav a real window so when content changes we need to trigger the event.....using $("body").on('DOMSubtreeModified', "#content", function() {
+    on close I don't think we need fetch here we can just use ajax
+also note that canonical links should be on cloudwithasilverlining pointing to javasqlweb instead of other way around
+   search for google rick delpo and found preferred site for tut1 is cloudwithasilverlining (for duplicate content, canonical link rel points to preferred site for seo)
+
+
+5-25 my second year is approaching on June 28
+  first year goal was to get hits
+  during second year I revised and wrote, and I certainly took my time doing it 
+  looks like third year is for publishing and monitoring.....did I get way more hits?
+
+5-30 looks like i solved last issue with event handler running multiple times because it was registering each time in the loop. Using jQuery  .one method vs the .on method worked. Outside of regular jquery the regular dom approach tis to ad event listener or remove event listener. Jquery uses .on method and can also try .off method. Original idea was to add listener and then remove it but the .one method added the listener and then un binded it on the second pass. Using boolean on first pass do nothing, on second pass work the handler , on third pass unbind the listener which unbinds for all subsequent passes. Also once boolean is set to true it stays true for life of page.
+
+
+
+6-1 see practice files page 4 and run test in most recent eclipse ajax handler4 and post to book 5 desktop db....code for new feedback form without form tags, JS version
+    eclipse servlet = Comments
+
+
+6-8 configed and submitted puzzlepieces to trustedsource.org at 2:19 pm, note puzzle pieces not even indexed by google yet so perhaps might take days
+      not sure that trusted source cares if it is indexed, only that it is reviewed and I requested a review
+      see links2 for logon info, logged in first to create a ticket.....as of 6-14 site still not indexed by google...-on 6-25 still not indexed
+         requested indexint on search.google.com on 6-25 and was indexed right away, and is green (on page 6 of rick delpo search)
+
+
+idea for freelance digital group - educate urself to become a web developer to earn big bucks - steps i took to web dev or free tutorials or both
+
+6-11 still need to do servlet for comments and links for rest of more selections. Page3 becomes index template when finished
+
+6-19 puzzlepieces still not indexed
+
+still need to move comments servlet out of dev to prod, also enable rest of menu links...currently using page3
+
+on 7-4-20 cloudwithasilverlining ss expires..wildcard now costs $ on sslforfree now zerossl....try subdomain registration with zerossl...separate certs...blog.cloudwithasilverlining  ..be sure I registered this in httpd...first go to route 53 to be sure blog.etc subdomain is there then check in httpd
+  also mcafee coming up 7-18-20 auto renew set to off..all sites are green now..let mcafee expire
+
+
+6-28-20 two years since launching of cloudwithasilverlining, still redesigning site but almost finished with template containing features. Getting down to only 3 sites. Wix is gone, will get rid of wordpress next year at 2 year anniversery of javasqlcloud. blog will go to blog.javasqlweb.org
+
+
+6-29 got free cert for blog.cloudwith....note wildcards cost $ whereas single subdomain cert is free...need to register all sub domains singaly
+   sslforfree is now zerossl user rickdelpo@gmail.com pass is unh12806
+   note still need to forward http version to https version from parent httpd file...do this because any new user entering my site might use http version initially
+
+
+7-5 time to get rid of cloudflare....note also that sqlweb.com is default address on vhost. Not sure if it is relevant since home pageof apache is the ip address. All other vhosts should continue to work...removed site on 7-5
+
+
+7-6-20
+************* Tips and Shortcuts for the beginner Java programmer
+  make this the title of my blog page and migrate wordpress over to web.org before 2-21, let javasqlcloud expire, also cloudwith expiration
+
+tips
+       what to consider in advance of dev
+
+
+have u often considered learning java or web dev? Learning curve is huge but I cut to the chase with basic advice for the beginner. This is a MUST read in order to save time and lots of it.
+
+thrashing around on google is not fun. It takes forever and many beginners want to give up. Also u go down blind allies researching the wrong stuff. I want to share my dev experience with beginners. My inspiration to do this redesign came after I retired, I finally had more time to play around with programming
+
+here are some basic pointers...read my blog post on each one
+how to host...aws nano instance with jdk, tomcat and apache24 vhost...ur basic config for windows
+
+latest changes on chrome, plus legal situations in 2018...pecr, gdpr new https ssl rule, cors etc
+do ur own ssl.....wix, wordpress and cloudflare all use third party cookies
+
+use bootstrap for responsive home page
+
+jquery and ajax
+
+popular learning tools - php and mysql thru xamp, netbeans for basic java, wordpress for blogging, wix for basic web dev setup, google analytics
+    why I ditched all of these
+
+
+
+7-6
+    comments page accesses comments servlet which updates tracker table......on deck...create servlet on win1
+alter table tracker add column comments;
+
+
+to do, create task scheduler to copy tracker db to csv
+
+7-7-20 added comments servlet to tomcat9 on win1
+
+
+
+7-8 still needed
+on free tutorials change comments area to new code
+in header on mobile show FREE Tutorials clickable...make this the only thing there
+
+on mobile after clicking item we want the menu bar to collapse, presently does not work...done
+     https://stackoverflow.com/questions/16680543/hide-twitter-bootstrap-nav-collapse-on-click...this shows bootstrap4 solution...in class changed to show class
+
+
+7-11-20  revisited sql program. Left off where if script is a create script looks like we may need to go to a different servlet so we can pass an additional response object back to the js. This text response will be, i think, an <a> tag inside of div with a script so the user can click it to return the table contents. Then at the same time pass an FA table icon inline in front of <a> tag. I think we can use id= blah, blah blah inside <a> tag similar to inside a div tag to accept the ajax response object. Idea is to make this response object clickable so it needs to appear inside <a> tag and not inside div where the common response goes. Each time a table is created append same. When the user clicks on the tag a select statement needs generating so command line functionality in java is needed for this unlike command passed from input tag to jqgrid library. This command line functionality needs to go direct to the db without returning data. We can also do command to drop table. Not sure if i tried command line yet but think it is in another eclipse program. yes it is pro builder servlet in workspace2
+
+also see fav 'html dom insert row'....use this to create empty html table and each time create table executes append both FA icon and servlet response to the auto table. This way we see all the tables in our db in real time. A combo box can also be used but i like the html solution better. We should still be able to have FA icon plus anchor tag. Note, anchor tag might need new id each time servlet response comes over otherwise all rows will be updated on each table creation
+
+
+7-13 idea see fav to call php file from ajax , get ip address in php then send back to ajax success....use ip in db as session reference
+
+discovered that plausible analytics pulls ip then discards it...a no cookie solution...for each page we can record the user ip and treat this like a session id. Original idea behind sessions pulled an actual session which in turn created a temp cookie
+
+plausible counts page view each time the ip is pulled, they also use google reverse global maps to get country from the ip address
+
+not sure why sidcc google cookie showed up but i got rid of it...javasqlweb.org showing 0 cookies...recheck later 
+
+
+
+7-16-20
+  page3 now migrated to javasqlweb.org/index page and ajaxHandler servlet updated to grab ip from test.php
+  
+  next issue - display page in content section or create separate page for each tut. Original issue was that close page would not work by showing in content area. Fixed this by implementing content changed listener. So now we can put tuts in content area vs new page. Advantage is there is only one template to update and that is the master index. New issue arose.. Presently in anchor tags we use the target property to bring up new page and also a hidden iframe because target would not propagate to content section without iframe. 
+
+      now perhaps we use qjuery .load function in an anchor tag for our tuts so we can reference wixsite tuts (for now) in our content area
+
+           Assign and id to your anchor.
+
+<a id="test" href="#"></a>
+
+
+Then you can try to get the element
+
+var anchorHref = $(this).attr('href');
+//in your case it might the iframe. So you may need to adapt it or get it with jquery as well
+window.open(url, '_blank');
+
+
+looks like this is the proper code.....prior code looks like it may not work
+
+<!DOCTYPE html>
+<html>
+<head>
+<script type='text/javascript'
+  src='http://code.jquery.com/jquery-1.10.1.js'></script>
+<script type='text/javascript'>
+$(window).load(function(){<!--from w  w  w.  ja v  a 2  s. c o m-->
+    $(document).ready(function(){
+        $('#sample').click(function() {
+            console.log('yo yo yo .....you good to go.!!!'); 
+        });
+        $('#sample').trigger('click');
+    });
+});
+</script>
+</head>
+<body>
+  <a href="#" id="sample">this is a link</a>
+</body>
+</html>
+
+
+7-16 other issue...go to comments page and grab ip now that we are getting it
+                   also update privacy policy to say personally identifiable info
+                   and update mobile version to make free tutorials clickable in header
+
+     when wifi is off my ip on mobile is the sprint location in springfield ma and geo tracker does not show city...otherwise it is frontier hub in plainville....note inpossible to get actual person from local ip unless u r an enforcement entity....see recent fav on this if anyone challenges me about gdpr..Also consider using maxmind in java to programitically get geo info from ip address....instead of using jsonp geo site 
+
+
+7-19 see test/Main class in workspace2 where we try to run php from java....I would like to hide the run there instead of on my js page
+         ****this theory ended up not working ..see below, ..i fixed the security error in tomcat but servlet ip request points to my ec2 ip and not the remote user ip....so we need to keep the js http request to test.php to get the remote user ip
+
+7-21-2020  tomcat url call to test.php has an ssl issue....i think we only need to register the cer in tomcat and it will be found
+
+we are currently proxied behind apache to use tomcat at port 8080
+keep same proxy and go into server.xml in tomcat
+redirect port 8080 to port 8443
+
+<Connector port="8080" protocol="HTTP/1.1"
+connectionTimeout="20000"
+redirectPort="8443" />
+
+then config port 8443 to find cert in keystore
+  first try to reconfig 8080 for ssl and dont bother redirecting to 8443 because we do not have 8443 set up in ec2
+  see this fav https://geekflare.com/tomcat-ssl-guide/ 
+    this also is good for port 443
+
+
+prep
+
+see instructions  https://zerossl.com/help/installation/tomcat/
+
+create keystore in jdk
+convert zerossl cert to p7b format (not pem format like now) pb7-jks format includes all pem files...apache uses pem tomcat uses p7b
+try converter tool in favs otherwise need to do in open ssl....not sure if we can convert using jdk keytool...
+  see instructions in fav for using present cert in zerossl  ..... https://zerossl.com/help/installation/tomcat/
+  convert ca bundle...this is the converter..do not include pvt key only crt as first choice not sure about ca bundle....https://www.sslshopper.com/ssl-converter.html
+
+import p7b file into keystore
+Set the keystoreType value to JKS or PKCS12 as required....i think jks is for pb7 and pkcs12 is for pem
+then config server.xml 8443 command to find keystore and pass
+
+
+7-21 also accessed maxmind....may need to set up webmail for javasqlweb.org similar to javasqlcloud.com
+       see webmail setup in links2....we need email address for .org account to show we are a business or at least an independent entity
+       we are a sole proprietor..this is the business entity type or business structure...also a dba
+       but we are not really a business...a dba with without sales
+       what about ez cloud data services already established
+       or ez cloud data services dba javasqlweb.org with email as rickdelpo@javasqlweb.org
+
+
+7-21 downloaded openssl into program files folder
+
+need to upgrade tomcat 9 for ssl....experiment first with self signed cert in tomcat dev on localhost..use local jdk for keystore and in production over on win1 i need to use the installed jdk there for live keystore
+
+3 steps
+
+1 convert pem ssl to p7b format using openssl....did this with out dated cert
+2 import p7b into keystore in jks format....win1 has keystore see 11-13-19 notes....has self signed cert there
+3 modify server.xml in tomcat ...still proxying to port 8080..never pointed server.xml in tomcat to keystore
+
+7-22 resolved issue by going back to java security file and changing default format back to jks...see 11-13-19 notes above
+so now we do not need the zerossl cert to be converted and installed...the tomcat error disappeared
+
+7-22 so user does not blatently check my code and see the call to test.php ...perhaps we should now use separate JS file for org page so the remote ip stuff is somewhat hidden and not so blatently obvious....maybe put alot of white space at end of js file and then call to test.php way below....user may still see scroll bars but will need to work harder to find the call to get remote user ip at test.php
+
+also remove php extension over in apache so user does not know we are using php  and make the http call to test ..not test.php
+
+or try multiple js files like wordpress does
+
+
+7-26-20
+had trouble in rdp with file transfer
+open task mgr via search area as ctrl-alt-del opens main desktop and not remote
+in background processes end task for rdp clipboard monitor...details will show that this is rdpclip.exe
+press file then run new task and enter rdpclip....this restores functionality
+
+
+
+7-28-20
+
+new live test at
+  Java for Developers 1:42 pm
+
+19 new ip addresses, ended up with 46 visitors and 74 page views over 2 days
+
+
+7-29 ....8 new users as of 6am wed morning
+
+did whatsapp post = 5 users left, 3 hits all africa
+did EZ cloud post
+
+answered 2 posts on Programming for Beginners
+
+
+
+8-1-2020 joined dev.to and github
+
+posted afraid of java blog at 7am
+
+
+
+
+
+
+8-9 wacs client, need to run as administrator
+
+
+I used a wacs client and entered the following commands
+
+Please choose from the menu: N
+
+Running in mode: Interactive, Simple
+Target plugin IIS not available: No supported version of IIS detected.
+
+Please specify how the list of domain names that will be included in the
+certificate should be determined. If you choose for one of the “all bindings”
+options, the list will automatically be updated for future renewals to
+reflect the bindings at that time.
+
+1: Read site bindings from IIS
+2: Manual input
+3: CSR created by another program
+C: Abort
+
+How shall we determine the domain(s) to include in the certificate?: 2
+
+Enter comma-separated list of host names, starting with the common name: blog.javasqlweb.org
+
+Target generated using plugin Manual: blog.javasqlweb.org
+Validation plugin SelfHosting not available: Run as administrator to allow use of the built-in web listener.
+
+The ACME server will need to verify that you are the owner of the domain
+names that you are requesting the certificate for. This happens both during
+initial setup and for every future renewal. There are two main methods of
+doing so: answering specific http requests (http-01) or create specific dns
+records (dns-01). For wildcard domains the latter is the only option. Various
+additional plugins are available from https://github.com/win-acme/win-acme/.
+
+1: [http-01] Save verification files on (network) path
+2: [http-01] Serve verification files from memory
+3: [http-01] Upload verification files via FTP(S)
+4: [http-01] Upload verification files via SSH-FTP
+5: [http-01] Upload verification files via WebDav
+6: [dns-01] Create verification records manually (auto-renew not possible)
+7: [dns-01] Create verification records with acme-dns (https://github.com/joohoi/acme-dns)
+8: [dns-01] Create verification records with your own script
+9: [tls-alpn-01] Answer TLS verification request from win-acme
+C: Abort
+
+How would you like prove ownership for the domain(s)?: 6
+
+Store plugin CertificateStore not available: Run as administrator to allow certificate store access.
+
+When we have the certificate, you can store in one or more ways to make it
+accessible to your applications. The Windows Certificate Store is the default
+location for IIS (unless you are managing a cluster of them).
+
+1: IIS Central Certificate Store (.pfx per host)
+2: PEM encoded files (Apache, nginx, etc.)
+3: PFX archive
+4: Windows Certificate Store
+5: No (additional) store steps
+
+How would you like to store the certificate?: 5
+
+Installation plugin IIS not available: No supported version of IIS detected.
+
+With the certificate saved to the store(s) of your choice, you may choose one
+or more steps to update your applications, e.g. to configure the new
+thumbprint, or to update bindings.
+
+1: Create or update https bindings in IIS
+2: Create or update ftps bindings in IIS
+3: Start external script or program
+4: No (additional) installation steps
+
+Which installation step should run first?: 4
+
+Terms of service: C:\ProgramData\win-acme\acme-v02.api.letsencrypt.org\LE-SA-v1.2-November-15-2017.pdf
+
+Open in default application? (y/n*) - yes
+
+Do you agree with the terms? (y*/n) - yes
+
+Enter email(s) for notifications about problems and abuse (comma seperated): rickdelpo@gmail.com
+
+[blog.javasqlweb.org] Authorizing…
+[blog.javasqlweb.org] Authorizing using dns-01 validation (Manual)
+
+Domain: blog.javasqlweb.org
+Record: _acme-challenge.blog.javasqlweb.org
+Type: TXT
+Content: “gav5IlUGJ48nMKvlrynYjkreeb4GB4nGw1EW8s10R8A”
+Note: Some DNS managers add quotes automatically. A single set
+is needed.
+
+Please press after you’ve created and verified the record
+
+[blog.javasqlweb.org] Preliminary validation failed: no TXT records found
+
+The correct record is not yet found by the local resolver. Check your configuration and/or wait for the name servers to synchronize and press to try again. Answer ‘N’ to try ACME validation anyway. (y*/n) - no
+
+[blog.javasqlweb.org] Error preparing for challenge answer
+
+Create certificate failed, retry? (y/n*) - yes
+
+First chance error calling into ACME server, retrying with new nonce…
+[blog.javasqlweb.org] Authorizing…
+[blog.javasqlweb.org] Authorizing using dns-01 validation (Manual)
+
+Domain: blog.javasqlweb.org
+Record: _acme-challenge.blog.javasqlweb.org
+Type: TXT
+Content: “gav5IlUGJ48nMKvlrynYjkreeb4GB4nGw1EW8s10R8A”
+Note: Some DNS managers add quotes automatically. A single set
+is needed.
+
+Please press after you’ve created and verified the record
+
+[blog.javasqlweb.org] Preliminary validation succeeded
+[blog.javasqlweb.org] Preliminary validation succeeded
+[blog.javasqlweb.org] Authorization result: valid
+
+Domain: blog.javasqlweb.org
+Record: _acme-challenge.blog.javasqlweb.org
+Type: TXT
+Content: “gav5IlUGJ48nMKvlrynYjkreeb4GB4nGw1EW8s10R8A”
+
+Please press after you’ve deleted the record
+
+Requesting certificate [Manual] blog.javasqlweb.org
+Store with None…
+Installing with None…
+Adding Task Scheduler entry with the following settings
+
+Name win-acme renew (acme-v02.api.letsencrypt.org)
+Path C:\Users\rickd\Downloads\win-acme.v2.1.10.896.x64.pluggable
+Command wacs.exe --renew --baseuri “https://acme-v02.api.letsencrypt.org/”
+Start at 09:00:00
+Time limit 02:00:00
+Unable to register scheduled task, please run as administrator or equivalent
+Adding renewal for [Manual] blog.javasqlweb.org
+Next renewal scheduled at 2020/10/3 5:18:05
+Certificate [Manual] blog.javasqlweb.org created
+N: Create certificate (default settings)
+M: Create certificate (full options)
+R: Run renewals (0 currently due)
+A: Manage renewals (1 total)
+O: More options…
+Q: Quit
+
+
+
+this one worked but all files are .pem format, i think it is ok
+opened with notepad and cert seems to be in order
+
+Please choose from the menu: m
+
+ Running in mode: Interactive, Advanced
+ Target plugin IIS not available: No supported version of IIS detected.
+
+  Please specify how the list of domain names that will be included in the
+  certificate should be determined. If you choose for one of the "all bindings"
+  options, the list will automatically be updated for future renewals to
+  reflect the bindings at that time.
+
+ 1: Read site bindings from IIS
+ 2: Manual input
+ 3: CSR created by another program
+ C: Abort
+
+ How shall we determine the domain(s) to include in the certificate?: 2
+
+ Enter comma-separated list of host names, starting with the common name: blog.cloudwithasilverlining.com
+
+ Target generated using plugin Manual: blog.cloudwithasilverlining.com
+
+ Suggested friendly name '[Manual] blog.cloudwithasilverlining.com', press <Enter> to accept or type an alternative: <Enter>
+
+  The ACME server will need to verify that you are the owner of the domain
+  names that you are requesting the certificate for. This happens both during
+  initial setup *and* for every future renewal. There are two main methods of
+  doing so: answering specific http requests (http-01) or create specific dns
+  records (dns-01). For wildcard domains the latter is the only option. Various
+  additional plugins are available from https://github.com/win-acme/win-acme/.
+
+ 1: [http-01] Save verification files on (network) path
+ 2: [http-01] Serve verification files from memory
+ 3: [http-01] Upload verification files via FTP(S)
+ 4: [http-01] Upload verification files via SSH-FTP
+ 5: [http-01] Upload verification files via WebDav
+ 6: [dns-01] Create verification records manually (auto-renew not possible)
+ 7: [dns-01] Create verification records with acme-dns (https://github.com/joohoi/acme-dns)
+ 8: [dns-01] Create verification records with your own script
+ 9: [tls-alpn-01] Answer TLS verification request from win-acme
+ C: Abort
+
+ How would you like prove ownership for the domain(s)?: 6
+
+  After ownership of the domain(s) has been proven, we will create a
+  Certificate Signing Request (CSR) to obtain the actual certificate. The CSR
+  determines properties of the certificate like which (type of) key to use. If
+  you are not sure what to pick here, RSA is the safe default.
+
+ 1: Elliptic Curve key
+ 2: RSA key
+ C: Abort
+
+ What kind of private key should be used for the certificate?: 2
+
+  When we have the certificate, you can store in one or more ways to make it
+  accessible to your applications. The Windows Certificate Store is the default
+  location for IIS (unless you are managing a cluster of them).
+
+ 1: IIS Central Certificate Store (.pfx per host)
+ 2: PEM encoded files (Apache, nginx, etc.)
+ 3: PFX archive
+ 4: Windows Certificate Store
+ 5: No (additional) store steps
+
+ How would you like to store the certificate?: 2
+
+ Path to folder where .pem files are stored: C:\Users\rickd\Downloads\win-acme.v2.1.10.896.x64.pluggable
+
+ 1: IIS Central Certificate Store (.pfx per host)
+ 2: PEM encoded files (Apache, nginx, etc.)
+ 3: PFX archive
+ 4: Windows Certificate Store
+ 5: No (additional) store steps
+
+ Would you like to store it in another way too?: 4
+
+ 1: IIS Central Certificate Store (.pfx per host)
+ 2: PEM encoded files (Apache, nginx, etc.)
+ 3: PFX archive
+ 4: Windows Certificate Store
+ 5: No (additional) store steps
+
+ Would you like to store it in another way too?: n
+
+ Would you like to store it in another way too?: 5
+
+ Installation plugin IIS not available: No supported version of IIS detected.
+
+  With the certificate saved to the store(s) of your choice, you may choose one
+  or more steps to update your applications, e.g. to configure the new
+  thumbprint, or to update bindings.
+
+ 1: Create or update https bindings in IIS
+ 2: Create or update ftps bindings in IIS
+ 3: Start external script or program
+ 4: No (additional) installation steps
+
+ Which installation step should run first?: 4
+
+ First chance error calling into ACME server, retrying with new nonce...
+ [blog.cloudwithasilverlining.com] Authorizing...
+ [blog.cloudwithasilverlining.com] Authorizing using dns-01 validation (Manual)
+
+ Domain:              blog.cloudwithasilverlining.com
+ Record:              _acme-challenge.blog.cloudwithasilverlining.com
+ Type:                TXT
+ Content:             "OyTl_v_LsG-vWEdLhZKriBBv59riZ7qnG3GHHxgYNc0"
+ Note:                Some DNS managers add quotes automatically. A single set
+                      is needed.
+
+ Please press <Enter> after you've created and verified the record
+
+ [blog.cloudwithasilverlining.com] Preliminary validation succeeded
+ [blog.cloudwithasilverlining.com] Preliminary validation succeeded
+ [blog.cloudwithasilverlining.com] Authorization result: valid
+
+ Domain:              blog.cloudwithasilverlining.com
+ Record:              _acme-challenge.blog.cloudwithasilverlining.com
+ Type:                TXT
+ Content:             "OyTl_v_LsG-vWEdLhZKriBBv59riZ7qnG3GHHxgYNc0"
+
+ Please press <Enter> after you've deleted the record
+
+ Requesting certificate [Manual] blog.cloudwithasilverlining.com
+ Store step 1/2: PemFiles...
+ Exporting .pem files to C:\Users\rickd\Downloads\win-acme.v2.1.10.896.x64.pluggable
+ Store step 2/2: CertificateStore...
+ Installing certificate in the certificate store
+ Adding certificate [Manual] blog.cloudwithasilverlining.com @ 2020/8/9 10:52:20 to store My
+ Installing with None...
+ Scheduled task looks healthy
+ Adding renewal for [Manual] blog.cloudwithasilverlining.com
+ Next renewal scheduled at 2020/10/3 10:48:33
+ Certificate [Manual] blog.cloudwithasilverlining.com created
+
+ N: Create certificate (default settings)
+ M: Create certificate (full options)
+ R: Run renewals (0 currently due)
+ A: Manage renewals (2 total)
+ O: More options...
+ Q: Quit
+
+ Please choose from the menu:
+
+
+8-9-2020
+finally got lets encrypt wacs running.....see downloads folder for this
+got certs for blog.cloudwithasilverlining and cookiefreecoders both expiring on 11-7....also got new cert for javasqlweb.org but not for blog...got this at zerossl
+made mistake on blog.javasqlweb.org so this one is still outstanding
+zerossl will only give 3 free certs so this is why i needed wacs...need to wait till 9-6 to free up a space for blog.org to work
+
+  note that config is wrong on blog_org because i left certs empty and apache would not start....dummy certs are there
+    also need to restate the certs on httpd.conf-ssl file to point to correct certs when we get them
+
+
+next up ...clear to do dashboard program for tracker..see test at page3a_dash and tables.java in local eclipse workspace3
+
+
+8-17 update
+tracker dash now live on cookiefree, redid index template for cookiefree
+lets encrypt now working independently from zero ssl, created 5 certs, fixed blog.javasqlweb cert (see wacs client in downloads)
+
+note that on google search of rick delpo, clicking on cookiefree showed that google placed 15 cookies, gave me the option of blocking or removing so i blocked
+need to recheck subsequent google searches....this is sinister that google does this....colateral damage by blocking, now i cant access google analytics, i can stop using altogether
+  also note that going to cookiefree site without google search revealed 0 cookies 
+
+try separate servlet for summing totals on tracker to results2 div...note can only use servlet response object once to pass json back to ajax, hence 2nd servlet needed
+
+
+
+sat 8-22 went live on GDPR site with cookiefree coders also twitter.com/rickdelpo
+
+
+mon 8-24 realized that when document goes out of focus counter stops, user pressed home and did not exit browser.....so we have no timeout recorded
+  change timeout to fire when doc loses focus instead of when browser is closed....when doc loses focus close out last page called
+
+
+
+
+8-26
+next up, start dev on puzzle pieces, need nine blurbs......keep very short because attention span of beginner is small...and my need is to slap together for trial
+                                                                                       for trial update js event to include above focus and blurb in jquery
+
+  this subject matter appeals to the rank beginner so there would be much more interest on my test page than with advanced topic like cookies
+
+
+also remember that ssl cert for puzzle pieces expires 9-6
+
+practice tweeting by placing #gdpr as first word in my tweet so it seems like i am broadcasting to the gdpr audience
+find a hashtag for java beginners and other ones i can think of....ps, twitter seems to be a more efficient way to get my mesage out vs fb,dev or medium
+also forget about reddit as they would not even accept my recent entry...my cookie piece, recent marketing campaign
+
+
+experiment again with puzzle pieces image......add dimensions to make smaller, like in cookie free about page.....get better focus for image
+       try to get screenshot with snipping tool but get a nice crisp focus on image...then add dimensions to make smaller
+       for jigsaw 4.jpg, i think i used a resizing tool see favs not sure where...but instead of this approach, add html dimensions might work better to make smaller and maintain focus
+as of 3-28-21 can open in paint and resize to pixels not percentage = 100x100 also use black and bold for text color and choose light colors as background
+  also with href we need style element for text color because href will not use text class
+  also for snip we now use window key+shift+s to capture, crop out white space first, then save and then reopen with paint, then resize
+   using jigsaw4.html template in desktop/win1/apache24/htdocs/files folder to set puzzle properties
+
+
+10-2-20 finally got around to focus event experimenting in page3.html live
+          window.onblur does not seem to work in firefox, also ip not showing up when content changed pages are fired (might have been fixed on index page)
+
+   suggested to use jquery for ff
+$(document).ready(function() {
+    $(window).blur(function() {
+        ad_blur();  //here is what you wanna do when blur fires
+    });
+});
+
+
+10-4 after experimenting we added blur listener that fires ONLY when blur event occurs. Otherwise timeout was triggered each time a focus came in or out
+          standard focus javascript not good enough for conditional, if blur and an if statement does not work either. We need a listener similar to unload event but this event is the blur event...opposite event is the focus event which we do not listen for because when someone comes on the page we tim in that person already
+
+next step ..go live with this and test
+
+next up - add event_type to db, either unload event or blur event
+then add no of pages visited by an ip on given date - ajaxhandler 3, add counter if ip dot equals current then count else update no_of_pgs in db
+
+
+new campaign 10-11 and 10-12 got 37 hits..java coding approved me even though It was an advertisement..new finding..onblur listener is working but no way to measure duration...how long a user hangs out on multiple pages. GA showed beirut lebenon on for 34 minutes but my tracker shows all the pages and times but has no way of summing up the duration of the visits. Did my new campaign only with onblur but not with event type or no of pages visited. Perhaps no of pages visited is an indicator of duration...or highest time minus lowest time..how would we do this?..poll the ip address for greatest time perhaps?
+    only 2 out of 37 hits chose an actual tutorial..otherwise bounce rate seems pretty high
+    seems like the duration issue is a real session..the measurement of how long a user hangs out based on no of pages visited suring a 30 minute time frame..not sure how GA does it..or how long does user hang out at ur site not how long on each page like we r presently measuring..GA calls it the session duration
+
+     select max(time_in) from tracker where ip="94.187.3.244";  also select min but we cannot just subtract one from another...need to convert result in java to an int then do the math
+
+
+observation 10-13 my mobile phone, with wifi turned off, does not show city but desktop does. Perhpas in us mobile carriers block city and state info
+but ususlly india and other countries show city info....most of my users are mobile by general rule
+
+10-11 and 10-18 index page versions
+  I think on 10-11 I added the onblur event because above campaign verified that but on 10-18 I think I removed the footer piece of the index page because javasqlweb.org uses cookies but cookiefreecoders index page does not use cookies so needs the footer and popup info..correction > 10-18 version just re commented out footer so comment tag did not appear at bottom of main section, did not delete footer. In future index version it is now safe to completely delete the footer part
+
+
+
+try adding focus listener to my div in content section to ensure the listener is also there in addition to at global window level
+  then see if clicking out of personality or afraid links register the event...also go into tut1 etc and put focus event there too
+  mydiv.addEventListener("blur",name_exist_validation,false);
+
+
+
+10-29 rdp issue..internal error occurred...came back after a few reboots...rdp not supposed to work in windows 10 home???
+
+18.191.142.3 is the ip address for ec2
+EC2AMAZ-G7VU91D\Administrator
+
+
+10-30-2020
+
+run renewels for ssl certs...need wacs to do this in windows, for all other sites that i cannot do in zerossl because of limitation there
+also need to renew javasqlweb.org and puzzlepieces in zerossl site
+
+original path is .... C:\Users\rickd\Downloads\win-acme.v2.1.10.896.x64.pluggable
+   but could not find wacs.exe program there
+   went to original zip folder in downloads section and extracted all wacs to documents\wacs...now the exe is there
+   when i tried to run the exe file from the zip folder it would not run
+   for some reason wacs.exe disappeared from my system but now exe is in docs\WACS and it will open
+
+steps for running renewals
+
+1. go to docs\wacs and double click wacs.exe....run as administrator..although i think it was ok not to...create a new record
+2. renew not available option so we need to create all new every 3 months...but expiry bot will still remind us...program not asking for email this time
+3. open aws console\route53 and create txt record per instructions from wacs...need name plus val with quotes...then wacs will say to delete the record just created
+4. dont forget to include path for final cert so wacs knows to update ur folder.... C:\Users\rickd\Documents\WACS
+5. go to services console and stop apache24
+6. copy new certs into C:\httpd-2.4.33-win64-VC15\Apache24\conf\puzzle_cert
+7. go to conf\extra\ssl httpd file to be sure path to 3 certs is correct....will be in dot pem format
+8. restart apache24
+
+note: need certbot for renewals....at present i am not using this so there is no capability to renew...just do new certs every 90 days
+  also, let's encrypt is mainly used on unix and linux...while WACS is available for windows with no renewal capability
+
+
+
+11-2-20
+ we are malden mass when wifi is turned off...note in ff city shows but in chrome city does not show. Recently for lots of data entries I have not been seeing the us city vs we r seeing it globally. Also ff does not seem to pick up timeout servlet whereas chrome does. Anything up with the fetch api ? (ie timeout servlet is on this) Remember we still need to do a timeout when user exits a page on first try since program needs second attempt at present to accomplish this. I thought i remidied this with on focus timeout but not so for all instances..(ie all test scenerios)
+
+
+11-4 used wacs for puzzlepieces and javasqlweb.org....expires 2-2-2021
+         did cookiefreecoders on 11-7, still need to do cloudwithasilverlining and blog.javasqlweb.org
+11-5 check free tutorials page...more button not working....is it because this page is its own page and not part of the apend content section?
+
+not using zerossl anymore...all certs now on lets encrypt
+
+11-7 cloudwithasilverlining listed on afternic for $500, see yahoo mail for 11-7
+   afternic account....choose log in with godaddy , user rickdelpo@yahoo.com, pass = Unh12806rick....uppercase U
+   need to update payee info
+  
+   listed at https://www.afternic.com/rickdelpo
+
+
+11-8 failed to load resource, cert date invalid...error received when cert runs out....cookiefreecoders..loaded new cert..now ok
+    
+     also cloudwith is on new dns with go daddy but we have problem with the www version of cloudwith..looks like afternic did not do cert for www version
+     deleted cloudwith hosted zone from aws console route 53
+     for SEO, take rick delpo off title on cloudwith html page so search on rick delpo does not show cloudwith page..eventually take all pages off including wix
+
+NEXT UP
+
+need to get cert for blog.javasqlweb.org by 11-14
+also get rid of d biz card with refs to rick delpo and cloudwithasilverlining...also so search on rd does not show this option
+follow up with google search on RD to be sure all cloudwith refs are gone
+
+did seo google search on rick delpo and refs to cloud with are still there on 11-8
+check back next week to see if they are gone...note, plain yahoo search showed no refs to cloudwith
+   looks like google uses link rel alot and ranks pages with older content as more prominent..but yaho search shows more current pages first
+   back to google...this is why my dbiz card is second in line there but not on plain yahoo search
+
+note on ssl cert...not on zerossl anymore..they have a limit..now using WACS (lets encrypt for windows)..also note that zerossl forces u to do both the https and www versions of ur site so makes u get past ur limit faster..also looks like limit is cumulative..another note, not necessary to ever use www versions anymore, too much overhead in keeping certs and managing multiple pages in apache.. users will usually click ur link provided and seo searches are non existent so dont provide a link that has www in it then u dont need to worry about maintaining it....general rule about seo and the web is U DONT EXIST and even when doing marketing campaigns on FB...if u dont stay with it users forget about u quickly and generally never revisit ur page but occasionally they do visit. So it is very safe to never use www versions. My only seo venture was to include rick delpo in the titles of my pages so if someone does search me they see what i am doing, but other than that SEO has absolutely no value
+
+
+
+11-30 blog page debut, first index.html on blog.javasqlweb.org sub domain....this is a segway to puzzlepieces
+
+
+12-3-2020  final stats/findings for GA comparison to tracker experiment reveals high blocking rate, high bounce rate, more from us than last year, disappointing tutorials participation
+
+select count(*) from tracker where ip like '66%'; begins with 66 for google bot...be sure to exclude these in count
+select count(*) from tracker where ip is null;  we are also getting 53 with no ip....how can one block ip address? perhaps we count these
+
+select count(distinct ip) from tracker; = 375 unique users and page visits = 876 over 3 campaigns and intervals
+   subtract 74 bot visits
+
+
+google analytics 12-3  measured from july 1
+   849 page visits, subtract plainville, -194-52-18-6-5-3
+tracker  (starts july 26, 2020.....3 marketing campaigns for 2020)
+   887 page visits, subtract bots, -74
+
+results
+    tracker = 813
+    ga      = 571
+
+        242 more hits from tracker = 29% of visitors are blocking GA,,,,,this is the final tally for 2020 tracker experiment to find out how many block GA
+
+visitors from EU = 90 visits or 11% of page visits are from EU which also confirms original test done in 2019
+
+hits from India = 243        30%
+hits from US = 269           33%        in 2019 hits from US were only about 15%-18% or thereabouts
+
+only 127 (15%) hit the tutorials page...a massive failure....I think I am over their heads by limiting my venu to only java...next test on venu is for webdev
+count bounces where ip is only 1....out of 375 unique visitors count page hits where page_name = home
+   813-153 home_c = 660 hits on home page excluding cookiefree and 394 seem to be single hits  = 60% bounce rate.....ga showing 68% bounce rate  
+
+done another way 32% of page hits were a page other than home so looks like bounce rate is 68.....a massive failure..back in early 2019 bounce rate was low 40s for 3 mo
+  I had a much better fb following back then and engaged fb users more, back in 2019 many more seemed to be interested in my content
+  3 - 2020 campaigns were mainly directed on fb groups where approval was not needed 
+out of 127 who hit tuts page only 49 looked at a tut = 38%  so bounce rate on tut home page is also high
+
+
+1-5 while setting up blog page discovered that using set through link with target makes it so user cannot press back button to get to previous page
+      will need to create new page with new window for each link on blog page
+      get rid of set through this feature or use previous and next buttons at top of each page....note that previous works but next needs full page with banner to work
+        we are in an iframe....can we do back and forward functionality there?
+
+
+        <iframe name="receiver3" id="receiver3" style="display:none;"></iframe>
+
+Reason #2. Iframe Cause Usability Issues
+The iframe tag is notorious for creating usability annoyances. Among most common of them are:
+
+It tends to break the browsers' "Back" button.
+
+
+can we redesign so a tag displays content at certain part of page...in a specific div?  try this first.....get rid of iframe
+
+
+In a link to another section within the same page, the destination is identified in the href attribute by a hash symbol combined with the id attribute of the destination. This notation is known as a fragment identifier, and is shown below:
+
+<!-- Here is the link -->
+<p>You can check the facts by reading the
+  <a href="#refs">references at the end of this article</a></p>
+?
+<!-- Here is the link's destination -->
+<h3><a id="refs" href="#refs">References</a></h3> 
+
+*****************
+https://www.wikihow.com/Link-Within-a-Page-Using-HTML   use href to http plus # at end to direct it to location on current page
+
+
+   can it be done in jquery instead...idea is to get rid of iframe so back button works..answer is yes as above does not work
+j Query
+
+$("#nav a").click(function(e){
+        e.preventDefault();
+        $('#maindiv').load($(this).attr("href"));
+});
+
+
+*******************   ALSO found that ajax breaks the back button
+
+event for detecting if user presses back button ..... window.onhashchange = function()  .....then go to prev page.....will this work
+
+      previous setup relied on menu for navigation but we cannot guarantee that user will always use the menu or know to use it. They may just press the back button all the time
+      same theory went for close where we needed to add on blur bcecause user did not always x out of a page, they just navigated away
+
+
+12-5-20
+added back button event to blog page for when user presses back button to get back to previous page vs pressing back button to exit entirely ( a bounce off page) (previously pressing back pushed user out of page entirely because iframe and jquery both break the back button so we need jquery to also fix back button functionality), also got rid of iframe and put a tag event in jquery for whenever we have a href display result locally
+
+next up, need on blur event at document ready function   *********
+
+also write piece on event listeners in javascript section > as 7th puzzle piece (js section is about jquery vs others and about event listeners and responsive functionality for screen width). I feel like every time i turn around i need an event listener for something. consider the user many actions, the possibilities of what the user will do and how our page needs to react
+
+
+12-6 on blur works now in doc ready area but we also need it for if back button pressed (only put fetch timeout code in this section) ..both work now
+originally timeout was not registering if user exited out of first choice in menu selection
+also timeout would not work until we put it in with back button event listener code
+
+user exits after home page visit = full bounce  or user blurs
+user picks a choice but then presses back button to go to previous page..not a bounce but we still need to time this choice out when he leaves
+or user picks a choice but decides to on blur..bounces off second choice vs pressing back button to get to original page
+
+still need to use -1 syntax on history to go to previous page and not always to home page
+
+
+
+
+
+
+
+12-12  did a shift control j on desktop and found this for blog page
+Uncaught (in promise) TypeError: this.engines is not iterable
+
+removed mcafee webadvisor chrome extension....now search on windows security and scan for virus...after quick scan runs we have scan options..select full scan
+
+also added unload event to doc ready so if user picks a choice and xs out instead of pressing back we see timeout
+  or user can x out with back button pressed twice off one choice
+
+had trouble with cors while referencing free tutorials
+added header tag to apache ssl javasqlweb.org.....seems cumbersome this way
+
+
+
+sunday 12-13-20 at 11:30am
+   new campaign for blog site featuring 4 posts 
+   also posted on whats app
+   also posted to my fb page
+
+    submitted developers and programmers
+    submitted to Amazon Web services (AWS)
+    submitted to Amazon Web services (AWS) Cloud Computing Services
+    submitted to Web Design and Development 737k members
+    submitted to Web Design and Development 181k members
+
+   also on AWS Cloud...no submission needed
+   also web developers only..no submission
+   also web designing ...no submission
+   also Amazon Web Services (AWS) - Professionals....no submission
+   also software developer..no submission
+   also freelance digital..no submission
+   also java for developers..no submission
+
+
+
+
+12-14 trying to calc bounce rate for ip when hits are >1
+select ip, count(page_name) from tracker group by ip order by count(page_name) desc;
+
+32.212.171.53 is me with 56 hits as of 12-14...shows no city in db....need to remove these for tracker experiment
+
+>1 not working...use having clause
+
+select ip, count(page_name) from tracker group by ip having count(page_name)>1 order by count(page_name) desc;
+
+
+
+this is counting in a sub query
+
+counting where counts >1
+select count(*) from(select ip, count(page_name) from tracker group by ip having count(page_name)>1) as some_name;
+result is 269
+
+select count(*) from(select ip, count(page_name) from tracker group by ip) as some_name; 
+result is 436
+
+
+269 / 436 =   61% bounce rate...i think we need to do 100-61 because 39% bounce
+
+figure out a session
+
+
+redo
+
+select count(*) from(select distinct ip, page_name from tracker) as pg;
+695  .... this one eliminates when user hits home page multiple times
+
+     but still leaves us where page hit = 1 and thus is a bounce because user did not visit more than 1 page
+   redo query to get rid of one offs
+
+
+
+select count(distinct ip) from tracker;
+
+i think result automatically strips out dups
+wanting to show dups where user hits only 1 page_name multiple times,,this would be a bounce but is a dup and i think it is getting stripped out
+
+note that session id is always unique on each row so there can never be a duplicate row ?????
+
+select ip, page_name from tracker order by ip desc;
+   shows complete data set with dups
+   a bounce is one of 2 things
+        one record with only 1 ip
+        multiple records where page_name is a duplicate and only shows one Page_name as 2 results
+           this one i am having difficulty with but i think result auto strips out these dups
+
+
+
+this gets close
+
+SELECT ip, page_name FROM tracker GROUP BY ip, page_name HAVING COUNT(*)>1;
+   this is showing singletons with page name>1 with same name
+
+
+******************** using in clause does it but we need to filter out the dup page names that are only 1 page
+
+select ip,page_name from tracker where ip in (select ip from tracker group By ip having count(ip)>1) order by ip desc;
+
+The SQL IN Operator
+The IN operator allows you to specify multiple values in a WHERE clause.
+
+The IN operator is a shorthand for multiple OR conditions.
+
+
+
+
+this one returns 181 ip addresses where distinct page_name >1  ********i think this extracts singleton dups
+
+sqlite> select count(*) from (select ip,COUNT(distinct page_name) from tracker group by ip having count(distinct page_name)>1) as pg;      where >1....values are different..meaning user goes to another page..distinct is the key here
+181     was getting 269 before but that included all rows greater than 1 even when val was the same
+
+select count(distinct ip) from tracker;
+439
+
+
+181/439
+41% of the time user is going to another page ie not bouncing
+59% = bounce rate, compares to 65% bounce on GA (apply segment and filter for rutland and plainville respectively)
+  for dec 13 thru dec 27 true bounce rate is 57
+
+a bounce can be either 1 ip with 1 hit or 1 ip with more than 1 hit on same page
+    user never went to second page in both cases
+
+
+1-1-2021
+
+143941    326.52 jan1
+4029      d
+4225      r
+183114    fid
+
+335309
+
+   *************** range of dates..use between operator and sub query..need to get count * from sub query as some name
+
+select count(*) from (select ip,COUNT(distinct page_name) from tracker where date between "December-13-2020" and "December-27-2020"  group by ip having count(distinct page_name)>1) as pg;
+
+result = 54 which squares with manual search..at google sheets data 12-27 sheet 3 (74/128 was bounce 57.8)
+   on manual calc, distinct does not work so select data then remove dups before applying group by clause
+
+
+do a piece on how i calced bounce rate..the steps to compare manual sheet with query on db to be sure query was the correct one
+
+note, new observation, GA only counts registered pages with gtag present
+  for example blog -> page aws ..in tracker this is 2 page hits but in ga it is only 1 because aws is not its own page with gtag....also if user goes from blog to aws and then back to blog because of back button, GA counts as 2 pg hits where tracker counts as one because dups are removed
+
+
+1-2-2021 getting ready to ditch wordpress instance at javasqlcloud.com in favor of blog at javasqlweb.org (all at 1 site)
+never thought of exporting data from 2019...got about 1357 hits (950 visitors) in 3 month period in addition to my fb traffic on ga
+       see downloads folder...javasqlcloud/country views
+
+
+bluehost domain javasqlcloud.com expires 2-18-21    javasqlweb.org renews 2-27-21
+   auto renew domain set for off...verified
+godaddy cloud with site expires 4-6-21 ..auto renew is off
+
+
+1-2-21 next steps
+need to put back event on main page to capture singletons who press back button
+  problem? will back button go to itself? the home page vs after selection it goea back to home and not out to google
+  still need to try to do history -1 instead of redirecting back to home page
+  if it does go back to itself creating circular arg then does this force user to do a real exit?
+    perhaps redirect cookietest back to javasqlweb home page instead of its own page or deliberately to google page
+    then i think that 2 back button pushes go out to google
+    new problem, if i force a singleton to home page then it is no longer a bounce because we hit a second page
+    or maybe it goes back to itself then on 2nd back button press goes out to google, this is the real test
+    try test on cookiefree and use popstate event without if statement...do not try on blog site right away until we know it works 
+
+did filter on 12-27 data percent of records with a time out
+  early on it was 55%
+  on dec 13 forward we are up tom 76%
+
+mostly singletons pressing back where we have no event in code for a singleton responsetext vs responsetext2
+
+also need to do back popstate event at main page because we only have it on blog at the moment
+
+1-3 tested pushstate and popstate all day on cookie index page
+     singleton behavior is different, still goes out to google but i have it set on yahoo for now
+    need to make responseText as global as possible so we can add a back button function in doc ready area for singletons
+    but referring to itself as a page does cause infinate loop, can never fully x out with only back button
+
+next steps, implement popstate on all index pages and independent pages like free tuts and tut1 etc
+
+issue, how to get pushstate to go back to prev page without replace state, originally i had no replace state line and it appeared to go back from rindex to main but on mobile device popstate did not seem to trigger timeout servlet
+
+
+
+1-10-2021 revisit idea of full stack dev
+why do i want to do it
+it is not just about the stack, it is also about why we code the way we do in 2020. What are all the recent changes that have impacted the stack.
+
+write article for DEV first and medium, see if i can get some traction
+then twitter out things for a while
+
+maybe do a survey on fb to get feet wet and to introduce myself..or ask for friends on fb
+
+web dev is the target audience
+
+dont advertise, see if i can engage my group...share ur stack..what are u doing these days
+engaging audience has never worked for me except for that one time in java group
+
+full stack is essentially about architecture. why do i use sqlite for example. because it makes me do a java servlet and call the servlet using ajax. Thus i use several skills here. SQL, java, jquery ajax
+
+full stack as a topic encompasses many talking points
+
+start new posts on my fb page, go on a new mission with frequent posts directly on my page
+
+the reason i like sqlite is because it challenges me to use java and embed a dbase in my app. I could easily use the PHP and MySQL stack which is wildly popular. Or I could even venture into Node.js. But sqlite broadens my knowledge base and pushes me further into becoming full stack.
+
+on fb page, explore full stack is a new title
+  educate my viewere, make them interested and wanting to take a deep dive into my content. To drill down into my content
+    how do we get to full stack? Start by building an environment. EC2 windows cloud instance on AWS. Add jdk and apache and tomcat. And also add sqlite.
+
+
+
+1-11-2021
+
+https://www.facebook.com/Learn-to-Code-with-Rick-100316422046845
+
+new business page for purpose of adding call to action button to a post
+
+do the full stack article with intro blurb and button 'story continues'
+
+
+
+1-13-21  story continues or read more button is a CTA..or continue reading
+           call to action needs an image like dog with glasses and a headline that is either shocking or has a ring to it or both...rather than just saying free tutorials click here, try to create my story with several informative posts on fb and twitter and dev and medium..try to get traction slowly....not sure if this approach will work but it is better than having nothing.....need to convey that i am not spam...post must be worthy of being accepted at a group site...we can get their attention first then spam them later
+
+goal of 2021 is to gain traction
+
+
+
+   oracle jdk default
+1-20-2021
+****** major incident , my ec2 instance stopped and restarted and jdk not there, jvm blew out..this is the first time my instance was reset
+    prior to this I received warning on win1 about jdk being used for commercial/business, I never closed out the file because I knew it would blow out my jdk...so at this incident when server restarted by itself my jdk finally blew out because the restart closed all my open files
+
+need to restart apache
+needed to reinstall jdk 151 and windows environment variable path to bin folder
+    double click on jar file jdk151 and wait for install (note openjdk does not have a java file, we just download zip, extract and then point to bin)
+needed to put servlets back in bin folder...when jdk blew out I also lost the jdk folder...recreated the folder on reinstall
+needed to reboot ec2 instance
+tested javac -version to be sure jdk is installed....success....note java -version is only for the jre
+restart tomcat9
+
+now working again
+
+
+path for open jdk
+C:\Users\rickd\Downloads\openlogic-openjdk-11.0.8+10-windows-x64
+
+replace jdk path with this one so we can test...this will replace oracle jdk if we get another warning on win1
+
+
+downloaded the java 11 version from open Logic...there is a java 8 version
+https://www.openlogic.com/openjdk-downloads
+
+looks like jdk 8 classes will run in jdk 11 openjdk..but beware tomcat might not start...need to point tomcat to newer jdk
+openjdk does not have a jre so i think we need to remove the jre portion from tomcat
+
+
+
+1-21-21
+installed openjdk..needed to check custom options on install menu...to config path...choose all options
+for tomcat run as administrator...right click on windows installer file
+  for tomcat install
+use windows hotspot folder as path for jre when asked about installed jdks
+
+need adoptopenjdk version because it has a windows 10 installer
+for tomcat we need the service version which also has a windows installer
+
+note java 11 no longer has a jre so tomcat9 only needs path to jdk
+with earlier versions u needed to supply 2 paths, one for jre and other for jdk
+must set java_home env variable to jdk path...no need to set jre_home anymore
+tomcat will look for java_home in absence of a jre
+upon starting tomcat u can see java version in first 10 lines of command line output
+when i upgraded to adoptopen jdk it auto updated home variable and tomcat picked it up automatically
+  **** so might not need to re install tomcat9 on win1 like i did locally
+
+
+
+1-28 posted in SQLite group...by 1-31 started getting hits
+
+1-30-21
+ran WACS to renew 4 certs.....still needed to create and delete temp txt file on aws console route53 for each site
+  still need to install each cert on apache before 2-2
+  lets encrypt expiry bot worked this time, notified me of expiration date 10 days in advance
+
+
+
+      evolving dev experience over 3 years..aws is great only if u don't do it the aws way..ie getting stuck on ALL aws implementations of db and ssl
+recap of aws..only surviving usage of aws was route53 and rdp into my ec2 windows nano instance
+   stopped using s3 bucket
+   only used elastic beanstalk once originally to import servlets into zip file..originally relied on eclipse installed at port 8080 but mixed case ended this
+   never used rdp for database...embedded SQLite into java servlet
+   too expensive to use cloudfront....used free cloudflare instead but ended up ditching this too because of cookies
+   never used aws certification manager...used lets encrypt instead after cloudflare and after zerossl
+
+   ended wordpress and wix instances ie javasqlcloud.com and cloudwithasilverlining.com 
+
+
+
+
+
+2-16-2021
+
+new idea before or after puzzle pieces rollout
+
+draw some stacked rectangles so I can show my simple stack
+https://www.sitepoint.com/draw-rectangle-html/
+     build the stack and add puzzle pieces as u go
+
+
+          ----------------------
+             add a database to stack                    the details of adding a db  (more puzzle pieces)
+          ---------------------- 
+    ---------------
+         apache and index.html is next layer of the stack     etc       the puzzle pieces of web dev inside this part of the stack
+    ---------------
+
+  --------
+    rdp
+  --------
+        the aws stack vs my stack.....aws docs are too fragmented...aws more complex...only kept route 53 portion
+--------------
+    basic host aws windows server    |       i choose to go with windows
+--------------
+         foundation is windows vs linux...microsoft vs open source....the basic discussions of base architecture and then build on that
+         make ur choices first...ie i chose sqlite over mysql, i chose java over php
+
+
+the idea of the offset rectangles is to depict stairsteps as we climb the steps of web dev 
+  want to do this because concept of full stack is in vogue these days
+
+
+2-17-21 win1 got banged again...restarted apache24, tomcat and sqlite.......jdk still in place
+
+2-21 idea do github profile so i have another seo hook to rickdelpo
+        seo freejavatutorials showing as ranking = 65 in google....why no spaces in meta keywords for javasqlweb.org
+        found free link to check on ranking....follow up with the Hoth...see email 
+
+
+
+   this is how freejavatutorials is showing on page 6 search
+Rick Delpo - JavaSQLWeb.orgjavasqlweb.org › free-tutorials....note my index page is not the one referenced here ..it is free-tutorials
+click here for - FREE Java Tutorials ....also note that more tutorials and blog posts are in the works. JavaSQLWeb.org menu. x. Home (current) · About · Free ...
+
+           click here for FREE java tutorials is my hidden div tag for mobile view...this is the one that is ranking
+           Rick Delpo is the title
+               perhaps make new page with same key phrase in title and h1 tag...instead of the rick delpo title
+               do this as an seo experiment ...new page with ref to my free tuts page
+
+           also why no spaces in key phrase  
+
+do this seo as next project...then do marketing campaign to test..and followup with google search to see if ranking took place for experiment
+then 2. do github profile
+then 3. go back to listener issues
+
+note when i did seo check my pages.....they all showed up as hits..ie from germany for example...see 2-24 data
+but when i did sitemap check on 2-25 (see downloads) they did not show as hits
+
+2-22
+  edited free tuts page, changed title to free java tutorial(s) and added same to meta keywords (used tutorial instead of plural
+   also changed content of h1 tag and got rid of div and class in the tag...hopefully it reads easier for seo
+
+2-23 closed wordpress acct....but bluehost still active ...will show javasqlcloud.com
+         also cancelled dbiz and cloud with...neither are showing up anymore on rick delpo google search
+
+2-25 added h1 tag to index page of javasqlweb.org for first time....mentioning java tutorial.....hoping this will become a keyword in google search console
+         seo report mentioned no h1 tag...hoping to get a ranking
+google console..url inspection...last crawled 2-17    free tuts page crawled on 2-18
+request indexing is asking it to crawl....view coverage shows last crawl date
+
+also checked blog.javasqlweb.org....it has a ref page and last crawled 2-17....looks like it got crawled because of ref page backlink found in root
+   next step create some backlinks  like refs to other of my sites from about page for example
+   also fix viewports on all connected pages so mobile friendly error does not show for 6 pages and add meta description for each with keyword inside
+      while fixing perhaps add titles such as java tutorial pricing and java tutorial contact.....so as to hopefully get java tutorial keyword noticed
+      be sure that each title is unique....right now i either have no title or they are all called rick delpo
+      since google bot seems to be indexing 13 main pages why not have both viewport and title correctly done and also h1 tag
+        maybe ranking improves because on each crawl these seo things get noticed and counted...not sure about this but is part of ongoing basic housekeeping
+
+objective to do general seo housekeeping this year
+
+puzzlepieces crawled on 2-15...need to add cookiefree
+also see if we can delete old properties
+
+3-7 need to have robots.txt and sitemap reference inside this file...this is a google  seo best practice
+     also in addition to java tutorial as key word i also want learn java....for example in meta description say 'learn java with a free java tutorial'
+
+
+3-22-21  got notice from aws about public s3 bucket -copied over to s3 folder in files folder
+     originally used for ez cloud data services and home.javasqlweb.com....s3 buckets too cumbersome to work with and also did not support javascript?? definately did not support php...not sure about js
+
+    in general, AWS RDS plus others is big time overkill for the beginner just to get started. Even Python data structures are overkill
+
+
+3-28 worked on puzzle...revisited puzzle pieces architecture, picked out 9 topics and decided on dev narrative article so i can get this going
+  see Learning tools file for newest idea as dev narrative first
+  then see drive/ new puzzle page, puzzle for dev article
+  also search above for 3-28 to see added notes about how to resize jigsaw image
+  see win/apache24/files/jigsaw4.html for template needing insertion into index page of puzzle pieces
+    before it can be run need to pull library file for jquery ui...localize public file and make reference to it in meta tags
+
+ also note that jigsaw4 is viewable at javasqlweb.org/jigsaw4...forgot that i put it there, needs to go over to puzzle index page
+darker colors are okay for this version but not for the jpg i am trying to create and resize....jpg is needed for reference to my visual..I need it at dev site and facebook and in nav bar on website
+
+original holdup was over resizing the image, also put off finding and writing about 9 topics
+
+
+
+4-6-21  now 3 years..but only 2 years for major interactions to start on groups..almost 1 year passed before i went public in fb groups
+cloudwith is no longer
+no one appreciated the cloud thing..was way over their heads
+
+4-8 did quick whatsapp post
+
+4-9 shutdown event tracker, why did computer shut down unexpectedly....other unplanned no explanation...restarted tomcat
+a shutdown or restart for unknown reason
+restarted apache24 at services
+restarted tomcat
+
+looks like we were down only 4 hours since db recorded a bot from us at 3:39 am and i reset at 7:30
+also seems like an ec2 problem not what i thought before when it seemed like oracle found a way to restart me and that jdk warning window closed
+bottom line is we did not lose our jdk...all we needed to do was restart everything
+  not sure about this...in past case i think closing that window did cancel jdk because i had to reinstall it back then
+  this time not so because warning window never came back................also note that ip address is still the same
+
+also note that green trust mark not there since my mcafee ran out...how to get back....are my sites still green?
+do people even care about this anymore since mobile does not seem to care
+
+     restart site advisor ??  try to do mcafee without re subscribing...i thought i did this once before
+     webroot secure anywhere?
+     check windows firewall
+     i think windows does a periodic scan anyway...i think it is called windows defender
+     see webadvisor free download...may need to uninstall existing mcafee and reinstall freebie...see recent favs
+       before doing any of this check windows firewall
+
+by noon on same day ec2 reset again...needed to turn everything back on twice in one day
+
+
+4-10 article on microservices....write how i got behind and first experience at ge..got behind because i did not do annotations and spring boot relied on it...however i knew servlet, a big piece of the micro service and also rest api is a big piece
+
+idea for article, javascript from beginners perspective...node has too much overhead for the beginner....angular is too sophisticated
+  setled on jquery for simple servlet and dbase connection vs php....also i am older and not a current student or in industry with my hands tied on microservices or some other requirement...ur stage ein life really matters..i have choices at my age and i also have time. Time is bigger than u think. Also write about skills being obsoleted quickly at any age...cant get job without current skills....also state that this is opinion for discussion and debate on dev site...write articles that spark debate....try to engage audience..also title of article needs to capture reader..first impression..find article on why everyone should blog
+
+my barriers to entry at ge
+   no current front end experience , not enough java...but nonetheless on the right track and knew enough to get hired, discovered soonafter my limitations....so did a revisit of skills during retirement
+
+4-12 am..win1 shutdown event tracker    
+
+...3rd time we shut down in last 3 days
+
+4-12-21 removed mcafee total protection....web advisor still there according to uninstall info?
+              webadvisor does not appear to be there per search, see old download from 2019..also see above called site advisor
+
+
+reinstalled mcafee 4-12....30 day free trial, checking to see if all sites still have green trustmark.....yes they do
+pc security / protect me on the web  .......setting this up installs webadvisor , then add it as a chrome extension (follow instructions on install)
+
+4-15 win1 down again
+
+4-17 docs to markdown added to google sheets....select this to transform page to simple html without doing a download..then copy html directly to dev post
+                 do this so we can do ordered buleted lists on a dev post plus other formatting
+
+4-22 geo location cert invalid, tomcat not registering hit......at some point my third party app was bound to stop
+       failed to load resource....cert date invalid....site comes up but hit not working due to third party failure..this is a first
+
+    found new free geo site....https://freegeoip.app/.....updated index pages...dont forget that state is now region_name 
+       i really lucked out on this and also that i was able to do the jsonp part....callback was similar to other
+       this was a crisis..instead of trying maxmind i depended on third party sites for geo since day 1...maxmind seems complicated..a java api vs jsonp lookup 
+
+also back button not working...see cookie free site for code..passing page out to yahoo
+
+
+
+
+
+             note for below: chrome and firefox mobile work differently
+4-23 revisited back button issue using popstate   (mobile only tests)....originally...on cookie site back button mobile not working
+         blog site works properly in chrome where it exits and records the timeout...when pressing mobile back button right after page opens
+         but in firefox pressing back after initial load ...reloads back on itself....causes infinite loop
+            need an exit link on the home page to exit out to google or yahoo
+
+         cookie free site does not work for mobile back press
+
+      overall looks like we dont need touch events....just use correct popstate code found at blog site
+
+also fix geo code at blog site......region_name not showing
+
+while repeated testing in win1..we have a cache issue where it takes a while for win1 to cash new file for testing..it is not good enough to just erase history
+
+
+
+4-25-21
+revisiting popstate...originally needed so blog page would revert back to its home page, on a mobile back button press, instead of going back out to google..i think beforeunload was not working in all situations, and also the lose focus event. Must set pushstate for popstate to fire..then was able to trigger timeout hit counter...be aware that firefox works differently than chrome, causing infinate loop back on itself. For chrome a singleton back press right away does go back to google and not back on itself
+
+originally back button broken with jquery?....popstate is way to fix it
+    over time i discovered that all back presses for mobile were going out to google instead of previous page...in blog site fixed this..except for firefox infinite loop
+
+explanation..for chrome, popstate fires on page load but does not in firefox...reason to use popstate is because a back button press by user on mobile changes the history state of a request...thus triggers the history stack previously created in popstate by pushstate enabling popstate to be fired so i can trigger timeout servlet for my page in addition to sending user back to prev page in blog site
+
+my previous listeners...onbeforeunload and onblur i don't think were working properly on mobile but did seem to work on desktop tests
+universal solution was to add listener popstate, making use of history stack...the state of the request vs mouseclick triggers
+
+also just for curiosity try hashchange event...i think when url is changed after pressing back it is a hash change, not sure
+
+
+
+************************when home copy out to flash drive
+
+files/ country2
+
+files / win live copy /blog_org.....contains popstate listener........blog folder is there but not blog_org
+
+text area notes file..this one
+
+be sure open jdk is copied over
+
+
+5-28-21
+see node notes folder
+2021 is the year of redoing my stack again to be hosted serverless on cdn vs apache server (the single page app)
+  also moving away from sqlite and java to cloud db like fauna or mongo
+  and moving away from jQuery to lambda functions
+   using node.js, git bash for windows and github
+   then deploy to production with netlify (pulls from github)
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
